@@ -1,5 +1,7 @@
 streamlit
+streamlit-autorefresh
 pandas
+pydeck
 requests
 feedparser
 python-dateutil
