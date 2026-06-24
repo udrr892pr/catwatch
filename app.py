@@ -17,7 +17,7 @@ st.set_page_config(
 
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"
 GDACS_RSS_URL = "https://www.gdacs.org/xml/rss.xml"
-RELIEFWEB_API_URL = "https://api.reliefweb.int/v1/reports"
+RELIEFWEB_API_URL = "https://api.reliefweb.int/v2/reports"
 
 
 def utc_now_text() -> str:
