@@ -1,6 +1,7 @@
 import hashlib
 import re
 from datetime import datetime, timezone
+from urllib.parse import quote_plus
 
 import feedparser
 import pandas as pd
@@ -342,7 +343,7 @@ def notification_tier(severity: str, peril: str, intensity: str = "") -> str:
 
 def tier_label(tier: str) -> str:
     return {
-        "P1": "P1 Board Alert",
+        "P1": "P1 Executive Alert",
         "P2": "P2 Analyst Watch",
         "P3": "P3 Monitor",
         "P4": "P4 Information",
@@ -353,7 +354,7 @@ def analyst_action(row: pd.Series) -> str:
     tier = row.get("Notification_Tier", "P4")
     peril = row.get("Peril", "Other")
     if tier == "P1":
-        return "Prepare short board note, verify exposure/loss relevance, monitor source updates every 15–30 minutes."
+        return "Prepare short management update, verify exposure/loss relevance, monitor source updates every 15–30 minutes."
     if tier == "P2":
         return "Keep on analyst watchlist, check for escalation, affected population, landfall/impact reports, and public loss commentary."
     if peril == "Tropical Cyclone":
@@ -588,9 +589,140 @@ def make_map(df: pd.DataFrame):
     st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip), use_container_width=True)
 
 
-def board_summary(row: pd.Series) -> str:
+
+def public_search_url(event_name: str, source_name: str) -> str:
+    query = f'"{event_name}" {source_name} insured loss catastrophe model estimate event response'
+    return "https://www.google.com/search?q=" + quote_plus(query)
+
+
+def vendor_intelligence_table(row: pd.Series) -> pd.DataFrame:
+    event_name = row.get("Event_Name", "")
+    peril = row.get("Peril", "")
+    country = row.get("Country", "")
+
+    vendors = [
+        {
+            "Source": "Moody's RMS",
+            "Category": "Model vendor",
+            "What to check": "Event response, modeled insured loss, hazard footprint, market commentary",
+            "Access type": "Public + licensed",
+            "Priority": "High",
+        },
+        {
+            "Source": "Verisk Extreme Event Solutions / PCS",
+            "Category": "Model vendor / industry loss",
+            "What to check": "Modeled insured loss estimate, PCS catastrophe information, event commentary",
+            "Access type": "Public + licensed",
+            "Priority": "High",
+        },
+        {
+            "Source": "KCC",
+            "Category": "Model vendor",
+            "What to check": "Flash estimate, modeled insured loss, event response commentary",
+            "Access type": "Often public summary",
+            "Priority": "High",
+        },
+        {
+            "Source": "CoreLogic / Cotality",
+            "Category": "Property analytics",
+            "What to check": "Property impact, exposure, hazard insights, disaster response articles",
+            "Access type": "Public + platform",
+            "Priority": "Medium",
+        },
+        {
+            "Source": "PERILS",
+            "Category": "Industry loss authority",
+            "What to check": "Industry loss index, initial loss estimate, subsequent loss updates",
+            "Access type": "Mostly licensed",
+            "Priority": "High",
+        },
+        {
+            "Source": "Aon",
+            "Category": "Broker / market report",
+            "What to check": "Catastrophe recap, market loss commentary, insured/economic loss ranges",
+            "Access type": "Public reports",
+            "Priority": "Medium",
+        },
+        {
+            "Source": "Gallagher Re",
+            "Category": "Broker / market report",
+            "What to check": "Natural catastrophe report, event commentary, insured/economic loss ranges",
+            "Access type": "Public reports",
+            "Priority": "Medium",
+        },
+        {
+            "Source": "Swiss Re",
+            "Category": "Reinsurer / sigma",
+            "What to check": "Insured/economic loss commentary and later event trend reports",
+            "Access type": "Public summaries",
+            "Priority": "Medium",
+        },
+        {
+            "Source": "Munich Re",
+            "Category": "Reinsurer / NatCat",
+            "What to check": "NatCat commentary, economic/insured loss estimates, historical comparison",
+            "Access type": "Public summaries",
+            "Priority": "Medium",
+        },
+        {
+            "Source": "Official insurance body",
+            "Category": "Official claims / market body",
+            "What to check": f"Claims count, declared catastrophe status, local insurance market loss updates for {country}",
+            "Access type": "Public if available",
+            "Priority": "High",
+        },
+    ]
+
+    rows = []
+    for item in vendors:
+        rows.append({
+            "Source": item["Source"],
+            "Category": item["Category"],
+            "Priority": item["Priority"],
+            "Current app status": "Manual/public check required",
+            "What to check": item["What to check"],
+            "Access type": item["Access type"],
+            "Search link": public_search_url(event_name, item["Source"]),
+        })
+
+    return pd.DataFrame(rows)
+
+
+def vendor_model_status_summary(row: pd.Series) -> str:
+    tier = row.get("Notification_Tier", "P4")
+    severity = row.get("Severity", "Unknown")
+    peril = row.get("Peril", "Unknown")
+    event_name = row.get("Event_Name", "selected event")
+
+    if tier == "P1":
+        cadence = "Check vendor/model sources immediately and then every 1–3 hours until a public estimate or clear no-update status is established."
+    elif tier == "P2":
+        cadence = "Check vendor/model sources at least twice daily while the event remains active or escalating."
+    else:
+        cadence = "Check vendor/model sources daily or only if the event escalates."
+
+    return (
+        f"For {event_name}, current hazard severity is {severity} and peril is {peril}. "
+        f"CatWatch has not yet captured a verified public vendor model estimate inside the app. {cadence} "
+        "If a public vendor estimate is found, record estimate range, geography, peril component, source date, access status, and confidence."
+    )
+
+
+def vendor_loss_board_text(row: pd.Series) -> str:
     return f"""
-BOARD UPDATE – {row.get('Event_Name', 'Selected event')}
+Vendor model / industry loss view:
+No verified public vendor model or industry loss estimate has been captured in CatWatch yet.
+
+Current action:
+Check Moody's RMS, Verisk / PCS, KCC, CoreLogic / Cotality, PERILS, Aon, Gallagher Re, Swiss Re, Munich Re, and relevant official insurance bodies for public event response or insured-loss commentary.
+
+Management caveat:
+At this stage, hazard information is available from live alert sources, but vendor modeled loss and market loss estimates may be preliminary, delayed, paywalled, or unavailable. Any loss number should be labelled by source, estimate date, confidence level, and whether it is public or licensed.
+""".strip()
+
+def management_summary(row: pd.Series) -> str:
+    return f"""
+MANAGEMENT UPDATE – {row.get('Event_Name', 'Selected event')}
 
 Priority: {tier_label(row.get('Notification_Tier', 'P4'))}
 Status: {row.get('Event_Status', 'Unknown')}
@@ -642,7 +774,7 @@ def main():
         f"""
         <div class="hero">
             <h1>🌍 CatWatch Operations Centre</h1>
-            <p>Live catastrophe monitoring for analyst triage, GIS/R&D follow-up, industry loss watch, and board-ready reporting. Auto-refresh is on every 5 minutes while open.</p>
+            <p>Live catastrophe monitoring for analyst triage, GIS/R&D follow-up, industry loss watch, and management reporting. Auto-refresh is on every 5 minutes while open.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -664,7 +796,7 @@ def main():
             "Notification priority",
             ["P1", "P2", "P3", "P4"],
             default=["P1", "P2", "P3", "P4"],
-            help="P1 = board alert; P2 = analyst watch; P3/P4 = monitor/information."
+            help="P1 = management alert; P2 = analyst watch; P3/P4 = monitor/information."
         )
         peril_options = ["All"] + sorted(df["Peril"].dropna().unique().tolist())
         severity_options = ["All"] + sorted(df["Severity"].dropna().unique().tolist(), key=severity_rank, reverse=True)
@@ -693,7 +825,7 @@ def main():
 
     m1, m2, m3, m4, m5 = st.columns(5)
     m1.metric("Events shown", len(filtered))
-    m2.metric("P1 board alerts", p1_count)
+    m2.metric("P1 executive alerts", p1_count)
     m3.metric("P2 analyst watch", p2_count)
     m4.metric("Countries / areas", int(filtered["Country"].nunique()) if not filtered.empty else 0)
     m5.metric("Last refresh", utc_now_text().split()[1] + " UTC")
@@ -705,8 +837,8 @@ def main():
     else:
         event = None
 
-    tab_ops, tab_detail, tab_map, tab_loss, tab_board, tab_sources = st.tabs(
-        ["Operations Home", "Event Detail", "Map & Path", "Loss Watch", "Board Overview", "Source Coverage"]
+    tab_ops, tab_detail, tab_map, tab_loss, tab_vendor, tab_board, tab_sources = st.tabs(
+        ["Operations Home", "Event Detail", "Map & Path", "Loss Watch", "Vendor Model Watch", "Adhoc Management Overview", "Source Coverage"]
     )
 
     with tab_ops:
@@ -732,7 +864,7 @@ def main():
                 1. Start with P1/P2 queue.<br>
                 2. Open the event detail and map.<br>
                 3. Ask GIS/R&D for footprint/path only if the event can materially affect exposure or market loss.<br>
-                4. Use Board Overview only after source confidence is acceptable.
+                4. Use Management Overview only after source confidence is acceptable.
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -817,20 +949,61 @@ def main():
         else:
             st.info("No events match the filters.")
 
+    with tab_vendor:
+        st.subheader("Vendor model and public industry-loss intelligence")
+        if event is None:
+            st.info("Select an event to check vendor/model intelligence.")
+        else:
+            st.markdown(badges(event), unsafe_allow_html=True)
+            st.markdown(f"#### {event['Event_Name']}")
+            st.markdown(
+                f"<div class='summary-box'>{vendor_model_status_summary(event)}</div>",
+                unsafe_allow_html=True,
+            )
+
+            st.markdown("##### Source checklist")
+            vendor_df = vendor_intelligence_table(event)
+            st.dataframe(
+                vendor_df[["Priority", "Source", "Category", "Current app status", "What to check", "Access type"]],
+                use_container_width=True,
+                hide_index=True,
+            )
+
+            st.markdown("##### Quick public search links")
+            st.caption("These links help analysts quickly check public vendor/event-response updates. Licensed portals are not scraped.")
+            for _, src_row in vendor_df.head(10).iterrows():
+                st.markdown(f"- [{src_row['Source']}]({src_row['Search link']}) — {src_row['What to check']}")
+
+            st.markdown("##### Loss estimate capture template")
+            capture_cols = [
+                "Event_ID", "Source", "Estimate_Type", "Estimate_Low", "Estimate_High",
+                "Currency", "Geography", "Publication_Date", "Confidence", "Access_Type", "Source_Link"
+            ]
+            capture_df = pd.DataFrame(columns=capture_cols)
+            st.data_editor(
+                capture_df,
+                use_container_width=True,
+                num_rows="dynamic",
+                hide_index=True,
+                key="vendor_capture_template",
+            )
+            st.caption("For now this table is a capture template only. In the next build we can save entries to a file/database.")
+
+
     with tab_board:
-        st.subheader("Board overview")
+        st.subheader("Management overview")
         if event is not None:
-            st.write("This is deliberately generic and non-technical, suitable as a starting point for senior management updates.")
-            summary = board_summary(event)
-            st.text_area("Board update draft", summary, height=430)
+            st.write("This is an ad-hoc, non-technical management summary that can be copied, edited, and shared when needed.")
+            summary = management_summary(event) + "\n\n" + vendor_loss_board_text(event)
+            st.text_area("Management update draft", summary, height=500)
             st.download_button(
-                "Download board update",
+                "Download management update",
                 summary.encode("utf-8"),
-                "catwatch_board_update.txt",
+                "catwatch_management_update.txt",
                 "text/plain",
             )
         else:
-            st.info("Select an event to generate board overview.")
+            st.info("Select an event to generate management overview.")
 
     with tab_sources:
         st.subheader("Source coverage and build roadmap")
@@ -845,8 +1018,9 @@ def main():
             1. Tropical cyclone forecast track and advisory feed.<br>
             2. Copernicus EMS activations and emergency mapping products.<br>
             3. NASA FIRMS active fire detections.<br>
-            4. Public loss/news watch for insured and economic loss estimates.<br>
-            5. Historical analogues table for event comparison.
+            4. Vendor model watch: Moody's RMS, Verisk / PCS, KCC, CoreLogic / Cotality.<br>
+            5. Public loss/news watch for insured and economic loss estimates.<br>
+            6. Historical analogues table for event comparison.
             </div>
             """,
             unsafe_allow_html=True,
@@ -858,6 +1032,7 @@ def main():
                 ["NOAA/NHC", "Tropical cyclone", "Next", "Forecast track, cone, advisory cycles"],
                 ["Copernicus EMS", "Multi-peril mapping", "Next", "Activation maps and satellite-derived products"],
                 ["NASA FIRMS", "Wildfire", "Next", "Active fire detections"],
+                ["Vendor model watch", "Modeled loss", "Added as checklist", "Moody's RMS, Verisk / PCS, KCC, CoreLogic / Cotality"],
                 ["Loss/news watch", "Industry loss", "Next", "Public economic / insured loss estimates"],
             ],
             columns=["Source", "Coverage", "Status", "Purpose"],
