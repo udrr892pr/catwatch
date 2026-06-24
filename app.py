@@ -17,7 +17,7 @@ st.set_page_config(
 
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"
 GDACS_RSS_URL = "https://www.gdacs.org/xml/rss.xml"
-RELIEFWEB_API_URL = "https://api.reliefweb.int/v2/reports"
+RELIEFWEB_API_URL = "https://api.reliefweb.int/v1/reports"
 
 
 def utc_now_text() -> str:
@@ -274,7 +274,7 @@ def load_events() -> pd.DataFrame:
     rows = []
     rows.extend(fetch_usgs_events())
     rows.extend(fetch_gdacs_events())
-    rows.extend(fetch_reliefweb_reports())
+    # rows.extend(fetch_reliefweb_reports())  # Temporarily disabled because ReliefWeb API is rejecting the request
 
     if not rows:
         return pd.DataFrame()
