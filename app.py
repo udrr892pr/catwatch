@@ -8,18 +8,150 @@ import requests
 import streamlit as st
 from dateutil import parser as dateparser
 
-
 st.set_page_config(
-    page_title="CatWatch – Live Catastrophe Monitor",
+    page_title="CatWatch – Live Event Monitor",
     page_icon="🌍",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"
 GDACS_RSS_URL = "https://www.gdacs.org/xml/rss.xml"
-RELIEFWEB_API_URL = "https://api.reliefweb.int/v1/reports"
 
 
+# ---------- Styling ----------
+def inject_css():
+    st.markdown(
+        """
+        <style>
+        .main {
+            background: linear-gradient(180deg, #f6f9fc 0%, #ffffff 18%);
+        }
+        .block-container {
+            padding-top: 1.2rem;
+            padding-bottom: 2rem;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #0ea5e9 100%);
+            color: white;
+            padding: 1.2rem 1.4rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+        }
+        .hero h1 {
+            margin: 0 0 0.35rem 0;
+            font-size: 2rem;
+        }
+        .hero p {
+            margin: 0;
+            opacity: 0.92;
+            line-height: 1.45;
+        }
+        .mini-note {
+            font-size: 0.92rem;
+            color: #475569;
+            margin-top: 0.35rem;
+        }
+        .event-card {
+            background: white;
+            border-radius: 18px;
+            padding: 1rem;
+            margin-bottom: 0.9rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+        }
+        .card-title {
+            font-size: 1.06rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0.45rem 0;
+        }
+        .card-meta {
+            color: #475569;
+            font-size: 0.93rem;
+            line-height: 1.45;
+        }
+        .badge {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 0.22rem 0.62rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-right: 0.35rem;
+            margin-bottom: 0.35rem;
+        }
+        .sev-Critical {background:#7f1d1d;color:#fff;}
+        .sev-Red {background:#dc2626;color:#fff;}
+        .sev-Orange {background:#f97316;color:#fff;}
+        .sev-Amber {background:#f59e0b;color:#111827;}
+        .sev-Yellow {background:#fde68a;color:#111827;}
+        .sev-Green {background:#22c55e;color:#062b12;}
+        .sev-Unknown {background:#cbd5e1;color:#0f172a;}
+        .pill {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 0.22rem 0.6rem;
+            font-size: 0.76rem;
+            font-weight: 600;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            margin-right: 0.35rem;
+            margin-bottom: 0.35rem;
+        }
+        .section-card {
+            background: white;
+            border-radius: 18px;
+            padding: 1rem 1.1rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+        }
+        .detail-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.1rem;
+        }
+        .detail-value {
+            color: #0f172a;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .summary-box {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            color: #0f172a;
+            line-height: 1.55;
+        }
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.35rem;
+        }
+        .stTabs [data-baseweb="tab"] {
+            border-radius: 999px;
+            background: #eff6ff;
+            padding: 0.45rem 0.85rem;
+            height: auto;
+        }
+        .stMetric {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 0.35rem 0.6rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+# ---------- Utility ----------
 def utc_now_text() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
@@ -37,6 +169,13 @@ def parse_date(value):
         return dateparser.parse(str(value))
     except Exception:
         return None
+
+
+def clean_html(text: str) -> str:
+    if not text:
+        return ""
+    text = re.sub(r"<[^>]+>", " ", str(text))
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def severity_from_earthquake_mag(mag):
@@ -101,13 +240,43 @@ def infer_peril(text: str) -> str:
     return "Other"
 
 
-def clean_html(text: str) -> str:
+def peril_emoji(peril: str) -> str:
+    return {
+        "Earthquake": "🌎",
+        "Tropical Cyclone": "🌀",
+        "Flood": "🌊",
+        "Wildfire": "🔥",
+        "Volcano": "🌋",
+        "Tsunami": "🌊",
+        "Drought": "☀️",
+        "Landslide": "⛰️",
+        "Severe Storm": "⛈️",
+        "Other": "📍",
+    }.get(peril, "📍")
+
+
+def extract_country(location_text: str) -> str:
+    text = str(location_text or "").strip()
     if not text:
-        return ""
-    text = re.sub(r"<[^>]+>", " ", str(text))
-    return re.sub(r"\s+", " ", text).strip()
+        return "Unknown"
+    if "," in text:
+        return text.split(",")[-1].strip()
+    patterns = [" in ", " near ", " of "]
+    lower = text.lower()
+    for p in patterns:
+        if p in lower:
+            return text[lower.rfind(p) + len(p):].strip().title()
+    return text
 
 
+def short_text(text: str, max_len: int = 180) -> str:
+    text = str(text or "")
+    if len(text) <= max_len:
+        return text
+    return text[: max_len - 1].rstrip() + "…"
+
+
+# ---------- Data fetching ----------
 @st.cache_data(ttl=300)
 def fetch_usgs_events() -> list[dict]:
     events = []
@@ -124,6 +293,8 @@ def fetch_usgs_events() -> list[dict]:
             dt = parse_date(props.get("time"))
             url = props.get("url") or ""
             severity = severity_from_earthquake_mag(mag)
+            location = place
+            country = extract_country(place)
 
             events.append({
                 "Event_ID": f"USGS-{feature.get('id', make_id('EQ', place))}",
@@ -131,7 +302,8 @@ def fetch_usgs_events() -> list[dict]:
                 "Peril": "Earthquake",
                 "Event_Status": "Active",
                 "Severity": severity,
-                "Country_or_Region": place,
+                "Location_Label": location,
+                "Country": country,
                 "Latitude": coords[1] if len(coords) > 1 else None,
                 "Longitude": coords[0] if len(coords) > 0 else None,
                 "Start_Date": dt.strftime("%Y-%m-%d %H:%M UTC") if dt else "",
@@ -143,12 +315,13 @@ def fetch_usgs_events() -> list[dict]:
                 "Economic_Loss": "Unknown",
                 "Insured_Loss": "Unknown",
                 "Industry_Loss_Status": "Not yet reported",
-                "Confidence_Level": "High for hazard parameters; Low for loss impact",
+                "Confidence_Level": "High for hazard parameters; Low for impact and loss",
                 "Board_Summary": (
                     f"USGS reports a magnitude {mag} earthquake near {place}. "
-                    "Human impact and insured/economic loss are not available from this feed and require monitoring from humanitarian and public loss sources."
+                    "Hazard information is available immediately, but casualties and economic or insured loss data usually require follow-up from humanitarian and public reporting sources."
                 ),
                 "Comparable_Events": "To be assessed",
+                "Track_Info": "Point location available. Event path not applicable for earthquakes.",
                 "Notes": "Automated USGS significant earthquake feed."
             })
     except Exception as e:
@@ -168,7 +341,6 @@ def fetch_gdacs_events() -> list[dict]:
             dt = parse_date(getattr(entry, "published", None) or getattr(entry, "updated", None))
             severity = infer_gdacs_severity(title, summary)
             peril = infer_peril(title + " " + summary)
-
             lat, lon = None, None
             if hasattr(entry, "where"):
                 try:
@@ -183,89 +355,41 @@ def fetch_gdacs_events() -> list[dict]:
                 except Exception:
                     pass
 
+            location = title
+            country = extract_country(title)
+            track_info = "Map pin available. Track path can be added later for cyclones when NOAA/NHC storm-track data is connected."
+            if peril != "Tropical Cyclone":
+                track_info = "Map pin available. Event path data source not yet connected for this peril."
+
             events.append({
                 "Event_ID": make_id("GDACS", title + link),
                 "Event_Name": title,
                 "Peril": peril,
                 "Event_Status": "Active",
                 "Severity": severity,
-                "Country_or_Region": title,
+                "Location_Label": location,
+                "Country": country,
                 "Latitude": lat,
                 "Longitude": lon,
                 "Start_Date": dt.strftime("%Y-%m-%d %H:%M UTC") if dt else "",
                 "Latest_Update_Date": utc_now_text(),
                 "Source_Name": "GDACS",
                 "Source_Link": link,
-                "Physical_Intensity": summary[:250],
-                "Human_Impact": "Check GDACS/ReliefWeb updates",
+                "Physical_Intensity": short_text(summary, 250) or "See source for alert details",
+                "Human_Impact": "Check GDACS and follow-up reports",
                 "Economic_Loss": "Unknown",
                 "Insured_Loss": "Unknown",
                 "Industry_Loss_Status": "Not yet reported",
-                "Confidence_Level": "Medium to High for alert status; Low for loss impact",
+                "Confidence_Level": "Medium to High for alert status; Low for impact and loss",
                 "Board_Summary": (
-                    f"GDACS alert: {title}. The event should be monitored for affected population, casualty updates, "
-                    "and any emerging public economic or insured loss estimates."
+                    f"GDACS alert: {title}. Monitor this event for affected population, escalation or de-escalation, and any emerging public economic or insured loss estimates."
                 ),
                 "Comparable_Events": "To be assessed",
+                "Track_Info": track_info,
                 "Notes": "Automated GDACS RSS feed."
             })
     except Exception as e:
         st.warning(f"GDACS fetch failed: {e}")
-    return events
-
-
-@st.cache_data(ttl=600)
-def fetch_reliefweb_reports() -> list[dict]:
-    events = []
-    try:
-        params = {
-            "appname": "catwatch",
-            "profile": "list",
-            "preset": "latest",
-            "limit": 25,
-            "query[value]": "earthquake OR flood OR cyclone OR hurricane OR typhoon OR wildfire OR drought OR volcano",
-            "sort[]": "date:desc",
-        }
-        r = requests.get(RELIEFWEB_API_URL, params=params, timeout=20)
-        r.raise_for_status()
-        data = r.json()
-        for item in data.get("data", []):
-            fields = item.get("fields", {}) or {}
-            title = fields.get("title", "ReliefWeb report")
-            link = fields.get("url_alias", "")
-            date = fields.get("date", {}).get("created") or fields.get("date", {}).get("original")
-            dt = parse_date(date)
-            countries = ", ".join([c.get("name", "") for c in fields.get("country", [])]) or "Unknown"
-            sources = ", ".join([s.get("name", "") for s in fields.get("source", [])]) or "ReliefWeb"
-            peril = infer_peril(title)
-
-            events.append({
-                "Event_ID": make_id("RW", title + link),
-                "Event_Name": title,
-                "Peril": peril,
-                "Event_Status": "Watching",
-                "Severity": "Unknown",
-                "Country_or_Region": countries,
-                "Latitude": None,
-                "Longitude": None,
-                "Start_Date": dt.strftime("%Y-%m-%d %H:%M UTC") if dt else "",
-                "Latest_Update_Date": utc_now_text(),
-                "Source_Name": f"ReliefWeb / {sources}",
-                "Source_Link": link,
-                "Physical_Intensity": "Report-based update",
-                "Human_Impact": "Review report for casualties, displacement, affected population",
-                "Economic_Loss": "Unknown",
-                "Insured_Loss": "Unknown",
-                "Industry_Loss_Status": "Not yet reported",
-                "Confidence_Level": "Medium; depends on underlying reporting source",
-                "Board_Summary": (
-                    f"ReliefWeb report for {countries}: {title}. Use this as a humanitarian impact update and verify any figures against the original source."
-                ),
-                "Comparable_Events": "To be assessed",
-                "Notes": "Automated ReliefWeb latest reports search."
-            })
-    except Exception as e:
-        st.warning(f"ReliefWeb fetch failed: {e}")
     return events
 
 
@@ -274,15 +398,46 @@ def load_events() -> pd.DataFrame:
     rows = []
     rows.extend(fetch_usgs_events())
     rows.extend(fetch_gdacs_events())
-    # rows.extend(fetch_reliefweb_reports())  # Temporarily disabled because ReliefWeb API is rejecting the request
 
     if not rows:
         return pd.DataFrame()
 
     df = pd.DataFrame(rows)
     df["Severity_Rank"] = df["Severity"].apply(severity_rank)
-    df = df.sort_values(["Severity_Rank", "Start_Date"], ascending=[False, False])
+    df["Start_Date_Sort"] = pd.to_datetime(df["Start_Date"], errors="coerce")
+    df = df.sort_values(["Severity_Rank", "Start_Date_Sort"], ascending=[False, False])
     return df
+
+
+# ---------- Presentation ----------
+def render_badges(event: pd.Series) -> str:
+    sev = event.get("Severity", "Unknown")
+    peril = event.get("Peril", "Other")
+    source = event.get("Source_Name", "Source")
+    return (
+        f"<span class='badge sev-{sev}'>{sev}</span>"
+        f"<span class='pill'>{peril_emoji(peril)} {peril}</span>"
+        f"<span class='pill'>Source: {source}</span>"
+    )
+
+
+def render_event_card(event: pd.Series):
+    st.markdown(
+        f"""
+        <div class='event-card'>
+            {render_badges(event)}
+            <div class='card-title'>{event.get('Event_Name', 'Unnamed event')}</div>
+            <div class='card-meta'>
+                <b>Country / Area:</b> {event.get('Country', 'Unknown')}<br>
+                <b>Location:</b> {event.get('Location_Label', 'Unknown')}<br>
+                <b>Latest:</b> {event.get('Latest_Update_Date', 'Unknown')}<br>
+                <b>Loss watch:</b> {event.get('Industry_Loss_Status', 'Unknown')}<br>
+                <b>Summary:</b> {short_text(event.get('Board_Summary', ''), 180)}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def board_summary(event: pd.Series) -> str:
@@ -292,12 +447,16 @@ BOARD UPDATE – {event.get('Event_Name', 'Selected event')}
 Status: {event.get('Event_Status', 'Unknown')}
 Peril: {event.get('Peril', 'Unknown')}
 Severity: {event.get('Severity', 'Unknown')}
-Location/region: {event.get('Country_or_Region', 'Unknown')}
+Country / area: {event.get('Country', 'Unknown')}
+Location: {event.get('Location_Label', 'Unknown')}
 Latest update: {event.get('Latest_Update_Date', 'Unknown')}
 Source: {event.get('Source_Name', 'Unknown')}
 
 Executive view:
 {event.get('Board_Summary', 'No summary available')}
+
+Hazard / physical intensity:
+{event.get('Physical_Intensity', 'Unknown')}
 
 Human impact:
 {event.get('Human_Impact', 'Unknown')}
@@ -308,129 +467,174 @@ Insured loss: {event.get('Insured_Loss', 'Unknown')}
 Industry loss status: {event.get('Industry_Loss_Status', 'Unknown')}
 
 Suggested action:
-Continue monitoring official disaster alerts, humanitarian reports, and public insured-loss commentary. Treat loss figures as preliminary unless confirmed by a recognized loss-reporting source.
+Continue monitoring official disaster alerts and public loss commentary. Treat any impact figures as preliminary unless confirmed by recognized sources.
 
 Source link:
 {event.get('Source_Link', '')}
 """.strip()
 
 
+# ---------- App ----------
 def main():
-    st.title("🌍 CatWatch – Live Catastrophe Monitor")
-    st.caption("Prototype: open-source catastrophe event tracker for hazard, affected regions, casualties, industry loss watch, and board summaries.")
+    inject_css()
 
-    with st.sidebar:
-        st.header("Filters")
-        refresh = st.button("Refresh data")
-        if refresh:
-            st.cache_data.clear()
-            st.rerun()
+    st.markdown(
+        f"""
+        <div class='hero'>
+            <h1>🌍 CatWatch</h1>
+            <p>A cleaner live catastrophe event monitor designed for fast reading on phone and tablet — with color-coded severity, country / area information, map view, and board-ready summaries.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     df = load_events()
-
     if df.empty:
         st.error("No event data loaded. Check internet access or source availability.")
         return
 
     with st.sidebar:
+        st.header("Filter events")
+        if st.button("Refresh live data"):
+            st.cache_data.clear()
+            st.rerun()
+
         peril_options = ["All"] + sorted(df["Peril"].dropna().unique().tolist())
         severity_options = ["All"] + sorted(df["Severity"].dropna().unique().tolist(), key=severity_rank, reverse=True)
+        country_options = ["All"] + sorted(df["Country"].dropna().astype(str).unique().tolist())
+
         selected_peril = st.selectbox("Peril", peril_options)
         selected_severity = st.selectbox("Severity", severity_options)
-        search = st.text_input("Search event / country / region")
+        selected_country = st.selectbox("Country / area", country_options)
+        search = st.text_input("Search event / place")
 
     filtered = df.copy()
     if selected_peril != "All":
         filtered = filtered[filtered["Peril"] == selected_peril]
     if selected_severity != "All":
         filtered = filtered[filtered["Severity"] == selected_severity]
+    if selected_country != "All":
+        filtered = filtered[filtered["Country"] == selected_country]
     if search.strip():
-        mask = filtered.apply(lambda row: search.lower() in " ".join(row.astype(str)).lower(), axis=1)
+        needle = search.lower().strip()
+        mask = filtered.apply(lambda row: needle in " ".join(row.astype(str)).lower(), axis=1)
         filtered = filtered[mask]
 
     k1, k2, k3, k4 = st.columns(4)
     k1.metric("Events shown", len(filtered))
-    k2.metric("Critical/Red", int(filtered["Severity"].isin(["Critical", "Red"]).sum()))
-    k3.metric("Earthquakes", int((filtered["Peril"] == "Earthquake").sum()))
-    k4.metric("Loss estimates", int((filtered["Industry_Loss_Status"] != "Not yet reported").sum()))
+    k2.metric("Critical / Red", int(filtered["Severity"].isin(["Critical", "Red"]).sum()))
+    k3.metric("Countries / areas", int(filtered["Country"].nunique()))
+    k4.metric("Last refresh", utc_now_text().split()[1] + " UTC")
 
-    tab1, tab2, tab3, tab4 = st.tabs([
-        "Live Event Feed",
-        "Event Detail",
-        "Affected Regions & Loss Watch",
-        "Board Summary"
-    ])
-
-    with tab1:
-        st.subheader("Live Event Feed")
-        display_cols = [
-            "Severity", "Peril", "Event_Name", "Country_or_Region",
-            "Start_Date", "Source_Name", "Industry_Loss_Status", "Confidence_Level"
-        ]
-        st.dataframe(filtered[display_cols], use_container_width=True, hide_index=True)
-        st.download_button(
-            "Download filtered events as CSV",
-            filtered.to_csv(index=False).encode("utf-8"),
-            "catwatch_events.csv",
-            "text/csv",
-        )
-
-    selected_event_name = None
+    selected_name = None
     if not filtered.empty:
-        selected_event_name = st.selectbox(
-            "Select event for detail / board summary",
-            filtered["Event_Name"].tolist()
+        selected_name = st.selectbox(
+            "Open an event",
+            filtered["Event_Name"].tolist(),
+            help="Select an event to view full details below.",
         )
-        event = filtered[filtered["Event_Name"] == selected_event_name].iloc[0]
+        event = filtered[filtered["Event_Name"] == selected_name].iloc[0]
     else:
         event = None
 
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "Overview",
+        "Event Detail",
+        "Loss Watch",
+        "Board Brief"
+    ])
+
+    with tab1:
+        left, right = st.columns([1.1, 1])
+        with left:
+            st.subheader("Top events to watch")
+            if filtered.empty:
+                st.info("No events match the current filters.")
+            else:
+                for _, row in filtered.head(8).iterrows():
+                    render_event_card(row)
+        with right:
+            st.subheader("Global event map")
+            map_df = filtered[["Latitude", "Longitude"]].dropna().rename(columns={"Latitude": "lat", "Longitude": "lon"})
+            if not map_df.empty:
+                st.map(map_df, latitude="lat", longitude="lon", zoom=1)
+                st.caption("Map shows event points currently available from the live sources.")
+            else:
+                st.info("No map coordinates available for the selected filters.")
+
+            st.markdown("<div class='mini-note'>Storm path / track view can be added next when we connect cyclone track feeds such as NOAA / NHC.</div>", unsafe_allow_html=True)
+
     with tab2:
-        st.subheader("Event Detail")
+        st.subheader("Easy-to-read event detail")
         if event is not None:
-            left, right = st.columns([2, 1])
-            with left:
-                st.markdown(f"### {event['Event_Name']}")
-                st.write(event["Board_Summary"])
+            st.markdown(render_badges(event), unsafe_allow_html=True)
+            st.markdown(f"### {event['Event_Name']}")
+
+            c1, c2, c3, c4 = st.columns(4)
+            c1.metric("Severity", event["Severity"])
+            c2.metric("Peril", event["Peril"])
+            c3.metric("Status", event["Event_Status"])
+            c4.metric("Country / Area", event["Country"])
+
+            a, b = st.columns([1.3, 1])
+            with a:
+                st.markdown("<div class='section-card'>", unsafe_allow_html=True)
+                st.markdown("#### Executive summary")
+                st.markdown(f"<div class='summary-box'>{event['Board_Summary']}</div>", unsafe_allow_html=True)
+                st.markdown("#### Details")
+                st.write(f"**Location:** {event['Location_Label']}")
                 st.write(f"**Physical intensity:** {event['Physical_Intensity']}")
                 st.write(f"**Human impact:** {event['Human_Impact']}")
                 st.write(f"**Economic loss:** {event['Economic_Loss']}")
                 st.write(f"**Insured loss:** {event['Insured_Loss']}")
                 st.write(f"**Industry loss status:** {event['Industry_Loss_Status']}")
+                st.write(f"**Event path / map status:** {event['Track_Info']}")
+                st.write(f"**Confidence level:** {event['Confidence_Level']}")
                 st.write(f"**Source:** [{event['Source_Name']}]({event['Source_Link']})")
-            with right:
-                st.metric("Severity", event["Severity"])
-                st.metric("Peril", event["Peril"])
-                st.metric("Status", event["Event_Status"])
-                st.caption(f"Confidence: {event['Confidence_Level']}")
-
-            if pd.notna(event.get("Latitude")) and pd.notna(event.get("Longitude")):
-                map_df = pd.DataFrame([{"lat": event["Latitude"], "lon": event["Longitude"]}])
-                st.map(map_df, latitude="lat", longitude="lon", zoom=3)
+                st.markdown("</div>", unsafe_allow_html=True)
+            with b:
+                st.markdown("<div class='section-card'>", unsafe_allow_html=True)
+                st.markdown("#### Timing")
+                st.write(f"**Event start / feed time:** {event['Start_Date']}")
+                st.write(f"**Latest refresh:** {event['Latest_Update_Date']}")
+                st.markdown("#### Map")
+                if pd.notna(event.get("Latitude")) and pd.notna(event.get("Longitude")):
+                    map_df = pd.DataFrame([{"lat": event["Latitude"], "lon": event["Longitude"]}])
+                    st.map(map_df, latitude="lat", longitude="lon", zoom=3)
+                else:
+                    st.info("No coordinates available for this event yet.")
+                st.markdown("</div>", unsafe_allow_html=True)
+        else:
+            st.info("Choose an event above to see details.")
 
     with tab3:
-        st.subheader("Affected Regions & Industry Loss Watch")
+        st.subheader("Affected regions & industry loss watch")
         st.info(
-            "This prototype currently shows open-source event alerts. "
-            "Public industry loss estimates are often delayed or subscription-based, so this section flags whether a public loss estimate is available."
+            "This version highlights whether public economic or insured loss information is available. "
+            "Open-source loss data is often incomplete in the early hours of an event."
         )
         loss_cols = [
-            "Event_Name", "Country_or_Region", "Human_Impact",
+            "Severity", "Peril", "Country", "Event_Name", "Human_Impact",
             "Economic_Loss", "Insured_Loss", "Industry_Loss_Status", "Source_Name"
         ]
-        st.dataframe(filtered[loss_cols], use_container_width=True, hide_index=True)
+        if not filtered.empty:
+            st.dataframe(filtered[loss_cols], use_container_width=True, hide_index=True)
+        else:
+            st.info("No events match the current filters.")
 
     with tab4:
-        st.subheader("Board Summary Draft")
+        st.subheader("Board-ready brief")
         if event is not None:
             summary = board_summary(event)
-            st.text_area("Copy/paste board update", summary, height=420)
+            st.text_area("Copy / edit this board update", summary, height=420)
             st.download_button(
-                "Download board summary text",
+                "Download board summary",
                 summary.encode("utf-8"),
                 "catwatch_board_summary.txt",
                 "text/plain",
             )
+        else:
+            st.info("Choose an event above to generate the board brief.")
 
 
 if __name__ == "__main__":
