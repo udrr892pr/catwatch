@@ -24,7 +24,7 @@ MAX_ALERTS_PER_RUN = int(os.getenv("CATWATCH_MAX_ALERTS", "8"))
 # A genuinely new event must be recent; an old event can still alert later if the source update is recent.
 NEW_EVENT_MAX_AGE_HOURS = int(os.getenv("CATWATCH_NEW_EVENT_MAX_AGE_HOURS", "6"))
 UPDATE_MAX_AGE_HOURS = int(os.getenv("CATWATCH_UPDATE_MAX_AGE_HOURS", "12"))
-STATE_SCHEMA_VERSION = 3
+STATE_SCHEMA_VERSION = 4
 
 
 def utc_now():
@@ -321,6 +321,39 @@ def non_material_update_changed(event, old):
     return bool(old) and event.get("latest_update") != old.get("latest_update") and update_key(event) == old.get("update_key", "")
 
 
+def describe_changes(event, old):
+    """Build a concise user-facing explanation of what materially changed.
+
+    Telegram should not merely say that an update happened. It should say why the
+    update matters. Older saved states may not have all fields, so missing old
+    values are ignored to avoid noisy 'unknown -> value' messages.
+    """
+    if not old:
+        return ""
+
+    changes = []
+
+    def add_change(label, old_value, new_value):
+        old_text = str(old_value or "").strip()
+        new_text = str(new_value or "").strip()
+        if old_text and new_text and old_text != new_text:
+            changes.append(f"{label}: {old_text} → {new_text}")
+
+    add_change("Priority", old.get("tier"), event.get("tier"))
+    add_change("Severity", old.get("severity"), event.get("severity"))
+    add_change("Peril", old.get("peril"), event.get("peril"))
+    add_change("Intensity", old.get("intensity"), event.get("intensity"))
+    add_change("Region", old.get("region"), event.get("region"))
+
+    # If the material signature changed but all old field-level values are missing
+    # because this is a migration from an older state file, still explain that the
+    # alert is material rather than a timestamp-only refresh.
+    if not changes and update_key(event) != old.get("update_key", ""):
+        return "Material hazard/priority details changed since the previous stored state."
+
+    return "; ".join(changes[:4])
+
+
 def alert_sort_key(e):
     return ({"ESCALATION": 5, "NEW EVENT": 4, "EVENT UPDATE": 3}.get(e.get("alert_action", ""), 0), tier_rank(e.get("tier")), severity_rank(e.get("severity")), e.get("event_time") or datetime.min.replace(tzinfo=timezone.utc))
 
@@ -484,14 +517,15 @@ def build_alerts(events, state):
             if (changed or escalated) and not migration_run:
                 if is_recent(e, UPDATE_MAX_AGE_HOURS):
                     e["alert_action"] = "ESCALATION" if escalated else "EVENT UPDATE"
+                    e["change_summary"] = describe_changes(e, old)
                     alerts.append(e)
                 else:
                     skipped_stale_update += 1
-        state_events[e["id"]] = {"name": e["name"], "peril": e["peril"], "severity": e["severity"], "tier": e["tier"], "source": e["source"], "latest_update": e["latest_update"], "update_key": key, "severity_rank": severity_rank(e["severity"]), "tier_rank": tier_rank(e["tier"]), "last_seen": now_text()}
+        state_events[e["id"]] = {"name": e["name"], "peril": e["peril"], "severity": e["severity"], "tier": e["tier"], "source": e["source"], "region": e.get("region", ""), "intensity": e.get("intensity", ""), "latest_update": e["latest_update"], "update_key": key, "severity_rank": severity_rank(e["severity"]), "tier_rank": tier_rank(e["tier"]), "last_seen": now_text()}
     state["initialized"] = True
     state["schema_version"] = STATE_SCHEMA_VERSION
     if migration_run:
-        print("State schema migrated to v3. Alerts suppressed once to prevent old backlog/non-material update notifications.")
+        print("State schema migrated to v4. Alerts suppressed once to rebuild change-tracking fields and prevent old/non-material notifications.")
     if skipped_old_new:
         print(f"Skipped {skipped_old_new} old first-seen event(s); saved to state without Telegram alert.")
     if skipped_stale_update:
@@ -516,6 +550,10 @@ def format_alert(event):
         "",
         f"{sev_icon} <b>{esc(tier_label(event['tier']))}</b> | {peril_icon} <b>{esc(event['peril'])}</b> | {esc(event['source'])}",
         f"<b>{esc(event['name'])}</b>",
+    ]
+    if event.get("change_summary"):
+        lines.extend(["", f"🔁 <b>What changed:</b> {esc(short(event.get('change_summary'), 320))}"])
+    lines.extend([
         "",
         f"📍 <b>Region:</b> {esc(event['region'])}",
         f"📊 <b>Severity:</b> {esc(event['severity'])}",
@@ -525,7 +563,7 @@ def format_alert(event):
         f"🗺️ <b>Impact area:</b> {esc(short(event['impact_region'], 220))}",
         "",
         f"⏱ <b>Latest update:</b> {esc(event['latest_update'])}",
-    ]
+    ])
     if link:
         lines.append(f"🔗 <a href=\"{link}\">Open source</a>")
     return "\n".join(lines)
