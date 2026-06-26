@@ -1,3 +1,4 @@
+import hashlib
 import html
 import json
 import os
@@ -19,6 +20,11 @@ NHC_GIS_FEEDS = {
 
 STATE_FILE = Path(".catwatch_alert_state.json")
 MAX_ALERTS_PER_RUN = int(os.getenv("CATWATCH_MAX_ALERTS", "8"))
+# Prevent old feed items/backlog from being announced as new events.
+# A genuinely new event must be recent; an old event can still alert later if the source update is recent.
+NEW_EVENT_MAX_AGE_HOURS = int(os.getenv("CATWATCH_NEW_EVENT_MAX_AGE_HOURS", "6"))
+UPDATE_MAX_AGE_HOURS = int(os.getenv("CATWATCH_UPDATE_MAX_AGE_HOURS", "12"))
+STATE_SCHEMA_VERSION = 2
 
 
 def utc_now():
@@ -47,6 +53,67 @@ def dt_text(dt):
 
 def clean(text):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", str(text or ""))).strip()
+
+
+def norm_key(text):
+    return re.sub(r"[^a-z0-9]+", "-", str(text or "").lower()).strip("-")
+
+
+def stable_hash(text):
+    return hashlib.sha1(str(text or "").encode("utf-8")).hexdigest()[:16]
+
+
+def age_hours(dt):
+    if not dt:
+        return None
+    try:
+        return max(0, (utc_now() - dt).total_seconds() / 3600)
+    except Exception:
+        return None
+
+
+def event_reference_dt(event):
+    return event.get("latest_update_dt") or event.get("event_time")
+
+
+def is_recent(event, max_hours):
+    age = age_hours(event_reference_dt(event))
+    return age is not None and age <= max_hours
+
+
+def extract_gdacs_country(title):
+    text = clean(title)
+    # Examples: "... in Venezuela 24/06/2026 22:05 UTC, ..."
+    m = re.search(r"\bin\s+([A-Za-z][A-Za-z .'-]*?)\s+\d{1,2}/\d{1,2}/\d{4}", text)
+    if m:
+        return m.group(1).strip()
+    return extract_country(text)
+
+
+def extract_gdacs_event_hour(title):
+    text = clean(title)
+    m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})\s+(\d{1,2}):", text)
+    if not m:
+        return ""
+    day, month, year, hour = m.groups()
+    return f"{int(year):04d}-{int(month):02d}-{int(day):02d}T{int(hour):02d}"
+
+
+def gdacs_event_id(title, link, peril):
+    text = clean(title)
+    # Prefer official GDACS query identifiers when present.
+    m = re.search(r"(?:eventid|eventid=|event_id=)([A-Za-z0-9_.-]+)", str(link), flags=re.I)
+    if m:
+        return f"GDACS-{norm_key(peril)}-{m.group(1)}"
+    country = extract_gdacs_country(text)
+    hour = extract_gdacs_event_hour(text)
+    if peril == "Earthquake" and country != "Unknown" and hour:
+        # Groups GDACS revisions of the same quake, e.g. M7.2 -> M7.5, as one incident.
+        return f"GDACS-earthquake-{norm_key(country)}-{hour}"
+    compact = re.sub(r"magnitude\s*[:=]?\s*\d+(?:\.\d+)?m?", "magnitude", text, flags=re.I)
+    compact = re.sub(r"depth\s*[:=]?\s*\d+(?:\.\d+)?\s*km", "depth", compact, flags=re.I)
+    compact = re.sub(r"\d+(?:\.\d+)?\s*(?:thousand|million|billion)", "population", compact, flags=re.I)
+    return f"GDACS-{stable_hash(compact + '|' + str(link))}"
 
 
 def short(text, n=240):
@@ -285,7 +352,8 @@ def fetch_gdacs_events():
             severity = gdacs_severity(title, summary)
             peril = infer_peril(title + " " + summary)
             tier = notification_tier(severity, peril, summary)
-            events.append({"id": f"GDACS-{hash(title + link)}", "name": title, "peril": peril, "severity": severity, "tier": tier, "country": extract_country(title), "region": title, "intensity": short(summary, 200) or "See GDACS alert details", "event_time": event_dt, "latest_update_dt": updated_dt, "latest_update": dt_text(updated_dt or event_dt), "source": "GDACS", "link": link, "what_to_expect": expected_impact(peril, severity, summary), "impact_region": impact_region(peril, title, extract_country(title))})
+            country = extract_gdacs_country(title)
+            events.append({"id": gdacs_event_id(title, link, peril), "name": title, "peril": peril, "severity": severity, "tier": tier, "country": country, "region": country, "intensity": short(summary, 200) or "See GDACS alert details", "event_time": event_dt, "latest_update_dt": updated_dt, "latest_update": dt_text(updated_dt or event_dt), "source": "GDACS", "link": link, "what_to_expect": expected_impact(peril, severity, summary), "impact_region": impact_region(peril, country, country)})
     except Exception as exc:
         print(f"GDACS fetch failed: {exc}")
     return events
@@ -335,29 +403,45 @@ def fetch_all_events():
     events.extend(fetch_nhc_events())
     by_id = {}
     for e in events:
-        if e.get("id"):
+        if not e.get("id"):
+            continue
+        old = by_id.get(e["id"])
+        if old is None:
+            by_id[e["id"]] = e
+            continue
+        # Keep the most severe / most recently updated revision for the same incident.
+        old_key = (severity_rank(old.get("severity")), tier_rank(old.get("tier")), event_reference_dt(old) or datetime.min.replace(tzinfo=timezone.utc))
+        new_key = (severity_rank(e.get("severity")), tier_rank(e.get("tier")), event_reference_dt(e) or datetime.min.replace(tzinfo=timezone.utc))
+        if new_key >= old_key:
             by_id[e["id"]] = e
     return list(by_id.values())
 
 
 def load_state():
     if not STATE_FILE.exists():
-        return {"created": now_text(), "events": {}, "initialized": False}
+        return {"created": now_text(), "events": {}, "initialized": False, "schema_version": STATE_SCHEMA_VERSION}
     try:
-        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        state.setdefault("events", {})
+        state.setdefault("initialized", False)
+        return state
     except Exception:
-        return {"created": now_text(), "events": {}, "initialized": False}
+        return {"created": now_text(), "events": {}, "initialized": False, "schema_version": STATE_SCHEMA_VERSION}
 
 
 def save_state(state):
     state["last_run"] = now_text()
+    state["schema_version"] = STATE_SCHEMA_VERSION
     STATE_FILE.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
 
 
 def build_alerts(events, state):
     state_events = state.setdefault("events", {})
     first_run = not state.get("initialized", False)
+    migration_run = state.get("schema_version") != STATE_SCHEMA_VERSION
     alerts = []
+    skipped_old_new = 0
+    skipped_stale_update = 0
     for e in events:
         if not is_alertable(e):
             continue
@@ -365,18 +449,30 @@ def build_alerts(events, state):
         old = state_events.get(e["id"])
         if old is None:
             e["alert_action"] = "NEW EVENT"
-            if not first_run:
+            # Do not alert on backlog or after state-schema migration. Save it silently.
+            if not first_run and not migration_run and is_recent(e, NEW_EVENT_MAX_AGE_HOURS):
                 alerts.append(e)
+            elif not first_run and not migration_run:
+                skipped_old_new += 1
         else:
-            if severity_rank(e["severity"]) > int(old.get("severity_rank", 0)) or tier_rank(e["tier"]) > int(old.get("tier_rank", 0)):
-                e["alert_action"] = "ESCALATION"
-                alerts.append(e)
-            elif key != old.get("update_key", ""):
-                e["alert_action"] = "EVENT UPDATE"
-                alerts.append(e)
+            changed = key != old.get("update_key", "")
+            escalated = severity_rank(e["severity"]) > int(old.get("severity_rank", 0)) or tier_rank(e["tier"]) > int(old.get("tier_rank", 0))
+            if (changed or escalated) and not migration_run:
+                if is_recent(e, UPDATE_MAX_AGE_HOURS):
+                    e["alert_action"] = "ESCALATION" if escalated else "EVENT UPDATE"
+                    alerts.append(e)
+                else:
+                    skipped_stale_update += 1
         state_events[e["id"]] = {"name": e["name"], "peril": e["peril"], "severity": e["severity"], "tier": e["tier"], "source": e["source"], "latest_update": e["latest_update"], "update_key": key, "severity_rank": severity_rank(e["severity"]), "tier_rank": tier_rank(e["tier"]), "last_seen": now_text()}
     state["initialized"] = True
-    return sorted(alerts, key=alert_sort_key, reverse=True)[:MAX_ALERTS_PER_RUN], first_run
+    state["schema_version"] = STATE_SCHEMA_VERSION
+    if migration_run:
+        print("State schema migrated to v2. Alerts suppressed once to prevent old backlog notifications.")
+    if skipped_old_new:
+        print(f"Skipped {skipped_old_new} old first-seen event(s); saved to state without Telegram alert.")
+    if skipped_stale_update:
+        print(f"Skipped {skipped_stale_update} stale update(s); saved to state without Telegram alert.")
+    return sorted(alerts, key=alert_sort_key, reverse=True)[:MAX_ALERTS_PER_RUN], first_run, migration_run
 
 
 def esc(text):
@@ -392,7 +488,7 @@ def format_alert(event):
     lines = [
         f"{header_icon} <b>CATWATCH {esc(action)}</b>",
         "",
-        f"{sev_icon} <b>{esc(event['tier'])} {esc(tier_label(event['tier']))}</b> | {peril_icon} <b>{esc(event['peril'])}</b> | {esc(event['source'])}",
+        f"{sev_icon} <b>{esc(tier_label(event['tier']))}</b> | {peril_icon} <b>{esc(event['peril'])}</b> | {esc(event['source'])}",
         f"<b>{esc(event['name'])}</b>",
         "",
         f"📍 <b>Region:</b> {esc(event['region'])}",
@@ -443,10 +539,12 @@ def main():
     events = fetch_all_events()
     print(f"Fetched {len(events)} total live events.")
     state = load_state()
-    alerts, first_run = build_alerts(events, state)
+    alerts, first_run, migration_run = build_alerts(events, state)
     if first_run:
         print("First run: initializing state and sending startup summary only.")
         send_telegram(format_startup_summary(events))
+    elif migration_run:
+        print("Migration run completed silently; no Telegram alert sent.")
     elif alerts:
         print(f"Sending {len(alerts)} alert(s).")
         for event in alerts:
