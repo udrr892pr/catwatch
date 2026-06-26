@@ -24,7 +24,7 @@ MAX_ALERTS_PER_RUN = int(os.getenv("CATWATCH_MAX_ALERTS", "8"))
 # A genuinely new event must be recent; an old event can still alert later if the source update is recent.
 NEW_EVENT_MAX_AGE_HOURS = int(os.getenv("CATWATCH_NEW_EVENT_MAX_AGE_HOURS", "6"))
 UPDATE_MAX_AGE_HOURS = int(os.getenv("CATWATCH_UPDATE_MAX_AGE_HOURS", "12"))
-STATE_SCHEMA_VERSION = 2
+STATE_SCHEMA_VERSION = 3
 
 
 def utc_now():
@@ -298,7 +298,27 @@ def get_entry_attr(entry, *names):
 
 
 def update_key(event):
-    return " | ".join(str(x) for x in [event.get("latest_update", ""), event.get("severity", ""), event.get("tier", ""), event.get("intensity", "")])
+    """Return the material-change signature used for Telegram update alerts.
+
+    Important: source feeds such as USGS often refresh the event record timestamp
+    when reviewed products, metadata, or page content are touched. That is useful
+    for display, but it is too noisy for Telegram. Telegram should alert only when
+    the event's material hazard/impact fields change or the priority escalates.
+    Therefore latest_update/latest_update_dt are deliberately excluded here.
+    """
+    return " | ".join(str(x) for x in [
+        event.get("source", ""),
+        event.get("name", ""),
+        event.get("peril", ""),
+        event.get("severity", ""),
+        event.get("tier", ""),
+        event.get("intensity", ""),
+    ])
+
+
+def non_material_update_changed(event, old):
+    """True when only the source timestamp changed, not the material alert signature."""
+    return bool(old) and event.get("latest_update") != old.get("latest_update") and update_key(event) == old.get("update_key", "")
 
 
 def alert_sort_key(e):
@@ -442,6 +462,7 @@ def build_alerts(events, state):
     alerts = []
     skipped_old_new = 0
     skipped_stale_update = 0
+    skipped_non_material_update = 0
     for e in events:
         if not is_alertable(e):
             continue
@@ -457,6 +478,9 @@ def build_alerts(events, state):
         else:
             changed = key != old.get("update_key", "")
             escalated = severity_rank(e["severity"]) > int(old.get("severity_rank", 0)) or tier_rank(e["tier"]) > int(old.get("tier_rank", 0))
+            if not changed and non_material_update_changed(e, old):
+                # Example: USGS record timestamp reviewed/refreshed, but magnitude/depth/severity/tier did not change.
+                skipped_non_material_update += 1
             if (changed or escalated) and not migration_run:
                 if is_recent(e, UPDATE_MAX_AGE_HOURS):
                     e["alert_action"] = "ESCALATION" if escalated else "EVENT UPDATE"
@@ -467,11 +491,13 @@ def build_alerts(events, state):
     state["initialized"] = True
     state["schema_version"] = STATE_SCHEMA_VERSION
     if migration_run:
-        print("State schema migrated to v2. Alerts suppressed once to prevent old backlog notifications.")
+        print("State schema migrated to v3. Alerts suppressed once to prevent old backlog/non-material update notifications.")
     if skipped_old_new:
         print(f"Skipped {skipped_old_new} old first-seen event(s); saved to state without Telegram alert.")
     if skipped_stale_update:
         print(f"Skipped {skipped_stale_update} stale update(s); saved to state without Telegram alert.")
+    if skipped_non_material_update:
+        print(f"Skipped {skipped_non_material_update} non-material source timestamp update(s); saved to state without Telegram alert.")
     return sorted(alerts, key=alert_sort_key, reverse=True)[:MAX_ALERTS_PER_RUN], first_run, migration_run
 
 
