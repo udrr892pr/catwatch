@@ -17,7 +17,7 @@ from dateutil import parser as dateparser
 from streamlit_autorefresh import st_autorefresh
 
 # ============================================================
-# CatWatch v7.4.1 — Event Integrity & Decision Workflow hotfix
+# CatWatch v7.5 — Source Expansion & Coverage Layer
 # ============================================================
 
 st.set_page_config(
@@ -37,6 +37,15 @@ NHC_GIS_FEEDS = {
     "Central Pacific": "https://www.nhc.noaa.gov/gis-cp.xml",
 }
 NHC_ACTIVE_KMZ = "https://www.nhc.noaa.gov/gis/kml/nhc.kmz"
+NWS_ALERTS_URL = "https://api.weather.gov/alerts/active?status=actual&message_type=alert"
+COPERNICUS_RAPID_MAPPING_URL = "https://rapidmapping.emergency.copernicus.eu/backend/dashboard-api/public-activations-info/?limit=40"
+GLOFAS_PORTAL = "https://global-flood.emergency.copernicus.eu/react/"
+EFAS_PORTAL = "https://european-flood.emergency.copernicus.eu/"
+FIRMS_PORTAL = "https://firms.modaps.eosdis.nasa.gov/map/"
+EFFIS_PORTAL = "https://effis.emergency.copernicus.eu/"
+SPC_PORTAL = "https://www.spc.noaa.gov/"
+JTWC_PORTAL = "https://www.metoc.navy.mil/jtwc/jtwc.html"
+IBTRACS_PORTAL = "https://www.ncei.noaa.gov/products/international-best-track-archive"
 
 CURRENT_YEAR = datetime.now(timezone.utc).year
 VERIFIED_NEWS = [
@@ -664,7 +673,11 @@ def preferred_source_note(row):
     if region == "Japan" and peril in {"Earthquake", "Tsunami", "Earthquake / Tsunami"}:
         return "Japan earthquake hierarchy: JMA first, then USGS / EMSC / GDACS for cross-check."
     if row.get("Source_Name") == "NOAA/NHC" or (peril == "Tropical Cyclone" and region == "United States / NHC basin"):
-        return "NHC-basin cyclone hierarchy: NOAA/NHC first, then GDACS and verified news for impacts."
+        return "NHC-basin cyclone hierarchy: NOAA/NHC first, then NOAA/NWS, GDACS and verified news for impacts."
+    if row.get("Source_Name") == "NOAA/NWS":
+        return "US warning hierarchy: NOAA/NWS is official for active US warnings; use SPC/NWS reports and portfolio footprint layers for SCS/flood/fire follow-up."
+    if row.get("Source_Name") == "Copernicus EMS":
+        return "GIS response hierarchy: Copernicus EMS activation is a verified mapping signal; review products before using as footprint evidence."
     if peril == "Earthquake":
         return "Global earthquake hierarchy: USGS first, EMSC second, GDACS for humanitarian alert colour, local agency where available."
     if region == "Europe" and peril in {"Flood", "Severe Storm", "Tropical Cyclone"}:
@@ -681,10 +694,20 @@ def source_priority_score(row):
         return {"JMA": 100, "USGS": 86, "EMSC": 80, "GDACS": 72}.get(source, 55)
     if source == "NOAA/NHC":
         return 100
+    if source == "NOAA/NWS" and region == "United States / NHC basin":
+        return 94
+    if source == "Copernicus EMS":
+        return 88
     if peril == "Earthquake":
         return {"USGS": 92, "EMSC": 84, "JMA": 82, "GDACS": 76}.get(source, 55)
     if peril == "Tropical Cyclone":
-        return {"NOAA/NHC": 100, "GDACS": 74}.get(source, 55)
+        return {"NOAA/NHC": 100, "NOAA/NWS": 90, "Copernicus EMS": 84, "GDACS": 74}.get(source, 55)
+    if peril == "Flood":
+        return {"Copernicus EMS": 90, "NOAA/NWS": 88, "GDACS": 74}.get(source, 55)
+    if peril == "Wildfire":
+        return {"Copernicus EMS": 90, "NOAA/NWS": 86, "GDACS": 74}.get(source, 55)
+    if peril == "Severe Storm":
+        return {"NOAA/NWS": 92, "Copernicus EMS": 82, "GDACS": 70}.get(source, 55)
     if source == "GDACS":
         return 74
     return 55
@@ -1363,6 +1386,217 @@ def fetch_nhc_events():
 
 
 @st.cache_data(ttl=300)
+
+def centroid_from_geojson_geometry(geometry):
+    """Return an approximate centroid from a GeoJSON Polygon/MultiPolygon/Point."""
+    try:
+        if not geometry:
+            return None, None
+        gtype = geometry.get("type")
+        coords = geometry.get("coordinates")
+        points = []
+        if gtype == "Point" and isinstance(coords, list) and len(coords) >= 2:
+            return safe_float(coords[1]), safe_float(coords[0])
+        def walk(obj):
+            if isinstance(obj, (list, tuple)) and len(obj) >= 2 and all(isinstance(x, (int, float)) for x in obj[:2]):
+                points.append((float(obj[1]), float(obj[0])))
+            elif isinstance(obj, (list, tuple)):
+                for x in obj:
+                    walk(x)
+        walk(coords)
+        if not points:
+            return None, None
+        lats = [p[0] for p in points if safe_float(p[0]) is not None]
+        lons = [p[1] for p in points if safe_float(p[1]) is not None]
+        if not lats or not lons:
+            return None, None
+        return sum(lats) / len(lats), sum(lons) / len(lons)
+    except Exception:
+        return None, None
+
+
+def point_from_wkt(text):
+    """Parse POINT (lon lat) strings used by Copernicus rapid mapping activations."""
+    m = re.search(r"POINT\s*\(\s*([-0-9.]+)\s+([-0-9.]+)\s*\)", str(text or ""), flags=re.I)
+    if not m:
+        return None, None
+    return safe_float(m.group(2)), safe_float(m.group(1))
+
+
+def nws_peril(event_name):
+    e = str(event_name or "").lower()
+    if "tornado" in e or "severe thunderstorm" in e or "hail" in e or "convective" in e:
+        return "Severe Storm"
+    if "flash flood" in e or "flood" in e:
+        return "Flood"
+    if "red flag" in e or "fire weather" in e or "wildfire" in e:
+        return "Wildfire"
+    if "hurricane" in e or "tropical storm" in e:
+        return "Tropical Cyclone"
+    return "Severe Storm"
+
+
+def nws_severity(props):
+    event = str(props.get("event", "")).lower()
+    severity = str(props.get("severity", "")).lower()
+    urgency = str(props.get("urgency", "")).lower()
+    certainty = str(props.get("certainty", "")).lower()
+    text = f"{event} {severity} {urgency} {certainty} {props.get('headline','')}".lower()
+    if "emergency" in text or ("tornado warning" in text and "observed" in text):
+        return "Critical"
+    if severity == "extreme" or "tornado warning" in text or "flash flood warning" in text:
+        return "Red"
+    if severity == "severe" or "severe thunderstorm warning" in text or "red flag warning" in text:
+        return "Orange"
+    if severity == "moderate" or "watch" in event:
+        return "Yellow"
+    return "Green"
+
+
+def include_nws_event(event_name):
+    e = str(event_name or "").lower()
+    keep = [
+        "tornado warning", "tornado watch", "severe thunderstorm warning", "severe thunderstorm watch",
+        "flash flood warning", "flood warning", "hurricane warning", "tropical storm warning",
+        "red flag warning", "fire weather warning", "extreme wind warning",
+    ]
+    drop = ["small craft", "beach hazards", "dense fog", "heat advisory", "winter weather", "frost", "freeze"]
+    return any(k in e for k in keep) and not any(k in e for k in drop)
+
+
+@st.cache_data(ttl=300)
+def fetch_nws_active_alerts():
+    """NOAA/NWS active US alerts: severe storm, flood, tropical, wildfire/fire-weather signals."""
+    rows = []
+    try:
+        headers = {"User-Agent": "CatWatch prototype / contact: catwatch.local"}
+        data = requests.get(NWS_ALERTS_URL, headers=headers, timeout=25).json()
+        features = data.get("features", []) if isinstance(data, dict) else []
+        for feature in features[:400]:
+            props = feature.get("properties", {}) or {}
+            event_name = props.get("event") or "NWS active alert"
+            if not include_nws_event(event_name):
+                continue
+            area = props.get("areaDesc") or props.get("senderName") or "United States"
+            headline = clean(props.get("headline") or f"{event_name} – {area}")
+            desc = clean(props.get("description") or props.get("instruction") or headline)
+            peril = nws_peril(event_name)
+            sev = nws_severity(props)
+            event_dt = parse_dt(props.get("onset") or props.get("effective") or props.get("sent"))
+            updated_dt = parse_dt(props.get("sent") or props.get("effective"))
+            lat, lon = centroid_from_geojson_geometry(feature.get("geometry"))
+            if not lat or not lon:
+                lat, lon = None, None
+            intensity = f"{event_name}; NWS severity {props.get('severity','Unknown')}; urgency {props.get('urgency','Unknown')}; certainty {props.get('certainty','Unknown')}"
+            tier = notification_tier(sev, peril, intensity)
+            # Keep NWS warnings mostly in the app; Telegram is separate and stricter.
+            alert_type = classify_alert_type(event_dt, updated_dt, sev, tier, intensity)
+            rows.append({
+                "Event_ID": f"NWS-{feature.get('id') or make_id('NWS', headline)}",
+                "Event_Name": headline[:180],
+                "Peril": peril,
+                "Event_Status": "Active",
+                "Alert_Type": alert_type,
+                "Severity": sev,
+                "Notification_Tier": tier,
+                "Country": "United States",
+                "Location_Label": area[:220],
+                "Latitude": lat,
+                "Longitude": lon,
+                "Start_Date": event_dt.strftime("%Y-%m-%d %H:%M UTC") if event_dt else "",
+                "Latest_Update_Date": updated_dt.strftime("%Y-%m-%d %H:%M UTC") if updated_dt else now_text(),
+                "Source_Name": "NOAA/NWS",
+                "Source_Link": props.get("uri") or props.get("id") or "https://www.weather.gov/alerts",
+                "Detail_Link": props.get("uri") or props.get("id") or "https://www.weather.gov/alerts",
+                "Physical_Intensity": intensity,
+                "Human_Impact": "Official US warning/advisory. Damage/loss requires local emergency management, NWS storm reports and news confirmation.",
+                "Economic_Loss": "Unknown",
+                "Insured_Loss": "Unknown",
+                "Industry_Loss_Status": "Not yet reported",
+                "Confidence_Level": "High for official US warning geography; low for damage/loss until reports arrive",
+                "Why_It_Matters": "NWS alerts improve US severe storm, flood, tropical and fire-weather coverage for insurance triage.",
+                "What_To_Expect": expected_impact(peril, sev, intensity, "United States"),
+                "Impact_Region": "Use NWS polygon/area description as warning geography. This is not a modelled loss footprint.",
+                "Management_Summary": f"NOAA/NWS has an active {event_name} for {area}. Treat as an official warning signal; validate damage, exposure and insurance relevance separately.",
+                "Track_Info": "Official NWS alert geometry/area; for SCS use SPC/NWS reports; for flood use NWS river/flood products; for wildfire use fire agency/FIRMS/EFFIS layers where available.",
+                "Map_Mode": "Official warning area / centroid",
+            })
+            if len(rows) >= 60:
+                break
+    except Exception as exc:
+        st.warning(f"NOAA/NWS alert fetch failed: {exc}")
+    return rows
+
+
+@st.cache_data(ttl=900)
+def fetch_copernicus_ems_activations():
+    """Copernicus EMS Rapid Mapping public activation feed."""
+    rows = []
+    try:
+        data = requests.get(COPERNICUS_RAPID_MAPPING_URL, timeout=30).json()
+        results = data.get("results", []) if isinstance(data, dict) else []
+        for item in results[:40]:
+            code = item.get("code") or make_id("CEMS", item.get("name", "activation"))
+            name = clean(item.get("name") or f"Copernicus EMS activation {code}")
+            countries = item.get("countries") or []
+            country = ", ".join(countries) if isinstance(countries, list) else str(countries or "Unknown")
+            event_dt = parse_dt(item.get("eventTime") or item.get("activationTime") or item.get("createdAt"))
+            updated_dt = parse_dt(item.get("updatedAt") or item.get("activationTime") or item.get("createdAt") or item.get("eventTime"))
+            lat, lon = point_from_wkt(item.get("centroid"))
+            peril = infer_peril(name + " " + str(item.get("eventType", "")))
+            sev = "Orange" if peril in {"Flood", "Wildfire", "Tropical Cyclone", "Earthquake", "Severe Storm"} else "Yellow"
+            intensity = f"Copernicus EMS Rapid Mapping activation {code}; activation products may include reference, delineation or grading maps when published."
+            tier = notification_tier(sev, peril, intensity)
+            alert_type = classify_alert_type(event_dt, updated_dt, sev, tier, intensity)
+            link = f"https://mapping.emergency.copernicus.eu/activations/{code}/"
+            rows.append({
+                "Event_ID": f"COPERNICUS-{code}",
+                "Event_Name": f"Copernicus EMS activation – {name}",
+                "Peril": peril,
+                "Event_Status": "Active / mapping activation",
+                "Alert_Type": alert_type,
+                "Severity": sev,
+                "Notification_Tier": tier,
+                "Country": country or "Unknown",
+                "Location_Label": name,
+                "Latitude": lat,
+                "Longitude": lon,
+                "Start_Date": event_dt.strftime("%Y-%m-%d %H:%M UTC") if event_dt else "",
+                "Latest_Update_Date": updated_dt.strftime("%Y-%m-%d %H:%M UTC") if updated_dt else now_text(),
+                "Source_Name": "Copernicus EMS",
+                "Source_Link": link,
+                "Detail_Link": link,
+                "Physical_Intensity": intensity,
+                "Human_Impact": "Mapping activation indicates an official geospatial response product may be available or in production.",
+                "Economic_Loss": "Unknown",
+                "Insured_Loss": "Unknown",
+                "Industry_Loss_Status": "Not yet reported",
+                "Confidence_Level": "High for activation status; map products must be reviewed for layer type and production date",
+                "Why_It_Matters": "Copernicus EMS is a verified geospatial response layer for flood, wildfire, earthquake, storm and humanitarian events.",
+                "What_To_Expect": "Check activation products for reference/delineation/grading maps and use them as GIS evidence where available.",
+                "Impact_Region": "Use Copernicus activation AOI and downloadable geospatial products; do not replace with point/buffer unless no footprint is available.",
+                "Management_Summary": f"Copernicus EMS Rapid Mapping has activation {code} for {name}. Review products for affected-area delineation and GIS integration.",
+                "Track_Info": "Open Copernicus EMS activation for AOI, maps, vector/raster products and technical reports when published.",
+                "Map_Mode": "Copernicus EMS activation centroid / products",
+            })
+    except Exception as exc:
+        st.warning(f"Copernicus EMS activation fetch failed: {exc}")
+    return rows
+
+
+def source_expansion_reference_table():
+    return pd.DataFrame([
+        {"Layer": "NOAA/NWS active alerts", "Perils": "US severe storm / flood / wildfire / tropical", "Status": "Live in app", "Best use": "Official US warning awareness and SCS/flood/fire triage", "Portal": "https://www.weather.gov/alerts"},
+        {"Layer": "Copernicus EMS Rapid Mapping", "Perils": "Flood / wildfire / storm / earthquake / humanitarian", "Status": "Live activation feed", "Best use": "Verified GIS activation and footprint-product watch", "Portal": "https://mapping.emergency.copernicus.eu/activations/"},
+        {"Layer": "GloFAS", "Perils": "Global flood", "Status": "Portal / roadmap", "Best use": "Global flood forecast and basin watch", "Portal": GLOFAS_PORTAL},
+        {"Layer": "EFAS", "Perils": "Europe flood", "Status": "Portal / roadmap", "Best use": "European flood forecast and preparedness watch", "Portal": EFAS_PORTAL},
+        {"Layer": "NASA FIRMS", "Perils": "Wildfire", "Status": "Portal / optional API-key roadmap", "Best use": "Near-real-time active fire detections from MODIS/VIIRS", "Portal": FIRMS_PORTAL},
+        {"Layer": "EFFIS / GWIS", "Perils": "Wildfire", "Status": "Portal / roadmap", "Best use": "European/global fire current situation and fire danger", "Portal": EFFIS_PORTAL},
+        {"Layer": "SPC", "Perils": "US severe convective storm", "Status": "Portal / roadmap", "Best use": "Convective watches, outlooks and storm-report validation", "Portal": SPC_PORTAL},
+        {"Layer": "JTWC / WMO RSMC routing", "Perils": "Global tropical cyclone", "Status": "Roadmap", "Best use": "Cyclone basins outside NHC coverage", "Portal": JTWC_PORTAL},
+        {"Layer": "IBTrACS", "Perils": "Historical cyclone", "Status": "Reference roadmap", "Best use": "Historical best-track comparables", "Portal": IBTRACS_PORTAL},
+    ])
+
 def load_live_events():
     rows = []
     rows.extend(fetch_usgs_events())
@@ -1370,6 +1604,8 @@ def load_live_events():
     rows.extend(fetch_emsc_events())
     rows.extend(fetch_gdacs_events())
     rows.extend(fetch_nhc_events())
+    rows.extend(fetch_nws_active_alerts())
+    rows.extend(fetch_copernicus_ems_activations())
 
     if not rows:
         return pd.DataFrame()
@@ -1834,8 +2070,11 @@ def render_source_engine_panel(event, df):
     matrix = pd.DataFrame([
         {"Region / peril": "Japan earthquake / tsunami", "Preferred official source": "JMA", "Cross-checks": "USGS, EMSC, GDACS", "Insurance layer": "PERILS / PCS / vendor notes if loss-relevant"},
         {"Region / peril": "Global earthquake", "Preferred official source": "USGS", "Cross-checks": "EMSC, GDACS, local agency", "Insurance layer": "PCS, PERILS, KCC, Moody's RMS, Verisk, CoreLogic/Cotality"},
-        {"Region / peril": "Atlantic / E. Pacific cyclone", "Preferred official source": "NOAA/NHC", "Cross-checks": "GDACS, NWS, local agencies", "Insurance layer": "PCS, Moody's RMS, Verisk, KCC, Aon, Gallagher Re"},
-        {"Region / peril": "Europe windstorm / flood", "Preferred official source": "National agencies / Copernicus", "Cross-checks": "GDACS, EFAS/GloFAS", "Insurance layer": "PERILS, Aon, Gallagher Re, Swiss Re, Munich Re"},
+        {"Region / peril": "Atlantic / E. Pacific cyclone", "Preferred official source": "NOAA/NHC", "Cross-checks": "NOAA/NWS, GDACS, local agencies", "Insurance layer": "PCS, Moody's RMS, Verisk, KCC, Aon, Gallagher Re"},
+        {"Region / peril": "West Pacific / Indian Ocean cyclone", "Preferred official source": "WMO RSMC / JTWC roadmap", "Cross-checks": "GDACS, local met agencies, Copernicus EMS", "Insurance layer": "PCS/PERILS where applicable, vendor / broker notes"},
+        {"Region / peril": "US severe convective storm", "Preferred official source": "NOAA/NWS / SPC", "Cross-checks": "Local storm reports, radar/NWS, PCS", "Insurance layer": "PCS / Verisk, Aon, Gallagher Re, vendor notes"},
+        {"Region / peril": "Europe windstorm / flood", "Preferred official source": "National agencies / Copernicus", "Cross-checks": "GDACS, EFAS/GloFAS, Copernicus EMS", "Insurance layer": "PERILS, Aon, Gallagher Re, Swiss Re, Munich Re"},
+        {"Region / peril": "Wildfire", "Preferred official source": "National/state fire agencies", "Cross-checks": "NASA FIRMS, EFFIS/GWIS, Copernicus EMS", "Insurance layer": "PCS/PERILS where applicable, local insurance associations"},
         {"Region / peril": "Australia flood / cyclone / wildfire", "Preferred official source": "BOM / state agencies", "Cross-checks": "GDACS, Copernicus, NASA FIRMS", "Insurance layer": "ICA, PCS, vendor / broker notes"},
     ])
     st.dataframe(matrix, use_container_width=True, hide_index=True)
@@ -1848,6 +2087,9 @@ def render_source_engine_panel(event, df):
           .sort_values(["Source_Name", "Events"], ascending=[True, False])
     )
     st.dataframe(source_summary.head(40), use_container_width=True, hide_index=True)
+
+    st.markdown("**v7.5 source expansion status**")
+    st.dataframe(source_expansion_reference_table(), use_container_width=True, hide_index=True, column_config={"Portal": st.column_config.LinkColumn("Portal")})
 
     st.markdown(
         "<div class='warn-box'><b>Telegram policy:</b> This wider app coverage does not mean noisier Telegram. Telegram should remain strict: important fresh new event, meaningful update, or escalation only.</div>",
@@ -2420,6 +2662,12 @@ def source_health_table(df):
         {"Source": "EMSC", "Expected role": "Earthquake cross-check"},
         {"Source": "GDACS", "Expected role": "Humanitarian alert colour / multi-peril"},
         {"Source": "NOAA/NHC", "Expected role": "Atlantic/East/Central Pacific cyclone products"},
+        {"Source": "NOAA/NWS", "Expected role": "US official severe storm / flood / fire weather alerts"},
+        {"Source": "Copernicus EMS", "Expected role": "Rapid Mapping activations and GIS product watch"},
+        {"Source": "GloFAS / EFAS", "Expected role": "Flood forecast portals / roadmap"},
+        {"Source": "NASA FIRMS / EFFIS", "Expected role": "Wildfire active fire and current situation portals / roadmap"},
+        {"Source": "SPC / ESWD", "Expected role": "Severe convective storm validation / roadmap"},
+        {"Source": "JTWC / WMO RSMC", "Expected role": "Global cyclone basins outside NHC / roadmap"},
     ]
     rows = []
     now = pd.Timestamp.now(tz="UTC")
@@ -2448,7 +2696,7 @@ def source_health_table(df):
             "Age": age,
             "Perils seen": perils,
             "Expected role": item["Expected role"],
-            "Action": "Review if unexpectedly empty or stale; absence can also mean no active/recent events."
+            "Action": "Review if unexpectedly empty or stale; portal-only/roadmap sources may show zero live events until API integration is enabled."
         })
     return pd.DataFrame(rows)
 
@@ -2808,6 +3056,8 @@ def main():
         st.markdown("<div class='info-box'><b>Purpose:</b> one master card per physical event. Source observations are merged where possible, so the same earthquake/cyclone should not flood the screen as separate cards.</div>", unsafe_allow_html=True)
         with st.expander("Source health & coverage", expanded=False):
             st.dataframe(source_health_table(all_df), use_container_width=True, hide_index=True)
+            st.markdown("**Expanded verified-source roadmap**")
+            st.dataframe(source_expansion_reference_table(), use_container_width=True, hide_index=True, column_config={"Portal": st.column_config.LinkColumn("Portal")})
 
         st.markdown("**Executive Alerts**")
         exec_df = filt[filt["Queue"] == "Executive Alerts"].copy()
@@ -2901,8 +3151,10 @@ def main():
         gis_sources = pd.DataFrame([
             {"Peril": "Earthquake", "Preferred GIS layer": "USGS ShakeMap / local intensity", "Status": "Partly linked", "Use": "MMI/intensity exposure screen"},
             {"Peril": "Tropical Cyclone", "Preferred GIS layer": "NHC track/cone/wind products; WMO RSMC/JTWC roadmap", "Status": "NHC partly mapped", "Use": "Track, cone, wind/surge/rain watch"},
-            {"Peril": "Flood", "Preferred GIS layer": "GloFAS / EFAS / Copernicus EMS", "Status": "Roadmap", "Use": "Basin/extent overlay"},
-            {"Peril": "Wildfire", "Preferred GIS layer": "NASA FIRMS / local fire perimeter", "Status": "Roadmap", "Use": "Active-fire/perimeter overlay"},
+            {"Peril": "US severe storm / flood / fire weather", "Preferred GIS layer": "NOAA/NWS alert polygon / area description", "Status": "Live source added", "Use": "Warning-area awareness; not modelled loss"},
+            {"Peril": "Flood", "Preferred GIS layer": "GloFAS / EFAS / Copernicus EMS activation products", "Status": "Copernicus live; GloFAS/EFAS portal roadmap", "Use": "Basin/extent overlay"},
+            {"Peril": "Wildfire", "Preferred GIS layer": "NASA FIRMS / EFFIS / local fire perimeter / Copernicus EMS", "Status": "Portals linked; Copernicus live", "Use": "Active-fire/perimeter overlay"},
+            {"Peril": "Severe convective storm", "Preferred GIS layer": "NOAA/SPC / local storm reports / ESWD roadmap", "Status": "Roadmap", "Use": "Hail/wind/tornado verification"},
         ])
         st.dataframe(gis_sources, use_container_width=True, hide_index=True)
 
