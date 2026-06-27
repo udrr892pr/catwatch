@@ -1,5 +1,6 @@
 
 import hashlib
+import json
 import io
 import re
 import zipfile
@@ -16,7 +17,7 @@ from dateutil import parser as dateparser
 from streamlit_autorefresh import st_autorefresh
 
 # ============================================================
-# CatWatch v7.3 — Event Response Workbench
+# CatWatch v7.4 — Event Integrity & Decision Workflow
 # ============================================================
 
 st.set_page_config(
@@ -1474,6 +1475,9 @@ def load_history():
     for col in ["Economic_Loss_USD_Bn_Reported", "Insured_Loss_USD_Bn_Reported", "Industry_Loss_USD_Bn_Reported"]:
         df[col.replace("_Reported", "_Today_Approx")] = df.apply(lambda r: today_value(r[col], r["Year"]), axis=1)
     df["Inflation_Method"] = "Approximate 3% annual USD compounding; replace with official CPI/licensed loss tables for production use."
+    df["Loss_Data_Status"] = "Indicative starter benchmark"
+    df["Loss_Source_Status"] = "Needs validation before management use"
+    df["Comparable_Use"] = "Context only; do not treat as modelled or verified loss"
     return df
 
 
@@ -1745,7 +1749,7 @@ def event_badges(row):
 
 def render_event_card(row):
     sev = row.get("Severity", "Unknown")
-    eyebrow = f"{row.get('Country', 'Unknown')} • {row.get('Source_Name', 'Source')} • {row.get('Latest_Update_Date', '')}"
+    eyebrow = f"{row.get('Country', 'Unknown')} • {row.get('Primary_Source_Name', row.get('Source_Name', 'Source'))} • {row.get('Latest_Update_Date', '')}"
     st.markdown(
         f"""
         <div class="card event-card sev-border-{sev}">
@@ -1753,11 +1757,11 @@ def render_event_card(row):
             <div class="eyebrow">{short(eyebrow, 90)}</div>
             <div class="event-title">{row.get('Event_Name', 'Unnamed event')}</div>
             <div class="event-meta">
-                <b>Intensity:</b> {short(row.get('Physical_Intensity', 'Unknown'), 125)}<br>
-                <b>Source priority:</b> {row.get('Source_Priority_Score', '')}/100 • <b>Insurance relevance:</b> {row.get('Insurance_Relevance', '')}<br>
-                <b>Loss watch:</b> {row.get('Loss_Watch', 'Monitor')} ({row.get('Loss_Watch_Score', 0)}/100) • <b>Stage:</b> {row.get('Loss_Watch_Stage', 'Monitoring')}<br>
-                <b>Impact area:</b> {short(row.get('Impact_Region', ''), 115)}<br>
-                <b>What to expect:</b> {short(row.get('What_To_Expect', ''), 130)}
+                <b>Latest material signal:</b> {short(row.get('What_Changed', 'No material change summary available.'), 140)}<br>
+                <b>Intensity:</b> {short(row.get('Physical_Intensity', 'Unknown'), 110)}<br>
+                <b>Footprint status:</b> {short(row.get('Map_Mode', 'Point / source feed'), 95)}<br>
+                <b>Insurance:</b> {row.get('Insurance_Relevance', '')} • <b>Loss watch:</b> {row.get('Loss_Watch', 'Monitor')} ({row.get('Loss_Watch_Score', 0)}/100)<br>
+                <b>Next action:</b> {short(row.get('Analyst_Action', ''), 115)}
             </div>
         </div>
         """,
@@ -1787,12 +1791,14 @@ def render_history_card(row):
         <div class="card">
             <span class="badge b-tier-P3">{row.get('Year')}</span>
             <span class="badge b-peril">{emoji(row.get('Peril'))} {row.get('Peril')}</span>
+            <span class="badge b-sev-Unknown">{row.get('Loss_Data_Status', 'Indicative')}</span>
             <div class="event-title">{row.get('Event_Name')}</div>
             <div class="event-meta">
                 <b>Country:</b> {row.get('Country')}<br>
                 <b>Region:</b> {row.get('Region')}<br>
                 <b>Economic loss:</b> USD {row.get('Economic_Loss_USD_Bn_Reported')}bn reported / ~USD {row.get('Economic_Loss_USD_Bn_Today_Approx')}bn today<br>
                 <b>Insured loss:</b> USD {row.get('Insured_Loss_USD_Bn_Reported')}bn reported / ~USD {row.get('Insured_Loss_USD_Bn_Today_Approx')}bn today<br>
+                <b>Validation:</b> {row.get('Loss_Source_Status', 'Needs validation')} • {row.get('Comparable_Use', 'Context only')}<br>
                 <b>Footprint note:</b> {row.get('Footprint_Note')}
             </div>
         </div>
@@ -1903,7 +1909,7 @@ def vendor_search_links(event):
     q = quote_plus(f'"{name}" {country} {peril} insured loss catastrophe model')
     q_short = quote_plus(f'{country} {peril} insured loss catastrophe')
 
-    return [
+    links = [
         {"Layer": "Industry loss", "Source": "PCS / Verisk", "Use": "US/global catastrophe loss designation and insured-loss commentary where available", "Link": "https://www.verisk.com/insurance/brands/pcs/"},
         {"Layer": "Industry loss", "Source": "PERILS", "Use": "European and selected international industry-loss reporting", "Link": "https://www.perils.org/"},
         {"Layer": "Model vendor", "Source": "Moody's RMS", "Use": "Model/vendor event response and loss commentary", "Link": "https://www.rms.com/events"},
@@ -1916,6 +1922,10 @@ def vendor_search_links(event):
         {"Layer": "Search", "Source": "Google News", "Use": "Search this selected event for insured-loss and model commentary", "Link": f"https://news.google.com/search?q={q}"},
         {"Layer": "Search", "Source": "Web search", "Use": "Broad public web search for insurance-market references", "Link": f"https://www.google.com/search?q={q_short}"},
     ]
+    for item in links:
+        item["Event-specific status"] = "Not checked in-app" if item["Layer"] != "Search" else "Use to confirm event-specific update"
+        item["Decision use"] = "Do not treat as event-specific unless the opened source mentions this event."
+    return links
 
 
 def insurance_trigger_list(event):
@@ -2006,6 +2016,9 @@ def render_insurance_intelligence(event, df):
         """,
         unsafe_allow_html=True,
     )
+
+    st.markdown("**Why the insurance score is what it is**")
+    st.dataframe(insurance_score_breakdown(event), use_container_width=True, hide_index=True)
 
     st.markdown("**Why this could matter for insured loss**")
     for item in insurance_trigger_list(event):
@@ -2100,40 +2113,64 @@ def cyclone_status_box(df):
 # ============================================================
 # v7.3 Event Response Workbench helpers
 # ============================================================
+
 def slugify_event_text(text, n=42):
     txt = clean(text).lower()
     txt = re.sub(r"\b(m\??\d+(?:\.\d+)?)\b", "", txt)
-    txt = re.sub(r"\b(earthquake|hurricane|tropical storm|tropical cyclone|typhoon|cyclone|flood|wildfire|fire|volcano|tsunami|near|km|of|the)\b", " ", txt)
+    txt = re.sub(r"\b(earthquake|hurricane|tropical storm|tropical cyclone|typhoon|cyclone|flood|wildfire|fire|volcano|tsunami|near|km|of|the|updated|alert)\b", " ", txt)
     txt = re.sub(r"[^a-z0-9]+", "-", txt).strip("-")
     return txt[:n] or "event"
 
 
+def event_datetime_for_matching(row):
+    d = pd.to_datetime(row.get("Start_Date_UTC"), errors="coerce", utc=True)
+    if pd.isna(d):
+        d = pd.to_datetime(row.get("Start_Date"), errors="coerce", utc=True)
+    if pd.isna(d):
+        d = pd.to_datetime(row.get("Latest_Update_Date"), errors="coerce", utc=True)
+    return None if pd.isna(d) else d
+
+
+def event_magnitude_for_matching(row):
+    return parse_mag_from_text(str(row.get("Event_Name", "")) + " " + str(row.get("Physical_Intensity", "")))
+
+
+def peril_family(peril):
+    p = str(peril or "Other")
+    if p in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
+        return "Earthquake"
+    if "Cyclone" in p or "Hurricane" in p or "Typhoon" in p:
+        return "Tropical Cyclone"
+    if "Flood" in p:
+        return "Flood"
+    if "Wildfire" in p or "Fire" in p:
+        return "Wildfire"
+    if "Storm" in p or "Hail" in p or "Tornado" in p:
+        return "Severe Storm"
+    return p
+
+
 def event_signature(row):
-    """Create a practical master-event grouping key.
-    This is intentionally transparent: it groups likely duplicate observations without hiding source differences.
-    """
-    peril = str(row.get("Peril", "Other"))
-    start = pd.to_datetime(row.get("Start_Date_UTC"), errors="coerce", utc=True)
-    if pd.isna(start):
-        start = pd.to_datetime(row.get("Latest_Update_Date"), errors="coerce", utc=True)
-    day = start.strftime("%Y%m%d") if not pd.isna(start) else "nodate"
+    """Stable-ish master-event ID seed. The clustering engine below assigns events first; this creates a readable ID for the group representative."""
+    peril = peril_family(row.get("Peril", "Other"))
+    start = event_datetime_for_matching(row)
+    day = start.strftime("%Y%m%d") if start is not None else "NODATE"
     country = slugify_event_text(row.get("Country", "global"), 18)
     location = slugify_event_text(row.get("Location_Label") or row.get("Event_Name"), 34)
-
     lat = safe_float(row.get("Latitude"))
     lon = safe_float(row.get("Longitude"))
 
-    if peril in {"Tropical Cyclone", "Tropical Cyclone / Storm Surge"}:
-        name = row.get("NHC_Storm_Name") or row.get("Event_Name") or row.get("Location_Label")
-        name = slugify_event_text(name, 32)
+    if peril == "Tropical Cyclone":
+        name = slugify_event_text(row.get("NHC_Storm_Name") or row.get("Event_Name") or row.get("Location_Label"), 32)
         basin = slugify_event_text(row.get("NHC_Basin") or row.get("Country") or "basin", 20)
         return f"TC-{day}-{basin}-{name}".upper()
 
-    if peril in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
-        mag = parse_mag_from_text(row.get("Event_Name", "") + " " + row.get("Physical_Intensity", ""))
-        mag_bucket = f"M{round(mag,1):.1f}" if mag is not None else "MUNK"
+    if peril == "Earthquake":
+        mag = event_magnitude_for_matching(row)
+        mag_bucket = f"M{round(mag * 2) / 2:.1f}" if mag is not None else "MUNK"
         if lat is not None and lon is not None:
-            return f"EQ-{day}-{round(lat,1):.1f}-{round(lon,1):.1f}-{mag_bucket}".upper()
+            # Coarser buckets reduce source-split risk; clustering still validates distance/time/magnitude.
+            return f"EQ-{day}-{round(lat * 2) / 2:.1f}-{round(lon * 2) / 2:.1f}-{mag_bucket}".upper()
         return f"EQ-{day}-{country}-{location}-{mag_bucket}".upper()
 
     if lat is not None and lon is not None:
@@ -2141,11 +2178,147 @@ def event_signature(row):
     return f"{peril[:3].upper()}-{day}-{country}-{location}".upper()
 
 
+def event_match_score(row, rep):
+    """Transparent matching score for merging source observations into one master event."""
+    reasons = []
+    score = 0
+    family = peril_family(row.get("Peril"))
+    rep_family = peril_family(rep.get("Peril"))
+    if family != rep_family:
+        return 0, ["Different peril family"]
+    score += 25
+    reasons.append("Same peril family")
+
+    t1 = event_datetime_for_matching(row)
+    t2 = event_datetime_for_matching(rep)
+    hours = None
+    if t1 is not None and t2 is not None:
+        hours = abs((t1 - t2).total_seconds()) / 3600
+        if family == "Earthquake":
+            if hours <= 2:
+                score += 30; reasons.append("Event time within ±2h")
+            elif hours <= 6:
+                score += 12; reasons.append("Event time within ±6h")
+            else:
+                return 0, ["Earthquake event time too far apart"]
+        elif family == "Tropical Cyclone":
+            if hours <= 24 * 14:
+                score += 15; reasons.append("Same cyclone time window")
+        else:
+            if hours <= 24 * 7:
+                score += 15; reasons.append("Same weekly event window")
+
+    rname = slugify_event_text(row.get("Event_Name", ""), 32)
+    pname = slugify_event_text(rep.get("Event_Name", ""), 32)
+    rloc = slugify_event_text(row.get("Location_Label", ""), 28)
+    ploc = slugify_event_text(rep.get("Location_Label", ""), 28)
+    rcountry = slugify_event_text(row.get("Country", ""), 18)
+    pcountry = slugify_event_text(rep.get("Country", ""), 18)
+
+    if rcountry and pcountry and rcountry == pcountry:
+        score += 10; reasons.append("Same country/basin")
+    if rloc and ploc and (rloc in ploc or ploc in rloc or rloc[:12] == ploc[:12]):
+        score += 15; reasons.append("Similar location text")
+
+    lat1, lon1 = safe_float(row.get("Latitude")), safe_float(row.get("Longitude"))
+    lat2, lon2 = safe_float(rep.get("Latitude")), safe_float(rep.get("Longitude"))
+    if lat1 is not None and lon1 is not None and lat2 is not None and lon2 is not None:
+        try:
+            dist = haversine_km(lat1, lon1, lat2, lon2)
+            if family == "Earthquake":
+                if dist <= 250:
+                    score += 35; reasons.append(f"Epicentres within {dist:.0f} km")
+                elif dist <= 500:
+                    score += 16; reasons.append(f"Epicentres within {dist:.0f} km")
+                else:
+                    return 0, [f"Epicentres too far apart ({dist:.0f} km)"]
+            elif family == "Tropical Cyclone":
+                if dist <= 800:
+                    score += 10; reasons.append(f"Cyclone positions within {dist:.0f} km")
+            else:
+                if dist <= 300:
+                    score += 18; reasons.append(f"Locations within {dist:.0f} km")
+        except Exception:
+            pass
+
+    if family == "Earthquake":
+        m1, m2 = event_magnitude_for_matching(row), event_magnitude_for_matching(rep)
+        if m1 is not None and m2 is not None:
+            mdiff = abs(m1 - m2)
+            if mdiff <= 0.8:
+                score += 20; reasons.append(f"Magnitude difference {mdiff:.1f}")
+            elif mdiff <= 1.2:
+                score += 8; reasons.append(f"Magnitude difference {mdiff:.1f}")
+            else:
+                score -= 15; reasons.append(f"Magnitude disagreement {mdiff:.1f}")
+    elif family == "Tropical Cyclone":
+        name1 = slugify_event_text(row.get("NHC_Storm_Name") or row.get("Event_Name"), 30)
+        name2 = slugify_event_text(rep.get("NHC_Storm_Name") or rep.get("Event_Name"), 30)
+        if name1 and name2 and (name1 == name2 or name1 in name2 or name2 in name1):
+            score += 45; reasons.append("Same storm name")
+
+    return max(0, score), reasons
+
+
+def match_threshold(row):
+    fam = peril_family(row.get("Peril"))
+    if fam == "Earthquake":
+        return 75
+    if fam == "Tropical Cyclone":
+        return 70
+    return 65
+
+
 def add_master_event_fields(df):
     if df.empty:
         return df
     out = df.copy()
-    out["Master_Event_ID"] = out.apply(event_signature, axis=1)
+    out["_match_time"] = out.apply(event_datetime_for_matching, axis=1)
+    out["_sort_time"] = pd.to_datetime(out["_match_time"], errors="coerce", utc=True)
+
+    groups = []
+    assigned = {}
+    match_score_map = {}
+    match_reason_map = {}
+
+    order = out.sort_values(["_sort_time", "Source_Priority_Score"], ascending=[True, False], na_position="last").index.tolist()
+    for idx in order:
+        row = out.loc[idx]
+        best = None
+        best_score = 0
+        best_reasons = []
+        for group in groups:
+            score, reasons = event_match_score(row, group["rep"])
+            if score > best_score:
+                best = group
+                best_score = score
+                best_reasons = reasons
+        if best is not None and best_score >= match_threshold(row):
+            assigned[idx] = best["mid"]
+            match_score_map[idx] = best_score
+            match_reason_map[idx] = "; ".join(best_reasons[:4])
+            # Promote the representative when a better official/priority source arrives.
+            try:
+                if safe_float(row.get("Source_Priority_Score")) > safe_float(best["rep"].get("Source_Priority_Score")):
+                    best["rep"] = row
+            except Exception:
+                pass
+        else:
+            mid = event_signature(row)
+            # Avoid accidental duplicate IDs when two unrelated events land in the same coarse bucket.
+            existing = {g["mid"] for g in groups}
+            if mid in existing:
+                mid = f"{mid}-{len(groups)+1}"
+            groups.append({"mid": mid, "rep": row})
+            assigned[idx] = mid
+            match_score_map[idx] = 100
+            match_reason_map[idx] = "Seed observation for master event"
+
+    out["Master_Event_ID"] = pd.Series(assigned)
+    out["Master_Match_Score"] = pd.Series(match_score_map)
+    out["Master_Match_Note"] = pd.Series(match_reason_map)
+    out["Master_Match_Confidence"] = out["Master_Match_Score"].apply(lambda x: "High" if safe_float(x) and safe_float(x) >= 90 else "Medium" if safe_float(x) and safe_float(x) >= 75 else "Review")
+
     out["Observation_Rank"] = (
         pd.to_numeric(out.get("Source_Priority_Score"), errors="coerce").fillna(0) * 100
         + pd.to_numeric(out.get("Severity_Rank"), errors="coerce").fillna(0) * 20
@@ -2165,7 +2338,8 @@ def add_master_event_fields(df):
     primary_source_map = out.loc[primary_idx].set_index("Master_Event_ID")["Source_Name"].to_dict()
     out["Primary_Source_Name"] = out["Master_Event_ID"].map(primary_source_map).fillna(out["Source_Name"])
     out["Cross_Check_Sources"] = out.apply(lambda r: " / ".join([s for s in str(r.get("Source_Names", "")).split(" / ") if s and s != r.get("Primary_Source_Name")]) or "None yet", axis=1)
-    return out
+    out["Event_Integrity_Flag"] = out.apply(lambda r: "Cross-checked" if int(r.get("Master_Source_Count", 1) or 1) >= 2 else "Single-source / monitor", axis=1)
+    return out.drop(columns=["_match_time", "_sort_time"], errors="ignore")
 
 
 def master_event_view(df):
@@ -2193,30 +2367,121 @@ def material_snapshot(row):
         "Loss watch": str(row.get("Loss_Watch", "")),
         "Sources": str(row.get("Source_Names", row.get("Source_Name", ""))),
         "Footprint mode": str(row.get("Map_Mode", "")),
+        "Source count": str(row.get("Master_Source_Count", "")),
     }
 
 
 def compute_session_change_text(master_df):
-    old = st.session_state.get("catwatch_v73_material_state", {})
+    old = st.session_state.get("catwatch_v74_material_state", {})
     new = {}
     changes = {}
+    history = st.session_state.get("catwatch_v74_change_history", {})
+    current_run = now_text()
+
     for _, row in master_df.iterrows():
         mid = row.get("Master_Event_ID", row.get("Event_ID"))
         snap = material_snapshot(row)
         new[mid] = snap
         prev = old.get(mid)
         if prev is None:
-            changes[mid] = "First seen in this app session. Persistent material-change history is handled by the Telegram/GitHub alert state."
+            msg = "First seen in this app session. Not treated as a material update until a tracked field changes."
+            changes[mid] = msg
+            history.setdefault(mid, []).append({"time": current_run, "change": "First seen in app session", "snapshot": snap})
         else:
             diffs = []
             for key, val in snap.items():
                 old_val = prev.get(key)
                 if str(old_val) != str(val):
                     diffs.append(f"{key}: {old_val or 'Unknown'} → {val or 'Unknown'}")
-            changes[mid] = "; ".join(diffs[:5]) if diffs else "No material field changed since the previous app refresh."
-    st.session_state["catwatch_v73_material_state"] = new
+            if diffs:
+                msg = "; ".join(diffs[:6])
+                changes[mid] = msg
+                history.setdefault(mid, []).append({"time": current_run, "change": msg, "snapshot": snap})
+            else:
+                changes[mid] = "No material field changed since the previous app refresh."
+    st.session_state["catwatch_v74_material_state"] = new
+    st.session_state["catwatch_v74_change_history"] = history
     return changes
 
+
+def source_health_table(df):
+    expected = [
+        {"Source": "USGS", "Expected role": "Global earthquake hazard / products"},
+        {"Source": "JMA", "Expected role": "Japan earthquake / tsunami context"},
+        {"Source": "EMSC", "Expected role": "Earthquake cross-check"},
+        {"Source": "GDACS", "Expected role": "Humanitarian alert colour / multi-peril"},
+        {"Source": "NOAA/NHC", "Expected role": "Atlantic/East/Central Pacific cyclone products"},
+    ]
+    rows = []
+    now = pd.Timestamp.now(tz="UTC")
+    for item in expected:
+        src = item["Source"]
+        sub = df[df["Source_Name"] == src].copy() if not df.empty and "Source_Name" in df.columns else pd.DataFrame()
+        if sub.empty:
+            status = "No active/recent events loaded"
+            latest = ""
+            age = ""
+            count = 0
+            perils = ""
+        else:
+            count = len(sub)
+            perils = ", ".join(sub["Peril"].dropna().astype(str).drop_duplicates().head(5).tolist())
+            times = pd.to_datetime(sub["Latest_Update_Date"], errors="coerce", utc=True)
+            latest_ts = times.max()
+            latest = latest_ts.strftime("%Y-%m-%d %H:%M UTC") if pd.notna(latest_ts) else "Unknown"
+            age = f"{((now - latest_ts).total_seconds()/3600):.1f}h" if pd.notna(latest_ts) else "Unknown"
+            status = "OK" if count > 0 else "No data"
+        rows.append({
+            "Source": src,
+            "Status": status,
+            "Events loaded": count,
+            "Latest source update": latest,
+            "Age": age,
+            "Perils seen": perils,
+            "Expected role": item["Expected role"],
+            "Action": "Review if unexpectedly empty or stale; absence can also mean no active/recent events."
+        })
+    return pd.DataFrame(rows)
+
+
+def insurance_score_breakdown(event):
+    severity_points = severity_rank(event.get("Severity", "Unknown")) * 12
+    priority_points = {"P1": 28, "P2": 18, "P3": 8, "P4": 2}.get(str(event.get("Notification_Tier", "P4")), 0)
+    alert_points = {"New Event": 8, "Event Update": 6, "Escalation": 14, "Active Watch": 6, "Monitoring": 1}.get(str(event.get("Alert_Type", "Monitoring")), 0)
+    market_points = 8 if event.get("Market_Region") in {"Japan", "United States / NHC basin", "Europe", "Australia / New Zealand"} else 0
+    peril_points = 5 if event.get("Peril") in {"Tropical Cyclone", "Earthquake", "Flood", "Wildfire", "Severe Storm"} else 0
+    rows = [
+        {"Component": "Hazard severity", "Points": severity_points, "Reason": event.get("Severity", "Unknown")},
+        {"Component": "Priority tier", "Points": priority_points, "Reason": tier_label(event.get("Notification_Tier", "P4"))},
+        {"Component": "Alert status", "Points": alert_points, "Reason": event.get("Alert_Type", "Monitoring")},
+        {"Component": "Insurance market region", "Points": market_points, "Reason": event.get("Market_Region", "Global")},
+        {"Component": "Modelled peril relevance", "Points": peril_points, "Reason": event.get("Peril", "Other")},
+    ]
+    raw = sum(r["Points"] for r in rows)
+    rows.append({"Component": "Cap / final score", "Points": min(100, raw), "Reason": f"Raw {raw}; displayed score capped at 100"})
+    return pd.DataFrame(rows)
+
+
+def render_event_integrity_panel(event, all_df):
+    st.markdown("**Event integrity / de-duplication**")
+    obs = event_observation_table(event, all_df)
+    source_count = int(event.get("Master_Source_Count", 1) or 1)
+    flag_class = "ok-box" if source_count >= 2 else "warn-box"
+    st.markdown(
+        f"""
+        <div class='{flag_class}'>
+            <b>Integrity flag:</b> {event.get('Event_Integrity_Flag', 'Single-source / monitor')}<br>
+            <b>Master match confidence:</b> {event.get('Master_Match_Confidence', 'Review')}<br>
+            <b>Match evidence:</b> {event.get('Master_Match_Note', 'Seed observation')}<br>
+            <b>Observation count:</b> {event.get('Master_Observation_Count', 1)} observation(s) from {source_count} source(s)
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if not obs.empty and len(obs) > 1:
+        st.caption("Use this table to spot source disagreement before acting on the event.")
+        cols = [c for c in ["Source_Name", "Severity", "Notification_Tier", "Physical_Intensity", "Latest_Update_Date", "Source_Link"] if c in obs.columns]
+        st.dataframe(obs[cols], use_container_width=True, hide_index=True, column_config={"Source_Link": st.column_config.LinkColumn("Open")})
 
 def field_confidence_table(event):
     src = event.get("Source_Name", "Source")
@@ -2326,7 +2591,7 @@ def find_column(cols, candidates):
 def render_portfolio_placeholder(event):
     st.markdown("<div class='section-title'>Portfolio impact placeholder</div>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='info-box'><b>Prototype:</b> upload a CSV with latitude, longitude and TIV to screen point exposure around the selected event. This is a placeholder until real portfolio/footprint integration is added.</div>",
+        "<div class='warn-box'><b>Preliminary exposure screen — not modelled loss:</b> upload a CSV with latitude, longitude and TIV for triage only. Circular buffers are not official footprints; use ShakeMap, cyclone wind/surge/rain, flood extent, wildfire perimeter or other official layers when available.</div>",
         unsafe_allow_html=True,
     )
     default_buffer = 50 if event.get("Peril") in {"Earthquake", "Earthquake / Tsunami", "Tsunami"} else 150 if event.get("Peril") == "Tropical Cyclone" else 75
@@ -2364,6 +2629,24 @@ def render_portfolio_placeholder(event):
         else:
             show_cols = [c for c in exp.columns if not str(c).startswith("_")]
             st.dataframe(affected.sort_values("Distance_km").head(50)[show_cols + ["Distance_km"]], use_container_width=True, hide_index=True)
+            st.markdown("**Preliminary aggregation**")
+            exp["Distance_Band"] = pd.cut(exp["Distance_km"], bins=[0, 25, 50, 100, 250, 500, 10000], labels=["0–25 km", "25–50 km", "50–100 km", "100–250 km", "250–500 km", ">500 km"], include_lowest=True)
+            agg_rows = []
+            for label, col_candidates in {
+                "Distance band": ["Distance_Band"],
+                "Country": ["country", "Country"],
+                "Portfolio": ["portfolio", "Portfolio", "book", "Book"],
+                "Line of business": ["line_of_business", "lob", "LOB", "Line_of_Business"],
+                "Cedant / client": ["cedant", "client", "Cedant", "Client"],
+            }.items():
+                col = find_column(exp.columns, col_candidates)
+                if col:
+                    sub = exp.groupby(col, dropna=False)["_tiv"].sum().reset_index().sort_values("_tiv", ascending=False).head(12)
+                    sub.columns = ["Group", "TIV"]
+                    sub.insert(0, "Aggregation", label)
+                    agg_rows.append(sub)
+            if agg_rows:
+                st.dataframe(pd.concat(agg_rows, ignore_index=True), use_container_width=True, hide_index=True)
     except Exception as exc:
         st.error(f"Could not read portfolio file: {exc}")
 
@@ -2377,6 +2660,7 @@ def render_master_event_header(event):
             <b>Master event ID:</b> {event.get('Master_Event_ID', event.get('Event_ID'))}<br>
             <b>Primary source:</b> {event.get('Primary_Source_Name', event.get('Source_Name'))} • <b>Cross-checks:</b> {event.get('Cross_Check_Sources', 'None yet')}<br>
             <b>Source observations:</b> {event.get('Master_Observation_Count', 1)} observation(s) from {event.get('Master_Source_Count', 1)} source(s)<br>
+            <b>Integrity:</b> {event.get('Event_Integrity_Flag', 'Single-source / monitor')} • match confidence {event.get('Master_Match_Confidence', 'Review')}<br>
             <b>What changed:</b> {event.get('What_Changed', 'No material change summary available')}
         </div>
         """,
@@ -2395,6 +2679,7 @@ Primary source: {event.get('Primary_Source_Name', event.get('Source_Name'))}
 Cross-check sources: {event.get('Cross_Check_Sources', 'None yet')}
 All source observations: {source_line}
 Latest material signal: {event.get('What_Changed')}
+Event integrity: {event.get('Event_Integrity_Flag')} | match confidence {event.get('Master_Match_Confidence')} | {event.get('Master_Match_Note')}
 
 What happened:
 {event.get('Management_Summary')}
@@ -2446,16 +2731,16 @@ Source link:
 # ============================================================
 def main():
     inject_css()
-    refresh_count = st_autorefresh(interval=5 * 60 * 1000, key="catwatch_v73_refresh")
+    refresh_count = st_autorefresh(interval=5 * 60 * 1000, key="catwatch_v74_refresh")
 
     st.markdown(
         """
         <div class="hero">
-            <div class="hero-title">🌍 CatWatch v7.3</div>
+            <div class="hero-title">🌍 CatWatch v7.4</div>
             <div class="hero-sub">
                 Event Response Workbench for Cat Modeling, R&D, GIS, Portfolio Analytics and Management:
-                master event records, source de-duplication, what-changed view, timeline,
-                footprint status, model trigger checklist, insurance intelligence and portfolio screening.
+                event integrity, stronger source de-duplication, material-change tracking, source health,
+                explainable insurance scoring, safer portfolio screening and management-ready decision workflow.
             </div>
         </div>
         """,
@@ -2512,6 +2797,8 @@ def main():
     with tabs[0]:
         st.markdown("<div class='section-title'>Monitor</div>", unsafe_allow_html=True)
         st.markdown("<div class='info-box'><b>Purpose:</b> one master card per physical event. Source observations are merged where possible, so the same earthquake/cyclone should not flood the screen as separate cards.</div>", unsafe_allow_html=True)
+        with st.expander("Source health & coverage", expanded=False):
+            st.dataframe(source_health_table(all_df), use_container_width=True, hide_index=True)
 
         st.markdown("**Executive Alerts**")
         exec_df = filt[filt["Queue"] == "Executive Alerts"].copy()
@@ -2522,13 +2809,17 @@ def main():
                 render_event_card(row)
 
         st.markdown("**Recent Global Events**")
-        recent_df = filt.sort_values(["Start_Date_UTC", "Source_Priority_Score"], ascending=[False, False]).copy()
-        for _, row in recent_df.head(25).iterrows():
-            render_event_card(row)
+        recent_df = filt[filt["Queue"] == "Recent Global Events"].sort_values(["Start_Date_UTC", "Source_Priority_Score"], ascending=[False, False]).copy()
+        if recent_df.empty:
+            st.info("No lower-priority recent global events match the current filters.")
+        else:
+            for _, row in recent_df.head(25).iterrows():
+                render_event_card(row)
 
     with tabs[1]:
         st.markdown("<div class='section-title'>Event Response Workbench</div>", unsafe_allow_html=True)
         render_master_event_header(event)
+        render_event_integrity_panel(event, all_df)
 
         st.markdown("**Management summary**")
         st.markdown(f"<div class='summary-box'>{event.get('Management_Summary')}</div>", unsafe_allow_html=True)
@@ -2627,6 +2918,11 @@ def main():
             "catwatch_event_response_brief.txt",
             "text/plain",
         )
+
+        st.markdown("**Source health & app material-state snapshot**")
+        st.dataframe(source_health_table(all_df), use_container_width=True, hide_index=True)
+        state_payload = json.dumps(st.session_state.get("catwatch_v74_material_state", {}), indent=2, ensure_ascii=False)
+        st.download_button("Download current app material snapshot", state_payload.encode("utf-8"), "catwatch_app_material_snapshot.json", "application/json")
 
         st.markdown("**Source priority reference**")
         render_source_engine_panel(event, all_df)
