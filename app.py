@@ -16,7 +16,7 @@ from dateutil import parser as dateparser
 from streamlit_autorefresh import st_autorefresh
 
 # ============================================================
-# CatWatch v7.2 — insurance intelligence, source priority, and loss-watch cockpit
+# CatWatch v7.3 — Event Response Workbench
 # ============================================================
 
 st.set_page_config(
@@ -2095,39 +2095,390 @@ def cyclone_status_box(df):
         )
 
 
+
+
+# ============================================================
+# v7.3 Event Response Workbench helpers
+# ============================================================
+def slugify_event_text(text, n=42):
+    txt = clean(text).lower()
+    txt = re.sub(r"\b(m\??\d+(?:\.\d+)?)\b", "", txt)
+    txt = re.sub(r"\b(earthquake|hurricane|tropical storm|tropical cyclone|typhoon|cyclone|flood|wildfire|fire|volcano|tsunami|near|km|of|the)\b", " ", txt)
+    txt = re.sub(r"[^a-z0-9]+", "-", txt).strip("-")
+    return txt[:n] or "event"
+
+
+def event_signature(row):
+    """Create a practical master-event grouping key.
+    This is intentionally transparent: it groups likely duplicate observations without hiding source differences.
+    """
+    peril = str(row.get("Peril", "Other"))
+    start = pd.to_datetime(row.get("Start_Date_UTC"), errors="coerce", utc=True)
+    if pd.isna(start):
+        start = pd.to_datetime(row.get("Latest_Update_Date"), errors="coerce", utc=True)
+    day = start.strftime("%Y%m%d") if not pd.isna(start) else "nodate"
+    country = slugify_event_text(row.get("Country", "global"), 18)
+    location = slugify_event_text(row.get("Location_Label") or row.get("Event_Name"), 34)
+
+    lat = safe_float(row.get("Latitude"))
+    lon = safe_float(row.get("Longitude"))
+
+    if peril in {"Tropical Cyclone", "Tropical Cyclone / Storm Surge"}:
+        name = row.get("NHC_Storm_Name") or row.get("Event_Name") or row.get("Location_Label")
+        name = slugify_event_text(name, 32)
+        basin = slugify_event_text(row.get("NHC_Basin") or row.get("Country") or "basin", 20)
+        return f"TC-{day}-{basin}-{name}".upper()
+
+    if peril in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
+        mag = parse_mag_from_text(row.get("Event_Name", "") + " " + row.get("Physical_Intensity", ""))
+        mag_bucket = f"M{round(mag,1):.1f}" if mag is not None else "MUNK"
+        if lat is not None and lon is not None:
+            return f"EQ-{day}-{round(lat,1):.1f}-{round(lon,1):.1f}-{mag_bucket}".upper()
+        return f"EQ-{day}-{country}-{location}-{mag_bucket}".upper()
+
+    if lat is not None and lon is not None:
+        return f"{peril[:3].upper()}-{day}-{round(lat,1):.1f}-{round(lon,1):.1f}-{country}".upper()
+    return f"{peril[:3].upper()}-{day}-{country}-{location}".upper()
+
+
+def add_master_event_fields(df):
+    if df.empty:
+        return df
+    out = df.copy()
+    out["Master_Event_ID"] = out.apply(event_signature, axis=1)
+    out["Observation_Rank"] = (
+        pd.to_numeric(out.get("Source_Priority_Score"), errors="coerce").fillna(0) * 100
+        + pd.to_numeric(out.get("Severity_Rank"), errors="coerce").fillna(0) * 20
+        + pd.to_numeric(out.get("Insurance_Relevance_Score"), errors="coerce").fillna(0)
+        + pd.to_numeric(out.get("Alert_Rank"), errors="coerce").fillna(0) * 5
+    )
+
+    source_names = out.groupby("Master_Event_ID")["Source_Name"].transform(lambda s: " / ".join(pd.Series(s).dropna().astype(str).drop_duplicates().tolist()))
+    source_counts = out.groupby("Master_Event_ID")["Source_Name"].transform(lambda s: len(pd.Series(s).dropna().astype(str).drop_duplicates()))
+    obs_counts = out.groupby("Master_Event_ID")["Source_Name"].transform("count")
+    out["Source_Names"] = source_names
+    out["Master_Source_Count"] = source_counts
+    out["Master_Observation_Count"] = obs_counts
+
+    primary_idx = out.sort_values(["Master_Event_ID", "Observation_Rank", "Start_Date_UTC"], ascending=[True, False, False]).groupby("Master_Event_ID").head(1).index
+    out["Is_Master_Primary"] = out.index.isin(primary_idx)
+    primary_source_map = out.loc[primary_idx].set_index("Master_Event_ID")["Source_Name"].to_dict()
+    out["Primary_Source_Name"] = out["Master_Event_ID"].map(primary_source_map).fillna(out["Source_Name"])
+    out["Cross_Check_Sources"] = out.apply(lambda r: " / ".join([s for s in str(r.get("Source_Names", "")).split(" / ") if s and s != r.get("Primary_Source_Name")]) or "None yet", axis=1)
+    return out
+
+
+def master_event_view(df):
+    df = add_master_event_fields(df)
+    if df.empty:
+        return df
+    primary = df.sort_values(
+        ["Observation_Rank", "Start_Date_UTC", "Latest_Update_Date"],
+        ascending=[False, False, False]
+    ).drop_duplicates("Master_Event_ID", keep="first").copy()
+    primary = primary.sort_values(
+        ["Queue", "Alert_Rank", "Tier_Rank", "Severity_Rank", "Insurance_Relevance_Score", "Source_Priority_Score", "Start_Date_UTC"],
+        ascending=[True, False, False, False, False, False, False]
+    )
+    return primary
+
+
+def material_snapshot(row):
+    return {
+        "Severity": str(row.get("Severity", "")),
+        "Priority": str(row.get("Notification_Tier", "")),
+        "Alert type": str(row.get("Alert_Type", "")),
+        "Intensity": short(row.get("Physical_Intensity", ""), 180),
+        "Insurance relevance": str(row.get("Insurance_Relevance", "")),
+        "Loss watch": str(row.get("Loss_Watch", "")),
+        "Sources": str(row.get("Source_Names", row.get("Source_Name", ""))),
+        "Footprint mode": str(row.get("Map_Mode", "")),
+    }
+
+
+def compute_session_change_text(master_df):
+    old = st.session_state.get("catwatch_v73_material_state", {})
+    new = {}
+    changes = {}
+    for _, row in master_df.iterrows():
+        mid = row.get("Master_Event_ID", row.get("Event_ID"))
+        snap = material_snapshot(row)
+        new[mid] = snap
+        prev = old.get(mid)
+        if prev is None:
+            changes[mid] = "First seen in this app session. Persistent material-change history is handled by the Telegram/GitHub alert state."
+        else:
+            diffs = []
+            for key, val in snap.items():
+                old_val = prev.get(key)
+                if str(old_val) != str(val):
+                    diffs.append(f"{key}: {old_val or 'Unknown'} → {val or 'Unknown'}")
+            changes[mid] = "; ".join(diffs[:5]) if diffs else "No material field changed since the previous app refresh."
+    st.session_state["catwatch_v73_material_state"] = new
+    return changes
+
+
+def field_confidence_table(event):
+    src = event.get("Source_Name", "Source")
+    peril = event.get("Peril", "Other")
+    rows = [
+        {"Field": "Hazard identity", "Current value": event.get("Event_Name"), "Primary source": src, "Confidence": "High", "Type": "Official / feed observation"},
+        {"Field": "Physical intensity", "Current value": event.get("Physical_Intensity"), "Primary source": src, "Confidence": "High" if src in {"USGS", "JMA", "NOAA/NHC"} else "Medium", "Type": "Observed / advisory"},
+        {"Field": "Location", "Current value": event.get("Location_Label"), "Primary source": src, "Confidence": "High" if event.get("Latitude") not in [None, ""] else "Medium", "Type": "Point location"},
+        {"Field": "Footprint", "Current value": event.get("Map_Mode"), "Primary source": src, "Confidence": "Medium" if peril in {"Earthquake", "Tropical Cyclone"} else "Low", "Type": "Point / product status"},
+        {"Field": "Human impact", "Current value": event.get("Human_Impact"), "Primary source": "Official / verified news required", "Confidence": "Low until confirmed", "Type": "Reported"},
+        {"Field": "Insured loss", "Current value": event.get("Insured_Loss"), "Primary source": "PCS / PERILS / vendor / market", "Confidence": "Low until market source appears", "Type": "Market estimate"},
+    ]
+    return pd.DataFrame(rows)
+
+
+def event_observation_table(event, df):
+    mid = event.get("Master_Event_ID")
+    if not mid:
+        return pd.DataFrame()
+    obs = df[df["Master_Event_ID"] == mid].copy()
+    cols = ["Source_Name", "Event_Name", "Alert_Type", "Severity", "Notification_Tier", "Physical_Intensity", "Start_Date", "Latest_Update_Date", "Source_Priority_Score", "Source_Link"]
+    cols = [c for c in cols if c in obs.columns]
+    return obs[cols].sort_values(["Source_Priority_Score", "Latest_Update_Date"], ascending=[False, False])
+
+
+def event_timeline(event, df):
+    obs = event_observation_table(event, df)
+    rows = []
+    if obs.empty:
+        return pd.DataFrame(rows)
+    for _, r in obs.iterrows():
+        if r.get("Start_Date"):
+            rows.append({"Time": r.get("Start_Date"), "Milestone": "Event detected / reported", "Source": r.get("Source_Name"), "Detail": short(r.get("Physical_Intensity"), 160)})
+        if r.get("Latest_Update_Date") and r.get("Latest_Update_Date") != r.get("Start_Date"):
+            rows.append({"Time": r.get("Latest_Update_Date"), "Milestone": "Latest source update", "Source": r.get("Source_Name"), "Detail": f"{r.get('Severity')} / {r.get('Notification_Tier')}"})
+    rows.append({"Time": now_text(), "Milestone": "CatWatch workbench assessment", "Source": "CatWatch", "Detail": f"{event.get('Loss_Watch')} • {event.get('Insurance_Relevance')} insurance relevance"})
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return out
+    out["SortTime"] = pd.to_datetime(out["Time"], errors="coerce", utc=True)
+    return out.sort_values("SortTime", ascending=False).drop(columns=["SortTime"])
+
+
+def footprint_status_table(event):
+    peril = event.get("Peril", "Other")
+    rows = []
+    has_point = event.get("Latitude") not in [None, ""] and event.get("Longitude") not in [None, ""]
+    rows.append({"Layer": "Event point", "Status": "Available" if has_point else "Not available", "Type": "Point", "Confidence": "High for location; not a footprint", "Action": "Use only as anchor, not exposure footprint"})
+    if peril in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
+        rows.append({"Layer": "ShakeMap / intensity footprint", "Status": "Check USGS detail / JMA intensity", "Type": "Modelled/observed intensity", "Confidence": "Medium to high when product available", "Action": "Use MMI/intensity zones for exposure screening"})
+        rows.append({"Layer": "PAGER / impact estimate", "Status": "Check official earthquake products", "Type": "Impact model", "Confidence": "Medium", "Action": "Use for humanitarian/economic impact triage only"})
+    elif peril == "Tropical Cyclone":
+        rows.append({"Layer": "Track / cone", "Status": "Available for NHC basin when product listed", "Type": "Forecast", "Confidence": "High for advisory; uncertainty remains", "Action": "Do not treat cone as damage footprint"})
+        rows.append({"Layer": "Wind / surge / rainfall", "Status": "Product-dependent", "Type": "Hazard footprint", "Confidence": "Medium", "Action": "Use for portfolio accumulation and loss-watch"})
+    elif peril == "Flood":
+        rows.append({"Layer": "Flood extent", "Status": "Not yet integrated", "Type": "Observed/satellite/modelled", "Confidence": "Depends on Copernicus/GloFAS/agency", "Action": "Add GloFAS/EFAS/Copernicus EMS in next source patch"})
+    elif peril == "Wildfire":
+        rows.append({"Layer": "Active fire / perimeter", "Status": "Not yet integrated", "Type": "Satellite/perimeter", "Confidence": "Depends on FIRMS/local agency", "Action": "Add NASA FIRMS and local fire perimeters"})
+    else:
+        rows.append({"Layer": "Official footprint", "Status": "Peril/source dependent", "Type": "TBD", "Confidence": "Unknown", "Action": "Use official hazard product where available"})
+    return pd.DataFrame(rows)
+
+
+def model_trigger_table(event):
+    peril = event.get("Peril", "Other")
+    score = int(event.get("Loss_Watch_Score", 0) or 0)
+    tier = event.get("Notification_Tier", "P4")
+    sev = event.get("Severity", "Unknown")
+    rows = [
+        {"Question": "Should R&D/modeling review this event?", "Status": "Yes" if tier in {"P1", "P2"} or score >= 50 else "Monitor", "Reason": f"{tier_label(tier)} • loss watch {score}/100"},
+        {"Question": "Is an official footprint available?", "Status": "Check", "Reason": event.get("Map_Mode", "Unknown")},
+        {"Question": "Are hazard parameters stable?", "Status": "Watch", "Reason": event.get("What_Changed", "No persisted change history yet")},
+        {"Question": "Is portfolio exposure likely material?", "Status": "Unknown until exposure overlay", "Reason": "Use the Portfolio placeholder/upload section below"},
+        {"Question": "Is insurance-market commentary available?", "Status": "Not yet" if event.get("Industry_Loss_Status") == "Not yet reported" else "Check", "Reason": event.get("PCS_PERILS_Relevance", "")},
+    ]
+    if peril == "Tropical Cyclone":
+        rows.append({"Question": "Relevant model view", "Status": "Cyclone", "Reason": "Track, landfall intensity, wind radii, surge, rainfall and inland flood"})
+    elif peril in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
+        rows.append({"Question": "Relevant model view", "Status": "Earthquake", "Reason": "MMI/Shaking intensity, depth, vulnerability, liquefaction/tsunami, aftershocks"})
+    else:
+        rows.append({"Question": "Relevant model view", "Status": peril, "Reason": "Use peril-specific footprint and exposure checks"})
+    return pd.DataFrame(rows)
+
+
+def haversine_km(lat1, lon1, lat2, lon2):
+    import math
+    R = 6371.0
+    phi1, phi2 = math.radians(float(lat1)), math.radians(float(lat2))
+    dphi = math.radians(float(lat2) - float(lat1))
+    dlambda = math.radians(float(lon2) - float(lon1))
+    a = math.sin(dphi/2)**2 + math.cos(phi1)*math.cos(phi2)*math.sin(dlambda/2)**2
+    return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1-a))
+
+
+def find_column(cols, candidates):
+    low_map = {str(c).strip().lower(): c for c in cols}
+    for cand in candidates:
+        if cand.lower() in low_map:
+            return low_map[cand.lower()]
+    for c in cols:
+        cl = str(c).strip().lower()
+        if any(cand.lower() in cl for cand in candidates):
+            return c
+    return None
+
+
+def render_portfolio_placeholder(event):
+    st.markdown("<div class='section-title'>Portfolio impact placeholder</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='info-box'><b>Prototype:</b> upload a CSV with latitude, longitude and TIV to screen point exposure around the selected event. This is a placeholder until real portfolio/footprint integration is added.</div>",
+        unsafe_allow_html=True,
+    )
+    default_buffer = 50 if event.get("Peril") in {"Earthquake", "Earthquake / Tsunami", "Tsunami"} else 150 if event.get("Peril") == "Tropical Cyclone" else 75
+    buffer_km = st.number_input("Screening buffer radius (km)", min_value=5, max_value=1000, value=default_buffer, step=5)
+    up = st.file_uploader("Upload exposure CSV", type=["csv"], key=f"portfolio_{event.get('Master_Event_ID', event.get('Event_ID'))}")
+    if up is None:
+        st.caption("Expected columns: latitude/lat, longitude/lon, TIV/total_insured_value/sum_insured. Optional: portfolio, cedant, line_of_business, country.")
+        return
+    try:
+        exp = pd.read_csv(up)
+        lat_col = find_column(exp.columns, ["latitude", "lat"])
+        lon_col = find_column(exp.columns, ["longitude", "lon", "lng"])
+        tiv_col = find_column(exp.columns, ["tiv", "total_insured_value", "sum_insured", "insured_value"])
+        if not lat_col or not lon_col or not tiv_col:
+            st.error("Could not find latitude, longitude and TIV columns. Please rename columns or upload a different file.")
+            st.dataframe(exp.head(5), use_container_width=True)
+            return
+        elat, elon = safe_float(event.get("Latitude")), safe_float(event.get("Longitude"))
+        if elat is None or elon is None:
+            st.warning("Selected event has no coordinates, so distance-based portfolio screening is not available.")
+            return
+        exp = exp.copy()
+        exp["_lat"] = pd.to_numeric(exp[lat_col], errors="coerce")
+        exp["_lon"] = pd.to_numeric(exp[lon_col], errors="coerce")
+        exp["_tiv"] = pd.to_numeric(exp[tiv_col], errors="coerce").fillna(0)
+        exp = exp.dropna(subset=["_lat", "_lon"])
+        exp["Distance_km"] = exp.apply(lambda r: haversine_km(elat, elon, r["_lat"], r["_lon"]), axis=1)
+        affected = exp[exp["Distance_km"] <= buffer_km].copy()
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Locations in buffer", len(affected))
+        c2.metric("TIV in buffer", f"{affected['_tiv'].sum():,.0f}")
+        c3.metric("Total file TIV", f"{exp['_tiv'].sum():,.0f}")
+        if affected.empty:
+            st.info("No uploaded exposure points fall inside the selected buffer.")
+        else:
+            show_cols = [c for c in exp.columns if not str(c).startswith("_")]
+            st.dataframe(affected.sort_values("Distance_km").head(50)[show_cols + ["Distance_km"]], use_container_width=True, hide_index=True)
+    except Exception as exc:
+        st.error(f"Could not read portfolio file: {exc}")
+
+
+def render_master_event_header(event):
+    st.markdown(event_badges(event), unsafe_allow_html=True)
+    st.markdown(f"### {event.get('Event_Name')}")
+    st.markdown(
+        f"""
+        <div class="summary-box">
+            <b>Master event ID:</b> {event.get('Master_Event_ID', event.get('Event_ID'))}<br>
+            <b>Primary source:</b> {event.get('Primary_Source_Name', event.get('Source_Name'))} • <b>Cross-checks:</b> {event.get('Cross_Check_Sources', 'None yet')}<br>
+            <b>Source observations:</b> {event.get('Master_Observation_Count', 1)} observation(s) from {event.get('Master_Source_Count', 1)} source(s)<br>
+            <b>What changed:</b> {event.get('What_Changed', 'No material change summary available')}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def management_text_v73(event, all_df):
+    obs = event_observation_table(event, all_df)
+    source_line = ", ".join(obs["Source_Name"].dropna().astype(str).drop_duplicates().tolist()) if not obs.empty else event.get("Source_Name")
+    return f"""CATWATCH EVENT RESPONSE BRIEF – {event.get('Event_Name')}
+
+Status: {event.get('Alert_Type')} | {tier_label(event.get('Notification_Tier'))} | {event.get('Severity')}
+Master event ID: {event.get('Master_Event_ID')}
+Primary source: {event.get('Primary_Source_Name', event.get('Source_Name'))}
+Cross-check sources: {event.get('Cross_Check_Sources', 'None yet')}
+All source observations: {source_line}
+Latest material signal: {event.get('What_Changed')}
+
+What happened:
+{event.get('Management_Summary')}
+
+Hazard fingerprint:
+Peril: {event.get('Peril')}
+Region / country: {event.get('Country')} / {event.get('Market_Region')}
+Location: {event.get('Location_Label')}
+Physical intensity: {event.get('Physical_Intensity')}
+Footprint status: {event.get('Map_Mode')} — {event.get('Impact_Region')}
+
+Insurance / portfolio relevance:
+Insurance relevance: {event.get('Insurance_Relevance')} ({event.get('Insurance_Relevance_Score')}/100)
+Loss watch: {event.get('Loss_Watch')} ({event.get('Loss_Watch_Score')}/100)
+Loss stage: {event.get('Loss_Watch_Stage')}
+PCS / PERILS relevance: {event.get('PCS_PERILS_Relevance')}
+Market/vendor note: {event.get('Market_Vendor_Note')}
+
+Current confidence:
+{event.get('Confidence_Level')}
+
+Expected developments:
+{event.get('What_To_Expect')}
+
+Analyst next action:
+{event.get('Analyst_Action')}
+
+Next expected update:
+{event.get('Next_Update')}
+
+Open questions:
+- Is an official footprint available and suitable for exposure overlay?
+- Is there credible damage / casualty / infrastructure reporting?
+- Does the affected area intersect material portfolio exposure?
+- Has PCS / PERILS / vendor / broker commentary appeared?
+- Does management need a new update now, or only after a material change?
+
+Source link:
+{event.get('Source_Link')}
+""".strip()
+
+
+# ============================================================
+# App
+# ============================================================
+
 # ============================================================
 # App
 # ============================================================
 def main():
     inject_css()
-    refresh_count = st_autorefresh(interval=5 * 60 * 1000, key="catwatch_v72_refresh")
+    refresh_count = st_autorefresh(interval=5 * 60 * 1000, key="catwatch_v73_refresh")
 
     st.markdown(
         """
         <div class="hero">
-            <div class="hero-title">🌍 CatWatch</div>
+            <div class="hero-title">🌍 CatWatch v7.3</div>
             <div class="hero-sub">
-                Mobile catastrophe alert cockpit for first-to-know monitoring:
-                regional source priority, insurance relevance, insured-loss watch,
-                vendor/model signals, recent global events, map footprint, verified news,
-                historical comparables, and quick management overview.
+                Event Response Workbench for Cat Modeling, R&D, GIS, Portfolio Analytics and Management:
+                master event records, source de-duplication, what-changed view, timeline,
+                footprint status, model trigger checklist, insurance intelligence and portfolio screening.
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    df = load_live_events()
-    if df.empty:
+    raw_df = load_live_events()
+    if raw_df.empty:
         st.error("No live event data loaded. Please try again.")
         return
 
-    cyclone_status_box(df)
-    filt = apply_filters(df)
+    all_df = add_master_event_fields(raw_df)
+    master_df = master_event_view(raw_df)
+    changes = compute_session_change_text(master_df)
+    master_df["What_Changed"] = master_df["Master_Event_ID"].map(changes).fillna("No material change summary available.")
+    all_df = all_df.merge(master_df[["Master_Event_ID", "What_Changed"]], on="Master_Event_ID", how="left")
+
+    cyclone_status_box(master_df)
+    filt = apply_filters(master_df)
 
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        st.metric("Live events", len(filt))
+        st.metric("Master events", len(filt))
     with c2:
         st.metric("Executive", int((filt["Queue"] == "Executive Alerts").sum()) if not filt.empty else 0)
     with c3:
@@ -2141,66 +2492,97 @@ def main():
             st.cache_data.clear()
             st.rerun()
     with col_b:
-        st.markdown(f"<div class='small-note'>Auto-refresh every 5 minutes while the page is open • 30-day live window • regional source priority engine • refresh count: {refresh_count}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='small-note'>Auto-refresh every 5 minutes while open • 30-day live window • one master card per event • Telegram remains separate and stricter • refresh count: {refresh_count}</div>", unsafe_allow_html=True)
 
     if filt.empty:
         st.info("No events match the current filters.")
         return
 
-    selected_name = st.selectbox("Selected alert", filt["Event_Name"].tolist(), index=0)
-    event = filt[filt["Event_Name"] == selected_name].iloc[0]
+    selected_label = st.selectbox(
+        "Selected master event",
+        filt.apply(lambda r: f"{r['Event_Name']} — {r.get('Primary_Source_Name', r.get('Source_Name'))} — {r.get('Severity')}", axis=1).tolist(),
+        index=0,
+    )
+    selected_idx = filt.index[filt.apply(lambda r: f"{r['Event_Name']} — {r.get('Primary_Source_Name', r.get('Source_Name'))} — {r.get('Severity')}", axis=1) == selected_label][0]
+    event = filt.loc[selected_idx]
+    all_obs = all_df[all_df["Master_Event_ID"] == event.get("Master_Event_ID")].copy()
 
-    tabs = st.tabs(["Alerts", "Recent", "Event", "Map", "Cyclones", "News", "Sources", "Insurance", "History", "Management"])
+    tabs = st.tabs(["Monitor", "Event Response", "Footprint / GIS", "Insurance & Portfolio", "Reports"])
 
     with tabs[0]:
-        st.markdown("<div class='section-title'>Executive alert queue</div>", unsafe_allow_html=True)
-        st.markdown("<div class='info-box'><b>Purpose:</b> higher-priority events with stronger potential management / insurance relevance. Telegram remains even stricter and should not mirror every app event.</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-title'>Monitor</div>", unsafe_allow_html=True)
+        st.markdown("<div class='info-box'><b>Purpose:</b> one master card per physical event. Source observations are merged where possible, so the same earthquake/cyclone should not flood the screen as separate cards.</div>", unsafe_allow_html=True)
+
+        st.markdown("**Executive Alerts**")
         exec_df = filt[filt["Queue"] == "Executive Alerts"].copy()
         if exec_df.empty:
-            st.info("No executive-priority events match the current filters.")
+            st.info("No executive-priority master events match the current filters.")
         else:
-            for _, row in exec_df.head(20).iterrows():
+            for _, row in exec_df.head(15).iterrows():
                 render_event_card(row)
 
-    with tabs[1]:
-        st.markdown("<div class='section-title'>Recent global events</div>", unsafe_allow_html=True)
-        st.markdown("<div class='info-box'><b>Purpose:</b> broader event awareness sorted by freshness and source context. This is where regional events like Japan/JMA earthquakes can appear even if they are not urgent Telegram alerts.</div>", unsafe_allow_html=True)
+        st.markdown("**Recent Global Events**")
         recent_df = filt.sort_values(["Start_Date_UTC", "Source_Priority_Score"], ascending=[False, False]).copy()
-        for _, row in recent_df.head(30).iterrows():
+        for _, row in recent_df.head(25).iterrows():
             render_event_card(row)
 
-    with tabs[2]:
-        st.markdown("<div class='section-title'>Event detail</div>", unsafe_allow_html=True)
-        st.markdown(event_badges(event), unsafe_allow_html=True)
-        st.markdown(f"### {event.get('Event_Name')}")
-        st.markdown(
-            f"""
-            <div class="summary-box">
-                <b>Management summary</b><br>
-                {event.get('Management_Summary')}
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        st.markdown("**What to expect**")
-        st.write(event.get("What_To_Expect"))
-        st.markdown("**Impact area / footprint context**")
-        st.write(event.get("Impact_Region"))
+    with tabs[1]:
+        st.markdown("<div class='section-title'>Event Response Workbench</div>", unsafe_allow_html=True)
+        render_master_event_header(event)
 
-        d1, d2 = st.columns(2)
-        d1.write(f"**Intensity:** {event.get('Physical_Intensity')}")
-        d1.write(f"**Country / basin:** {event.get('Country')}")
-        d1.write(f"**Location:** {event.get('Location_Label')}")
-        d1.write(f"**Human impact:** {event.get('Human_Impact')}")
-        d2.write(f"**Loss status:** {event.get('Industry_Loss_Status')}")
-        d2.write(f"**Confidence:** {event.get('Confidence_Level')}")
-        d2.write(f"**Next update:** {event.get('Next_Update')}")
-        d2.write(f"**Source:** [{event.get('Source_Name')}]({event.get('Source_Link')})")
-        d2.write(f"**Market region:** {event.get('Market_Region')}")
-        d2.write(f"**Source priority:** {event.get('Source_Priority_Score')}/100")
-        d2.write(f"**Insurance relevance:** {event.get('Insurance_Relevance')} ({event.get('Insurance_Relevance_Score')}/100)")
-        d2.write(f"**Loss watch:** {event.get('Loss_Watch')} ({event.get('Loss_Watch_Score')}/100)")
-        d2.write(f"**Loss stage:** {event.get('Loss_Watch_Stage')}")
+        st.markdown("**Management summary**")
+        st.markdown(f"<div class='summary-box'>{event.get('Management_Summary')}</div>", unsafe_allow_html=True)
+
+        st.markdown("**Event fingerprint**")
+        fingerprint = pd.DataFrame([
+            {"Field": "Peril", "Value": event.get("Peril")},
+            {"Field": "Region / market", "Value": f"{event.get('Country')} / {event.get('Market_Region')}"},
+            {"Field": "Location", "Value": event.get("Location_Label")},
+            {"Field": "Physical intensity", "Value": event.get("Physical_Intensity")},
+            {"Field": "Footprint mode", "Value": event.get("Map_Mode")},
+            {"Field": "Loss stage", "Value": event.get("Loss_Watch_Stage")},
+            {"Field": "Next expected update", "Value": event.get("Next_Update")},
+        ])
+        st.dataframe(fingerprint, use_container_width=True, hide_index=True)
+
+        st.markdown("**What changed / latest material signal**")
+        st.markdown(f"<div class='info-box'>{event.get('What_Changed')}</div>", unsafe_allow_html=True)
+
+        st.markdown("**Source observations merged into this master event**")
+        obs = event_observation_table(event, all_df)
+        if obs.empty:
+            st.info("Only one source observation is available for this event.")
+        else:
+            st.dataframe(obs, use_container_width=True, hide_index=True, column_config={"Source_Link": st.column_config.LinkColumn("Open")})
+
+        st.markdown("**Event timeline**")
+        tl = event_timeline(event, all_df)
+        if tl.empty:
+            st.info("No timeline could be built yet.")
+        else:
+            st.dataframe(tl, use_container_width=True, hide_index=True)
+
+        st.markdown("**Source confidence by field**")
+        st.dataframe(field_confidence_table(event), use_container_width=True, hide_index=True)
+
+        st.markdown("**Model trigger checklist**")
+        st.dataframe(model_trigger_table(event), use_container_width=True, hide_index=True)
+
+        st.markdown("**Verified news / confirmation layer**")
+        news = fetch_news(event.get("Event_Name"), event.get("Country"), event.get("Peril"))
+        if news.empty:
+            st.info("No verified news items were found for the selected event yet.")
+        else:
+            for _, row in news.head(5).iterrows():
+                render_news_card(row)
+
+    with tabs[2]:
+        st.markdown("<div class='section-title'>Footprint / GIS</div>", unsafe_allow_html=True)
+        st.markdown("<div class='warn-box'><b>GIS principle:</b> do not use point location as the exposure footprint. Use official footprint, intensity, track, cone, wind, flood, fire, or satellite layers where available.</div>", unsafe_allow_html=True)
+        render_master_event_header(event)
+
+        st.markdown("**Footprint status engine**")
+        st.dataframe(footprint_status_table(event), use_container_width=True, hide_index=True)
 
         if event.get("Peril") == "Earthquake":
             shake = fetch_usgs_shakemap_status(event.get("Detail_Link", ""))
@@ -2209,109 +2591,51 @@ def main():
             if shake.get("url"):
                 st.markdown(f"[Open ShakeMap / detail product]({shake['url']})")
 
-        if event.get("Peril") == "Tropical Cyclone":
-            st.markdown(
-                "<div class='info-box'><b>Cyclone note:</b> The impact area should not be interpreted from the storm center alone. Use the advisory track, cone, and related products in the Map or Cyclones tab.</div>",
-                unsafe_allow_html=True,
-            )
-
-    with tabs[3]:
-        st.markdown("<div class='section-title'>Map & footprint</div>", unsafe_allow_html=True)
+        st.markdown("**Map view**")
         if event.get("Peril") == "Tropical Cyclone" or event.get("Source_Name") == "NOAA/NHC":
-            st.markdown(
-                f"<div class='info-box'><b>Footprint mode:</b> {event.get('Map_Mode')}<br><b>Impact note:</b> {event.get('Impact_Region')}</div>",
-                unsafe_allow_html=True,
-            )
             nhc_footprint_map(event)
         else:
-            st.markdown(
-                f"<div class='info-box'><b>Footprint mode:</b> {event.get('Map_Mode')}<br><b>Impact note:</b> {event.get('Impact_Region')}</div>",
-                unsafe_allow_html=True,
-            )
             live_points_map(pd.DataFrame([event]))
 
-    with tabs[4]:
-        st.markdown("<div class='section-title'>Tropical cyclones</div>", unsafe_allow_html=True)
-        nhc_events = df[df["Source_Name"] == "NOAA/NHC"].copy()
-        gdacs_tc = df[df["Peril"] == "Tropical Cyclone"].copy()
+        st.markdown("**GIS source roadmap**")
+        gis_sources = pd.DataFrame([
+            {"Peril": "Earthquake", "Preferred GIS layer": "USGS ShakeMap / local intensity", "Status": "Partly linked", "Use": "MMI/intensity exposure screen"},
+            {"Peril": "Tropical Cyclone", "Preferred GIS layer": "NHC track/cone/wind products; WMO RSMC/JTWC roadmap", "Status": "NHC partly mapped", "Use": "Track, cone, wind/surge/rain watch"},
+            {"Peril": "Flood", "Preferred GIS layer": "GloFAS / EFAS / Copernicus EMS", "Status": "Roadmap", "Use": "Basin/extent overlay"},
+            {"Peril": "Wildfire", "Preferred GIS layer": "NASA FIRMS / local fire perimeter", "Status": "Roadmap", "Use": "Active-fire/perimeter overlay"},
+        ])
+        st.dataframe(gis_sources, use_container_width=True, hide_index=True)
 
-        if nhc_events.empty:
-            st.markdown(
-                "<div class='warn-box'><b>No active NHC event is currently loaded.</b><br>If there is no active NOAA/NHC tropical-cyclone advisory in the current feed, you will not see a live hurricane event or official NHC footprint here. The app now states this clearly instead of failing silently.</div>",
-                unsafe_allow_html=True,
-            )
-        else:
-            st.markdown("<div class='info-box'><b>Active NHC storms</b><br>These are the events for which NHC product-based track and cone mapping should appear.</div>", unsafe_allow_html=True)
-            for _, row in nhc_events.iterrows():
-                render_event_card(row)
+    with tabs[3]:
+        st.markdown("<div class='section-title'>Insurance & Portfolio</div>", unsafe_allow_html=True)
+        render_insurance_intelligence(event, all_df)
+        render_portfolio_placeholder(event)
 
-        if not gdacs_tc.empty and nhc_events.empty:
-            st.markdown("<div class='section-title'>Other live cyclone-related alerts</div>", unsafe_allow_html=True)
-            for _, row in gdacs_tc.head(10).iterrows():
-                render_event_card(row)
-
-        products = fetch_nhc_products()
-        if not products.empty:
-            st.markdown("**Latest NHC product list**")
-            show = products[["Basin", "Product", "Storm_Name", "Published", "Title", "Link"]].copy()
-            st.dataframe(show.head(30), use_container_width=True, hide_index=True)
-
-    with tabs[5]:
-        st.markdown("<div class='section-title'>Verified news</div>", unsafe_allow_html=True)
-        st.markdown(
-            "<div class='info-box'><b>Note:</b> This tab is for quick situational awareness. Use official sources and specialist vendor/industry sources for decision-making and loss reporting.</div>",
-            unsafe_allow_html=True,
-        )
-        news = fetch_news(event.get("Event_Name"), event.get("Country"), event.get("Peril"))
-        if news.empty:
-            st.info("No verified news items were found for the selected event yet.")
-        else:
-            for _, row in news.iterrows():
-                render_news_card(row)
-
-    with tabs[6]:
-        render_source_engine_panel(event, df)
-
-    with tabs[7]:
-        render_insurance_intelligence(event, df)
-
-    with tabs[8]:
-        st.markdown("<div class='section-title'>Historical events</div>", unsafe_allow_html=True)
-        hist = load_history()
-        with st.expander("Historical filters", expanded=True):
-            h1, h2 = st.columns(2)
-            with h1:
-                h_country = st.selectbox("Country", ["All"] + sorted(hist["Country"].dropna().unique().tolist()))
-            with h2:
-                h_peril = st.selectbox("Peril", ["All"] + sorted(hist["Peril"].dropna().unique().tolist()))
-            h_search = st.text_input("Search by event name", placeholder="Katrina, Harvey, Tohoku...")
-
-        h = hist.copy()
-        if h_country != "All":
-            h = h[h["Country"] == h_country]
-        if h_peril != "All":
-            h = h[h["Peril"] == h_peril]
-        if h_search.strip():
-            h = h[h["Event_Name"].str.lower().str.contains(h_search.lower().strip(), na=False)]
-
-        st.markdown(
-            "<div class='warn-box'><b>Historical note:</b> Loss figures are starter benchmark values. For production use, replace them with verified vendor / market / industry-loss datasets and more accurate inflation adjustments.</div>",
-            unsafe_allow_html=True,
-        )
-        history_map(h)
-        for _, row in h.sort_values("Year", ascending=False).head(50).iterrows():
+        st.markdown("**Historical comparable events**")
+        comps = historical_comparables(event)
+        for _, row in comps.head(6).iterrows():
             render_history_card(row)
 
-    with tabs[9]:
-        st.markdown("<div class='section-title'>Management overview</div>", unsafe_allow_html=True)
-        mgmt = management_text(event)
-        st.text_area("Management note draft", mgmt, height=430)
+    with tabs[4]:
+        st.markdown("<div class='section-title'>Reports</div>", unsafe_allow_html=True)
+        st.markdown("<div class='info-box'><b>Purpose:</b> one management-ready event response brief built from the selected master event.</div>", unsafe_allow_html=True)
+        mgmt = management_text_v73(event, all_df)
+        st.text_area("Event response brief", mgmt, height=520)
         st.download_button(
-            "Download note",
+            "Download event response brief",
             mgmt.encode("utf-8"),
-            "catwatch_management_overview.txt",
+            "catwatch_event_response_brief.txt",
             "text/plain",
         )
+
+        st.markdown("**Source priority reference**")
+        render_source_engine_panel(event, all_df)
+
+        st.markdown("**Full historical library**")
+        with st.expander("Open historical event library", expanded=False):
+            hist = load_history()
+            history_map(hist)
+            st.dataframe(hist, use_container_width=True, hide_index=True)
 
 
 if __name__ == "__main__":
