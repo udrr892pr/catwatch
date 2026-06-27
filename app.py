@@ -2993,7 +2993,7 @@ def main():
     st.markdown(
         """
         <div class="hero">
-            <div class="hero-title">🌍 CatWatch v7.4</div>
+            <div class="hero-title">🌍 CatWatch v7.5</div>
             <div class="hero-sub">
                 Event Response Workbench for Cat Modeling, R&D, GIS, Portfolio Analytics and Management:
                 event integrity, stronger source de-duplication, material-change tracking, source health,
