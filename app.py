@@ -17,7 +17,7 @@ from dateutil import parser as dateparser
 from streamlit_autorefresh import st_autorefresh
 
 # ============================================================
-# CatWatch v7.4 — Event Integrity & Decision Workflow
+# CatWatch v7.4.1 — Event Integrity & Decision Workflow hotfix
 # ============================================================
 
 st.set_page_config(
@@ -341,8 +341,17 @@ def parse_dt(value):
 
 
 def safe_float(v):
+    """Return a finite float or None. Handles pandas/NumPy NaN values safely."""
     try:
-        return float(v)
+        if v is None:
+            return None
+        val = float(v)
+        # pandas/NumPy NaN values pass float() but must not be rounded/formatted.
+        if pd.isna(val):
+            return None
+        if val == float("inf") or val == float("-inf"):
+            return None
+        return val
     except Exception:
         return None
 
