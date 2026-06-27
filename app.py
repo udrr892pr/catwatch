@@ -16,7 +16,7 @@ from dateutil import parser as dateparser
 from streamlit_autorefresh import st_autorefresh
 
 # ============================================================
-# CatWatch v7.1 — regional source-priority and insurance relevance cockpit
+# CatWatch v7.2 — insurance intelligence, source priority, and loss-watch cockpit
 # ============================================================
 
 st.set_page_config(
@@ -717,6 +717,97 @@ def queue_label(row):
     return "Recent Global Events"
 
 
+
+def loss_watch_score(row):
+    """Early insurance-market loss watch score. This is not a modelled loss estimate."""
+    score = int(row.get("Insurance_Relevance_Score", 0) or 0)
+    sev = row.get("Severity", "Unknown")
+    tier = row.get("Notification_Tier", "P4")
+    peril = row.get("Peril", "Other")
+    region = market_region(row.get("Country"), row.get("Location_Label"))
+    intensity = str(row.get("Physical_Intensity", "")).lower()
+
+    if tier == "P1":
+        score += 15
+    elif tier == "P2":
+        score += 8
+
+    if sev in {"Critical", "Red"}:
+        score += 15
+    elif sev in {"Orange", "Amber"}:
+        score += 8
+
+    if peril in {"Tropical Cyclone", "Flood", "Wildfire", "Severe Storm"}:
+        score += 8
+    if peril in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
+        score += 6
+
+    if region in {"United States / NHC basin", "Japan", "Europe", "Australia / New Zealand"}:
+        score += 8
+
+    if any(k in intensity for k in ["category 4", "category 5", "magnitude 7.5", "magnitude 8", "max jma seismic intensity 6", "max jma seismic intensity 7"]):
+        score += 12
+
+    return min(100, int(score))
+
+
+def loss_watch_label(score):
+    try:
+        score = int(score)
+    except Exception:
+        score = 0
+    if score >= 80:
+        return "High loss watch"
+    if score >= 60:
+        return "Loss watch"
+    if score >= 40:
+        return "Developing watch"
+    return "Low / monitor"
+
+
+def loss_watch_stage(row):
+    tier = row.get("Notification_Tier", "P4")
+    sev = row.get("Severity", "Unknown")
+    alert_type = row.get("Alert_Type", "Monitoring")
+    loss = str(row.get("Industry_Loss_Status", "")).lower()
+    if any(k in loss for k in ["reported", "estimate", "loss", "vendor"]):
+        return "Loss commentary stage"
+    if alert_type == "Escalation" or tier == "P1" or sev in {"Critical", "Red"}:
+        return "Hazard impact triage"
+    if tier == "P2" or sev in {"Orange", "Amber"}:
+        return "Exposure watch"
+    return "Monitoring"
+
+
+def pcs_perils_relevance(row):
+    region = market_region(row.get("Country"), row.get("Location_Label"))
+    peril = row.get("Peril", "Other")
+    if region == "United States / NHC basin":
+        return "PCS / Verisk likely most relevant if insured industry loss emerges; also monitor NHC/NWS/FEMA and model vendors."
+    if region == "Europe":
+        return "PERILS likely most relevant for qualifying European windstorm/flood industry-loss context; monitor national agencies and broker/model-vendor notes."
+    if region == "Japan":
+        return "For Japan, prioritize JMA for hazard, then local insurers/reinsurers, PERILS/PCS/vendor commentary if industry loss becomes material."
+    if region == "Australia / New Zealand":
+        return "Monitor ICA / local insurance-market commentary, BOM/state agencies, and vendor/broker market notes."
+    return "Monitor PCS/PERILS where geography/peril is covered; otherwise rely on local insurance associations, broker reports, and model-vendor commentary."
+
+
+def market_vendor_note(row):
+    peril = row.get("Peril", "Other")
+    stage = loss_watch_stage(row)
+    if stage == "Hazard impact triage":
+        return "Focus first on official footprint and exposure geography; vendor/model notes usually follow once hazard parameters stabilize."
+    if stage == "Exposure watch":
+        return "Track whether the event intersects dense exposure, commercial/industrial assets, or high-insurance-penetration regions."
+    if peril == "Tropical Cyclone":
+        return "Vendor/model commentary should focus on track, landfall intensity, surge, rainfall, wind-field size, and inland flood."
+    if peril == "Earthquake":
+        return "Vendor/model commentary should focus on ShakeMap intensity footprint, construction vulnerability, urban exposure, and aftershocks."
+    if peril == "Flood":
+        return "Vendor/model commentary should focus on affected basins, flood depth/duration, industrial assets, motor/property portfolios, and business interruption."
+    return "Monitor official impact data first, then market commentary once loss potential becomes clearer."
+
 def apply_source_priority_engine(df):
     if df.empty:
         return df
@@ -726,6 +817,11 @@ def apply_source_priority_engine(df):
     df["Preferred_Source_Note"] = df.apply(preferred_source_note, axis=1)
     df["Insurance_Relevance_Score"] = df.apply(insurance_relevance_score, axis=1)
     df["Insurance_Relevance"] = df["Insurance_Relevance_Score"].apply(insurance_relevance_label)
+    df["Loss_Watch_Score"] = df.apply(loss_watch_score, axis=1)
+    df["Loss_Watch"] = df["Loss_Watch_Score"].apply(loss_watch_label)
+    df["Loss_Watch_Stage"] = df.apply(loss_watch_stage, axis=1)
+    df["PCS_PERILS_Relevance"] = df.apply(pcs_perils_relevance, axis=1)
+    df["Market_Vendor_Note"] = df.apply(market_vendor_note, axis=1)
     df["Queue"] = df.apply(queue_label, axis=1)
     return df
 
@@ -1659,6 +1755,7 @@ def render_event_card(row):
             <div class="event-meta">
                 <b>Intensity:</b> {short(row.get('Physical_Intensity', 'Unknown'), 125)}<br>
                 <b>Source priority:</b> {row.get('Source_Priority_Score', '')}/100 • <b>Insurance relevance:</b> {row.get('Insurance_Relevance', '')}<br>
+                <b>Loss watch:</b> {row.get('Loss_Watch', 'Monitor')} ({row.get('Loss_Watch_Score', 0)}/100) • <b>Stage:</b> {row.get('Loss_Watch_Stage', 'Monitoring')}<br>
                 <b>Impact area:</b> {short(row.get('Impact_Region', ''), 115)}<br>
                 <b>What to expect:</b> {short(row.get('What_To_Expect', ''), 130)}
             </div>
@@ -1743,6 +1840,8 @@ def render_source_engine_panel(event, df):
     )
 
 
+
+def management_text(event):
     return f"""MANAGEMENT OVERVIEW – {event.get('Event_Name')}
 
 Alert type: {event.get('Alert_Type')}
@@ -1756,6 +1855,10 @@ Source: {event.get('Source_Name')}
 Market region: {event.get('Market_Region')}
 Source priority: {event.get('Source_Priority_Score')}/100
 Insurance relevance: {event.get('Insurance_Relevance')} ({event.get('Insurance_Relevance_Score')}/100)
+Loss watch: {event.get('Loss_Watch')} ({event.get('Loss_Watch_Score')}/100)
+Loss stage: {event.get('Loss_Watch_Stage')}
+PCS / PERILS relevance: {event.get('PCS_PERILS_Relevance')}
+Market vendor note: {event.get('Market_Vendor_Note')}
 
 What happened:
 {event.get('Management_Summary')}
@@ -1790,6 +1893,158 @@ Source link:
 {event.get('Source_Link')}
 """.strip()
 
+
+
+def vendor_search_links(event):
+    """Curated insurance-market sources and searches for the selected event."""
+    name = str(event.get("Event_Name", "")).strip()
+    country = str(event.get("Country", "")).strip()
+    peril = str(event.get("Peril", "")).strip()
+    q = quote_plus(f'"{name}" {country} {peril} insured loss catastrophe model')
+    q_short = quote_plus(f'{country} {peril} insured loss catastrophe')
+
+    return [
+        {"Layer": "Industry loss", "Source": "PCS / Verisk", "Use": "US/global catastrophe loss designation and insured-loss commentary where available", "Link": "https://www.verisk.com/insurance/brands/pcs/"},
+        {"Layer": "Industry loss", "Source": "PERILS", "Use": "European and selected international industry-loss reporting", "Link": "https://www.perils.org/"},
+        {"Layer": "Model vendor", "Source": "Moody's RMS", "Use": "Model/vendor event response and loss commentary", "Link": "https://www.rms.com/events"},
+        {"Layer": "Model vendor", "Source": "KCC", "Use": "Catastrophe response and model commentary", "Link": "https://www.karenclarkandco.com/"},
+        {"Layer": "Model vendor", "Source": "CoreLogic / Cotality", "Use": "Property, hazard and loss intelligence where published", "Link": "https://www.corelogic.com/intelligence/"},
+        {"Layer": "Broker / reinsurer", "Source": "Aon", "Use": "Event response and market commentary", "Link": "https://www.aon.com/reinsurance/insights"},
+        {"Layer": "Broker / reinsurer", "Source": "Gallagher Re", "Use": "Event summaries and market loss perspective", "Link": "https://www.ajg.com/gallagherre/news-and-insights/"},
+        {"Layer": "Broker / reinsurer", "Source": "Swiss Re", "Use": "Sigma / risk commentary and reinsurer perspective", "Link": "https://www.swissre.com/institute/"},
+        {"Layer": "Broker / reinsurer", "Source": "Munich Re", "Use": "NatCatSERVICE / market commentary", "Link": "https://www.munichre.com/en/risks/natural-disasters.html"},
+        {"Layer": "Search", "Source": "Google News", "Use": "Search this selected event for insured-loss and model commentary", "Link": f"https://news.google.com/search?q={q}"},
+        {"Layer": "Search", "Source": "Web search", "Use": "Broad public web search for insurance-market references", "Link": f"https://www.google.com/search?q={q_short}"},
+    ]
+
+
+def insurance_trigger_list(event):
+    peril = event.get("Peril", "Other")
+    region = event.get("Market_Region", "Global")
+    sev = event.get("Severity", "Unknown")
+    items = []
+    items.append(f"Severity / priority: {sev} / {tier_label(event.get('Notification_Tier'))}")
+    items.append(f"Market region: {region}")
+    items.append(f"Loss-watch stage: {event.get('Loss_Watch_Stage', 'Monitoring')}")
+    items.append(f"Source reliability: {event.get('Source_Name')} priority {event.get('Source_Priority_Score')}/100")
+    if peril == "Tropical Cyclone":
+        items.extend([
+            "Track, cone, wind field, storm surge and rainfall footprint",
+            "Landfall intensity and exposure density along coastal/inland path",
+            "Business interruption, flood leakage, demand surge and accumulation risk",
+        ])
+    elif peril in {"Earthquake", "Earthquake / Tsunami", "Tsunami"}:
+        items.extend([
+            "ShakeMap / local intensity footprint rather than epicentre only",
+            "Urban exposure, construction vulnerability, industrial interruption and aftershock sequence",
+            "Tsunami or liquefaction potential where relevant",
+        ])
+    elif peril == "Flood":
+        items.extend([
+            "Affected river basin / urban flood depth and duration",
+            "Commercial/industrial exposure, motor/property mix and BI potential",
+            "Government emergency declarations and reported inundation footprint",
+        ])
+    elif peril == "Wildfire":
+        items.extend([
+            "Perimeter growth, structure count, evacuation orders and containment",
+            "Smoke/utility interruption and high-value residential exposure",
+        ])
+    elif peril == "Severe Storm":
+        items.extend([
+            "Hail/wind/tornado swath, property and motor exposure, and reports density",
+            "Whether PCS or local market bodies classify the event as an industry loss event",
+        ])
+    else:
+        items.append("Confirmed damage, casualties, evacuation, infrastructure disruption and market commentary")
+    return items
+
+
+def comparable_score(event, hist_row):
+    score = 0
+    if str(hist_row.get("Peril", "")).split(" /")[0] in str(event.get("Peril", "")) or str(event.get("Peril", "")).split(" /")[0] in str(hist_row.get("Peril", "")):
+        score += 45
+    if str(hist_row.get("Country", "")).lower() in str(event.get("Country", "")).lower() or str(event.get("Country", "")).lower() in str(hist_row.get("Country", "")).lower():
+        score += 35
+    if market_region(hist_row.get("Country"), hist_row.get("Region")) == event.get("Market_Region"):
+        score += 20
+    return score
+
+
+def historical_comparables(event, n=6):
+    hist = load_history().copy()
+    if hist.empty:
+        return hist
+    hist["Comparable_Score"] = hist.apply(lambda r: comparable_score(event, r), axis=1)
+    hist = hist[hist["Comparable_Score"] > 0].copy()
+    if hist.empty:
+        return load_history().sort_values("Insured_Loss_USD_Bn_Today_Approx", ascending=False).head(n)
+    return hist.sort_values(["Comparable_Score", "Insured_Loss_USD_Bn_Today_Approx"], ascending=[False, False]).head(n)
+
+
+def render_insurance_intelligence(event, df):
+    st.markdown("<div class='section-title'>Insurance intelligence</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='info-box'><b>Purpose:</b> turn hazard monitoring into insurance-market situational awareness. This is an early-warning view, not a modelled loss estimate.</div>",
+        unsafe_allow_html=True,
+    )
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.metric("Loss watch", event.get("Loss_Watch", "Monitor"), f"{event.get('Loss_Watch_Score', 0)}/100")
+    with c2:
+        st.metric("Insurance relevance", event.get("Insurance_Relevance", "Low"), f"{event.get('Insurance_Relevance_Score', 0)}/100")
+
+    st.markdown(
+        f"""
+        <div class="summary-box">
+            <b>Market read-through</b><br>
+            <b>Stage:</b> {event.get('Loss_Watch_Stage', 'Monitoring')}<br>
+            <b>PCS / PERILS relevance:</b> {event.get('PCS_PERILS_Relevance', '')}<br>
+            <b>Vendor/model note:</b> {event.get('Market_Vendor_Note', '')}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("**Why this could matter for insured loss**")
+    for item in insurance_trigger_list(event):
+        st.markdown(f"- {item}")
+
+    st.markdown("**Vendor / market watch links**")
+    links = pd.DataFrame(vendor_search_links(event))
+    st.dataframe(links, use_container_width=True, hide_index=True, column_config={"Link": st.column_config.LinkColumn("Open")})
+
+    st.markdown("**Historical comparables**")
+    comps = historical_comparables(event)
+    show_cols = [
+        "Event_Name", "Year", "Country", "Peril",
+        "Economic_Loss_USD_Bn_Today_Approx", "Insured_Loss_USD_Bn_Today_Approx", "Footprint_Note"
+    ]
+    st.dataframe(comps[show_cols], use_container_width=True, hide_index=True)
+
+    st.markdown("**Analyst checklist**")
+    checklist = [
+        "Confirm official footprint / impact area, not just point location.",
+        "Check whether exposed territories have high insurance penetration or major commercial/industrial exposure.",
+        "Look for casualty/damage/infrastructure reports from official agencies and verified news.",
+        "Check PCS/PERILS/local insurance body relevance for this geography/peril.",
+        "Monitor Moody's RMS, Verisk, KCC, CoreLogic/Cotality, broker and reinsurer commentary.",
+        "Update management note only when there is a material change or credible loss commentary.",
+    ]
+    for item in checklist:
+        st.markdown(f"- {item}")
+
+    st.markdown("**Manual loss-note capture**")
+    st.caption("Temporary scratchpad only; it is not saved to a database.")
+    template = pd.DataFrame([
+        {"Field": "Current loss view", "Entry": event.get("Industry_Loss_Status", "Not yet reported")},
+        {"Field": "Public economic loss", "Entry": event.get("Economic_Loss", "Unknown")},
+        {"Field": "Public insured loss", "Entry": event.get("Insured_Loss", "Unknown")},
+        {"Field": "Vendor / market note", "Entry": ""},
+        {"Field": "Analyst conclusion", "Entry": ""},
+    ])
+    st.data_editor(template, use_container_width=True, hide_index=True, key=f"loss_capture_{event.get('Event_ID', 'event')}")
 
 def apply_filters(df):
     st.markdown("<div class='section-title'>Filters</div>", unsafe_allow_html=True)
@@ -1845,7 +2100,7 @@ def cyclone_status_box(df):
 # ============================================================
 def main():
     inject_css()
-    refresh_count = st_autorefresh(interval=5 * 60 * 1000, key="catwatch_v7_refresh")
+    refresh_count = st_autorefresh(interval=5 * 60 * 1000, key="catwatch_v72_refresh")
 
     st.markdown(
         """
@@ -1853,8 +2108,9 @@ def main():
             <div class="hero-title">🌍 CatWatch</div>
             <div class="hero-sub">
                 Mobile catastrophe alert cockpit for first-to-know monitoring:
-                regional source priority, insurance relevance, recent global events,
-                map footprint, verified news, historical benchmarks, and quick management overview.
+                regional source priority, insurance relevance, insured-loss watch,
+                vendor/model signals, recent global events, map footprint, verified news,
+                historical comparables, and quick management overview.
             </div>
         </div>
         """,
@@ -1869,13 +2125,15 @@ def main():
     cyclone_status_box(df)
     filt = apply_filters(df)
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
     with c1:
         st.metric("Live events", len(filt))
     with c2:
         st.metric("Executive", int((filt["Queue"] == "Executive Alerts").sum()) if not filt.empty else 0)
     with c3:
         st.metric("Recent global", int((filt["Queue"] == "Recent Global Events").sum()) if not filt.empty else 0)
+    with c4:
+        st.metric("Loss watch", int((filt["Loss_Watch_Score"] >= 60).sum()) if not filt.empty else 0)
 
     col_a, col_b = st.columns([1, 2.2])
     with col_a:
@@ -1892,7 +2150,7 @@ def main():
     selected_name = st.selectbox("Selected alert", filt["Event_Name"].tolist(), index=0)
     event = filt[filt["Event_Name"] == selected_name].iloc[0]
 
-    tabs = st.tabs(["Alerts", "Recent", "Event", "Map", "Cyclones", "News", "Sources", "History", "Management"])
+    tabs = st.tabs(["Alerts", "Recent", "Event", "Map", "Cyclones", "News", "Sources", "Insurance", "History", "Management"])
 
     with tabs[0]:
         st.markdown("<div class='section-title'>Executive alert queue</div>", unsafe_allow_html=True)
@@ -1941,6 +2199,8 @@ def main():
         d2.write(f"**Market region:** {event.get('Market_Region')}")
         d2.write(f"**Source priority:** {event.get('Source_Priority_Score')}/100")
         d2.write(f"**Insurance relevance:** {event.get('Insurance_Relevance')} ({event.get('Insurance_Relevance_Score')}/100)")
+        d2.write(f"**Loss watch:** {event.get('Loss_Watch')} ({event.get('Loss_Watch_Score')}/100)")
+        d2.write(f"**Loss stage:** {event.get('Loss_Watch_Stage')}")
 
         if event.get("Peril") == "Earthquake":
             shake = fetch_usgs_shakemap_status(event.get("Detail_Link", ""))
@@ -2013,6 +2273,9 @@ def main():
         render_source_engine_panel(event, df)
 
     with tabs[7]:
+        render_insurance_intelligence(event, df)
+
+    with tabs[8]:
         st.markdown("<div class='section-title'>Historical events</div>", unsafe_allow_html=True)
         hist = load_history()
         with st.expander("Historical filters", expanded=True):
@@ -2039,7 +2302,7 @@ def main():
         for _, row in h.sort_values("Year", ascending=False).head(50).iterrows():
             render_history_card(row)
 
-    with tabs[8]:
+    with tabs[9]:
         st.markdown("<div class='section-title'>Management overview</div>", unsafe_allow_html=True)
         mgmt = management_text(event)
         st.text_area("Management note draft", mgmt, height=430)
