@@ -16,7 +16,7 @@ from dateutil import parser as dateparser
 from streamlit_autorefresh import st_autorefresh
 
 # ============================================================
-# CatWatch v7 — polished mobile cat management cockpit
+# CatWatch v7.1 — regional source-priority and insurance relevance cockpit
 # ============================================================
 
 st.set_page_config(
@@ -28,6 +28,8 @@ st.set_page_config(
 
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson"
 GDACS_RSS_URL = "https://www.gdacs.org/xml/rss.xml"
+JMA_QUAKE_URL = "https://www.jma.go.jp/bosai/quake/data/list.json"
+EMSC_RSS_URL = "https://www.emsc-csem.org/service/rss/rss.php?typ=emsc&magmin=5"
 NHC_GIS_FEEDS = {
     "Atlantic": "https://www.nhc.noaa.gov/gis-at.xml",
     "Eastern Pacific": "https://www.nhc.noaa.gov/gis-ep.xml",
@@ -438,6 +440,50 @@ def eq_severity(mag):
     return "Green"
 
 
+def parse_mag_from_text(text):
+    m = re.search(r"M(?:agnitude)?\s*([0-9]+(?:\.[0-9]+)?)", str(text or ""), flags=re.I)
+    if not m:
+        m = re.search(r"mag(?:nitude)?[=:\s]+([0-9]+(?:\.[0-9]+)?)", str(text or ""), flags=re.I)
+    return safe_float(m.group(1)) if m else None
+
+
+def parse_jma_coordinate(coord_text):
+    # JMA coordinate examples: +42.6+143.1-80000/ = lat, lon, depth in metres
+    m = re.match(r"([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)([+-]\d+)?/", str(coord_text or ""))
+    if not m:
+        return None, None, None
+    lat = safe_float(m.group(1))
+    lon = safe_float(m.group(2))
+    depth_m = safe_float(m.group(3)) if m.group(3) else None
+    depth_km = abs(depth_m) / 1000 if depth_m is not None else None
+    return lat, lon, depth_km
+
+
+def jma_intensity_rank(maxi):
+    s = str(maxi or "").strip()
+    mapping = {
+        "7": 8, "6+": 7, "6-": 6, "5+": 5,
+        "5-": 4, "4": 3, "3": 2, "2": 1, "1": 0,
+    }
+    return mapping.get(s, -1)
+
+
+def jma_severity(maxi, mag):
+    rank = jma_intensity_rank(maxi)
+    mag = safe_float(mag)
+    if rank >= 7 or (mag is not None and mag >= 7.5):
+        return "Critical"
+    if rank >= 5 or (mag is not None and mag >= 6.8):
+        return "Red"
+    if rank >= 3 or (mag is not None and mag >= 5.8):
+        return "Orange"
+    if rank >= 2 or (mag is not None and mag >= 5.0):
+        return "Yellow"
+    if rank >= 0:
+        return "Green"
+    return eq_severity(mag)
+
+
 def gdacs_severity(title, summary):
     text = f"{title} {summary}".lower()
     if " red " in f" {text} ":
@@ -582,7 +628,106 @@ def next_update_hint(row):
         return "Next advisory cycle or sooner if rapid intensification / landfall threat develops."
     if source == "USGS":
         return "Watch for ShakeMap / impact updates over the next 15–60 minutes."
+    if source == "JMA":
+        return "Watch JMA intensity/tsunami updates and cross-check USGS/EMSC/GDACS for global context."
+    if source == "EMSC":
+        return "Cross-check with USGS/local agency and monitor felt reports or revised magnitude/location."
     return "Monitor source changes and verified follow-up reporting."
+
+
+def market_region(country, location=""):
+    text = f"{country} {location}".lower()
+    if any(k in text for k in ["japan", "iwate", "hokkaido", "tohoku", "tokyo", "osaka", "fukushima", "honshu", "kyushu", "shikoku"]):
+        return "Japan"
+    if any(k in text for k in ["united states", "usa", "california", "florida", "texas", "louisiana", "atlantic", "eastern pacific", "central pacific"]):
+        return "United States / NHC basin"
+    if any(k in text for k in ["germany", "france", "italy", "spain", "belgium", "netherlands", "switzerland", "austria", "united kingdom", "europe"]):
+        return "Europe"
+    if any(k in text for k in ["australia", "new zealand"]):
+        return "Australia / New Zealand"
+    return "Global"
+
+
+def preferred_source_note(row):
+    region = market_region(row.get("Country"), row.get("Location_Label"))
+    peril = row.get("Peril", "Other")
+    if region == "Japan" and peril in {"Earthquake", "Tsunami", "Earthquake / Tsunami"}:
+        return "Japan earthquake hierarchy: JMA first, then USGS / EMSC / GDACS for cross-check."
+    if row.get("Source_Name") == "NOAA/NHC" or (peril == "Tropical Cyclone" and region == "United States / NHC basin"):
+        return "NHC-basin cyclone hierarchy: NOAA/NHC first, then GDACS and verified news for impacts."
+    if peril == "Earthquake":
+        return "Global earthquake hierarchy: USGS first, EMSC second, GDACS for humanitarian alert colour, local agency where available."
+    if region == "Europe" and peril in {"Flood", "Severe Storm", "Tropical Cyclone"}:
+        return "Europe hierarchy: national agencies / Copernicus first, then GDACS, with PERILS / broker/vendor notes for market loss."
+    return "Global hierarchy: official hazard source first, then GDACS/verified news, then insurance-market loss commentary."
+
+
+def source_priority_score(row):
+    source = str(row.get("Source_Name", ""))
+    peril = row.get("Peril", "Other")
+    region = market_region(row.get("Country"), row.get("Location_Label"))
+
+    if region == "Japan" and peril in {"Earthquake", "Tsunami", "Earthquake / Tsunami"}:
+        return {"JMA": 100, "USGS": 86, "EMSC": 80, "GDACS": 72}.get(source, 55)
+    if source == "NOAA/NHC":
+        return 100
+    if peril == "Earthquake":
+        return {"USGS": 92, "EMSC": 84, "JMA": 82, "GDACS": 76}.get(source, 55)
+    if peril == "Tropical Cyclone":
+        return {"NOAA/NHC": 100, "GDACS": 74}.get(source, 55)
+    if source == "GDACS":
+        return 74
+    return 55
+
+
+def insurance_relevance_score(row):
+    # A pragmatic early-warning score, not a modelled loss estimate.
+    score = 0
+    score += severity_rank(row.get("Severity", "Unknown")) * 12
+    score += {"P1": 28, "P2": 18, "P3": 8, "P4": 2}.get(str(row.get("Notification_Tier", "P4")), 0)
+    score += {"New Event": 8, "Event Update": 6, "Escalation": 14, "Active Watch": 6, "Monitoring": 1}.get(str(row.get("Alert_Type", "Monitoring")), 0)
+    region = market_region(row.get("Country"), row.get("Location_Label"))
+    if region in {"Japan", "United States / NHC basin", "Europe", "Australia / New Zealand"}:
+        score += 8
+    if row.get("Peril") in {"Tropical Cyclone", "Earthquake", "Flood", "Wildfire", "Severe Storm"}:
+        score += 5
+    return min(100, int(score))
+
+
+def insurance_relevance_label(score):
+    try:
+        score = int(score)
+    except Exception:
+        score = 0
+    if score >= 75:
+        return "High"
+    if score >= 50:
+        return "Medium"
+    if score >= 25:
+        return "Watch"
+    return "Low"
+
+
+def queue_label(row):
+    sev_rank = severity_rank(row.get("Severity", "Unknown"))
+    tier = row.get("Notification_Tier", "P4")
+    relevance = int(row.get("Insurance_Relevance_Score", 0) or 0)
+    if row.get("Alert_Type") == "Escalation" or tier in {"P1", "P2"} or sev_rank >= 4 or relevance >= 65:
+        return "Executive Alerts"
+    return "Recent Global Events"
+
+
+def apply_source_priority_engine(df):
+    if df.empty:
+        return df
+    df = df.copy()
+    df["Market_Region"] = df.apply(lambda r: market_region(r.get("Country"), r.get("Location_Label")), axis=1)
+    df["Source_Priority_Score"] = df.apply(source_priority_score, axis=1)
+    df["Preferred_Source_Note"] = df.apply(preferred_source_note, axis=1)
+    df["Insurance_Relevance_Score"] = df.apply(insurance_relevance_score, axis=1)
+    df["Insurance_Relevance"] = df["Insurance_Relevance_Score"].apply(insurance_relevance_label)
+    df["Queue"] = df.apply(queue_label, axis=1)
+    return df
 
 
 def today_value(value, year, annual_rate=0.03):
@@ -650,6 +795,78 @@ def fetch_usgs_events():
 
 
 @st.cache_data(ttl=300)
+def fetch_jma_events():
+    rows = []
+    try:
+        data = requests.get(JMA_QUAKE_URL, timeout=25).json()
+        # JMA list is mostly Japan-region events and can include multiple bulletins for same event.
+        seen = set()
+        for item in data[:80]:
+            title = item.get("en_ttl") or item.get("ttl") or "JMA earthquake information"
+            location = item.get("en_anm") or item.get("anm") or "Japan region"
+            mag = safe_float(item.get("mag"))
+            maxi = item.get("maxi") or item.get("int") or ""
+            if mag is None and not maxi:
+                continue
+            eid = item.get("eid") or item.get("json") or f"{location}-{item.get('at')}"
+            key = f"{eid}-{location}-{mag}-{maxi}"
+            if key in seen:
+                continue
+            seen.add(key)
+
+            event_dt = parse_dt(item.get("at") or item.get("ctt"))
+            updated_dt = parse_dt(item.get("rdt") or item.get("ctt"))
+            lat, lon, depth_km = parse_jma_coordinate(item.get("cod"))
+            sev = jma_severity(maxi, mag)
+            peril = "Earthquake"
+            intensity_parts = []
+            if mag is not None:
+                intensity_parts.append(f"Magnitude {mag}")
+            if maxi:
+                intensity_parts.append(f"Max JMA seismic intensity {maxi}")
+            if depth_km is not None:
+                intensity_parts.append(f"depth {depth_km:g} km")
+            intensity = "; ".join(intensity_parts) or "JMA earthquake information"
+            tier = notification_tier(sev, peril, intensity)
+            alert_type = classify_alert_type(event_dt, updated_dt, sev, tier, intensity)
+            detail = f"https://www.jma.go.jp/bosai/map.html#contents=earthquake_map&lang=en"
+
+            rows.append({
+                "Event_ID": f"JMA-{eid}",
+                "Event_Name": f"M{mag if mag is not None else '?'} earthquake – {location}",
+                "Peril": peril,
+                "Event_Status": "Active",
+                "Alert_Type": alert_type,
+                "Severity": sev,
+                "Notification_Tier": tier,
+                "Country": "Japan",
+                "Location_Label": location,
+                "Latitude": lat,
+                "Longitude": lon,
+                "Start_Date": event_dt.strftime("%Y-%m-%d %H:%M UTC") if event_dt else "",
+                "Latest_Update_Date": updated_dt.strftime("%Y-%m-%d %H:%M UTC") if updated_dt else now_text(),
+                "Source_Name": "JMA",
+                "Source_Link": detail,
+                "Detail_Link": detail,
+                "Physical_Intensity": intensity,
+                "Human_Impact": "Check JMA / local Japan government updates, NHK/AP/Reuters and infrastructure reports",
+                "Economic_Loss": "Unknown",
+                "Insured_Loss": "Unknown",
+                "Industry_Loss_Status": "Not yet reported",
+                "Confidence_Level": "High for Japan hazard/intensity; Low for damage/loss",
+                "Why_It_Matters": "JMA is the priority local source for Japan earthquake intensity and tsunami context; cross-check USGS, EMSC and GDACS for global comparison.",
+                "What_To_Expect": expected_impact(peril, sev, intensity, "Japan"),
+                "Impact_Region": "Japan local intensity footprint matters more than the epicentre alone. Use JMA intensity information and USGS ShakeMap where available.",
+                "Management_Summary": f"JMA reports earthquake information for {location}. The key insurance-market trigger is whether local intensity, infrastructure disruption, or damage reports escalate.",
+                "Track_Info": "Use JMA seismic-intensity information and cross-check with USGS ShakeMap/EMSC/GDACS.",
+                "Map_Mode": "Point + local intensity context",
+            })
+    except Exception as exc:
+        st.warning(f"JMA fetch failed: {exc}")
+    return rows
+
+
+@st.cache_data(ttl=300)
 def fetch_gdacs_events():
     rows = []
     try:
@@ -711,6 +928,78 @@ def fetch_gdacs_events():
             })
     except Exception as exc:
         st.warning(f"GDACS fetch failed: {exc}")
+    return rows
+
+
+@st.cache_data(ttl=300)
+def fetch_emsc_events():
+    rows = []
+    try:
+        feed = feedparser.parse(EMSC_RSS_URL)
+        for entry in feed.entries[:50]:
+            title = clean(getattr(entry, "title", "EMSC earthquake"))
+            summary = clean(getattr(entry, "summary", ""))
+            link = getattr(entry, "link", "")
+            event_dt = parse_dt(getattr(entry, "published", None) or getattr(entry, "updated", None))
+            updated_dt = parse_dt(getattr(entry, "updated", None))
+            mag = parse_mag_from_text(title + " " + summary)
+            sev = eq_severity(mag)
+            peril = "Earthquake"
+
+            lat, lon = None, None
+            if hasattr(entry, "georss_point"):
+                try:
+                    parts = str(entry.georss_point).split()
+                    lat, lon = float(parts[0]), float(parts[1])
+                except Exception:
+                    pass
+            if lat is None and hasattr(entry, "where"):
+                try:
+                    point = entry.where.get("coordinates", [None, None])
+                    lon, lat = point[0], point[1]
+                except Exception:
+                    pass
+
+            # Try to isolate location from common EMSC titles: "M 5.5 - REGION"
+            location = title
+            if " - " in title:
+                location = title.split(" - ", 1)[1].strip()
+            tier = notification_tier(sev, peril, summary)
+            alert_type = classify_alert_type(event_dt, updated_dt, sev, tier, summary)
+            intensity = f"Magnitude {mag}" if mag is not None else short(summary, 160) or "EMSC earthquake update"
+
+            rows.append({
+                "Event_ID": make_id("EMSC", title + link),
+                "Event_Name": f"M{mag if mag is not None else '?'} earthquake – {location}",
+                "Peril": peril,
+                "Event_Status": "Active",
+                "Alert_Type": alert_type,
+                "Severity": sev,
+                "Notification_Tier": tier,
+                "Country": extract_country(location),
+                "Location_Label": location,
+                "Latitude": lat,
+                "Longitude": lon,
+                "Start_Date": event_dt.strftime("%Y-%m-%d %H:%M UTC") if event_dt else "",
+                "Latest_Update_Date": updated_dt.strftime("%Y-%m-%d %H:%M UTC") if updated_dt else now_text(),
+                "Source_Name": "EMSC",
+                "Source_Link": link,
+                "Detail_Link": link,
+                "Physical_Intensity": intensity,
+                "Human_Impact": "Check official local source, USGS, GDACS and verified news",
+                "Economic_Loss": "Unknown",
+                "Insured_Loss": "Unknown",
+                "Industry_Loss_Status": "Not yet reported",
+                "Confidence_Level": "Medium/High for rapid earthquake cross-check; Low for loss",
+                "Why_It_Matters": "EMSC provides fast independent earthquake cross-check and can surface events/felt reports not yet prominent in other views.",
+                "What_To_Expect": expected_impact(peril, sev, intensity, extract_country(location)),
+                "Impact_Region": impact_region_text(peril, location, extract_country(location)),
+                "Management_Summary": f"EMSC reports an earthquake near {location}. Use this as a cross-check with official local agency, USGS and GDACS.",
+                "Track_Info": "Use official local agency and USGS ShakeMap where available for impact footprint.",
+                "Map_Mode": "Point / cross-check feed",
+            })
+    except Exception as exc:
+        st.warning(f"EMSC fetch failed: {exc}")
     return rows
 
 
@@ -971,6 +1260,8 @@ def fetch_nhc_events():
 def load_live_events():
     rows = []
     rows.extend(fetch_usgs_events())
+    rows.extend(fetch_jma_events())
+    rows.extend(fetch_emsc_events())
     rows.extend(fetch_gdacs_events())
     rows.extend(fetch_nhc_events())
 
@@ -988,7 +1279,8 @@ def load_live_events():
     df["Map_Color"] = df["Severity"].apply(severity_color)
     df["Analyst_Action"] = df.apply(analyst_action, axis=1)
     df["Next_Update"] = df.apply(next_update_hint, axis=1)
-    return df.sort_values(["Alert_Rank", "Tier_Rank", "Severity_Rank", "Start_Date_UTC"], ascending=[False, False, False, False])
+    df = apply_source_priority_engine(df)
+    return df.sort_values(["Queue", "Alert_Rank", "Tier_Rank", "Severity_Rank", "Insurance_Relevance_Score", "Source_Priority_Score", "Start_Date_UTC"], ascending=[True, False, False, False, False, False, False])
 
 
 @st.cache_data(ttl=600)
@@ -1351,6 +1643,7 @@ def event_badges(row):
         f"<span class='badge b-tier-{tier}'>{tier_label(tier)}</span>"
         f"<span class='badge b-sev-{sev}'>{sev}</span>"
         f"<span class='badge b-peril'>{emoji(peril)} {peril}</span>"
+        f"<span class='badge b-peril'>{row.get('Queue', 'Recent')}</span>"
     )
 
 
@@ -1365,8 +1658,9 @@ def render_event_card(row):
             <div class="event-title">{row.get('Event_Name', 'Unnamed event')}</div>
             <div class="event-meta">
                 <b>Intensity:</b> {short(row.get('Physical_Intensity', 'Unknown'), 125)}<br>
-                <b>Impact area:</b> {short(row.get('Impact_Region', ''), 120)}<br>
-                <b>What to expect:</b> {short(row.get('What_To_Expect', ''), 140)}
+                <b>Source priority:</b> {row.get('Source_Priority_Score', '')}/100 • <b>Insurance relevance:</b> {row.get('Insurance_Relevance', '')}<br>
+                <b>Impact area:</b> {short(row.get('Impact_Region', ''), 115)}<br>
+                <b>What to expect:</b> {short(row.get('What_To_Expect', ''), 130)}
             </div>
         </div>
         """,
@@ -1410,7 +1704,45 @@ def render_history_card(row):
     )
 
 
-def management_text(event):
+def render_source_engine_panel(event, df):
+    st.markdown("<div class='section-title'>Source priority engine</div>", unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <div class="info-box">
+            <b>Selected event source logic</b><br>
+            Market region: <b>{event.get('Market_Region', 'Global')}</b><br>
+            Source priority: <b>{event.get('Source_Priority_Score', '')}/100</b><br>
+            Insurance relevance: <b>{event.get('Insurance_Relevance', '')}</b> ({event.get('Insurance_Relevance_Score', '')}/100)<br>
+            {event.get('Preferred_Source_Note', '')}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    matrix = pd.DataFrame([
+        {"Region / peril": "Japan earthquake / tsunami", "Preferred official source": "JMA", "Cross-checks": "USGS, EMSC, GDACS", "Insurance layer": "PERILS / PCS / vendor notes if loss-relevant"},
+        {"Region / peril": "Global earthquake", "Preferred official source": "USGS", "Cross-checks": "EMSC, GDACS, local agency", "Insurance layer": "PCS, PERILS, KCC, Moody's RMS, Verisk, CoreLogic/Cotality"},
+        {"Region / peril": "Atlantic / E. Pacific cyclone", "Preferred official source": "NOAA/NHC", "Cross-checks": "GDACS, NWS, local agencies", "Insurance layer": "PCS, Moody's RMS, Verisk, KCC, Aon, Gallagher Re"},
+        {"Region / peril": "Europe windstorm / flood", "Preferred official source": "National agencies / Copernicus", "Cross-checks": "GDACS, EFAS/GloFAS", "Insurance layer": "PERILS, Aon, Gallagher Re, Swiss Re, Munich Re"},
+        {"Region / peril": "Australia flood / cyclone / wildfire", "Preferred official source": "BOM / state agencies", "Cross-checks": "GDACS, Copernicus, NASA FIRMS", "Insurance layer": "ICA, PCS, vendor / broker notes"},
+    ])
+    st.dataframe(matrix, use_container_width=True, hide_index=True)
+
+    st.markdown("**Current live source coverage**")
+    source_summary = (
+        df.groupby(["Source_Name", "Market_Region", "Peril"], dropna=False)
+          .size()
+          .reset_index(name="Events")
+          .sort_values(["Source_Name", "Events"], ascending=[True, False])
+    )
+    st.dataframe(source_summary.head(40), use_container_width=True, hide_index=True)
+
+    st.markdown(
+        "<div class='warn-box'><b>Telegram policy:</b> This wider app coverage does not mean noisier Telegram. Telegram should remain strict: important fresh new event, meaningful update, or escalation only.</div>",
+        unsafe_allow_html=True,
+    )
+
+
     return f"""MANAGEMENT OVERVIEW – {event.get('Event_Name')}
 
 Alert type: {event.get('Alert_Type')}
@@ -1421,6 +1753,9 @@ Country / basin: {event.get('Country')}
 Location: {event.get('Location_Label')}
 Latest update: {event.get('Latest_Update_Date')}
 Source: {event.get('Source_Name')}
+Market region: {event.get('Market_Region')}
+Source priority: {event.get('Source_Priority_Score')}/100
+Insurance relevance: {event.get('Insurance_Relevance')} ({event.get('Insurance_Relevance_Score')}/100)
 
 What happened:
 {event.get('Management_Summary')}
@@ -1518,7 +1853,7 @@ def main():
             <div class="hero-title">🌍 CatWatch</div>
             <div class="hero-sub">
                 Mobile catastrophe alert cockpit for first-to-know monitoring:
-                new event, event update, escalation, severity, impacted region,
+                regional source priority, insurance relevance, recent global events,
                 map footprint, verified news, historical benchmarks, and quick management overview.
             </div>
         </div>
@@ -1536,11 +1871,11 @@ def main():
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.metric("Live alerts", len(filt))
+        st.metric("Live events", len(filt))
     with c2:
-        st.metric("New / update", int(filt["Alert_Type"].isin(["New Event", "Event Update", "Escalation"]).sum()) if not filt.empty else 0)
+        st.metric("Executive", int((filt["Queue"] == "Executive Alerts").sum()) if not filt.empty else 0)
     with c3:
-        st.metric("P1 / P2", int(filt["Notification_Tier"].isin(["P1", "P2"]).sum()) if not filt.empty else 0)
+        st.metric("Recent global", int((filt["Queue"] == "Recent Global Events").sum()) if not filt.empty else 0)
 
     col_a, col_b = st.columns([1, 2.2])
     with col_a:
@@ -1548,7 +1883,7 @@ def main():
             st.cache_data.clear()
             st.rerun()
     with col_b:
-        st.markdown(f"<div class='small-note'>Auto-refresh every 5 minutes while the page is open • 30-day live window • refresh count: {refresh_count}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='small-note'>Auto-refresh every 5 minutes while the page is open • 30-day live window • regional source priority engine • refresh count: {refresh_count}</div>", unsafe_allow_html=True)
 
     if filt.empty:
         st.info("No events match the current filters.")
@@ -1557,14 +1892,26 @@ def main():
     selected_name = st.selectbox("Selected alert", filt["Event_Name"].tolist(), index=0)
     event = filt[filt["Event_Name"] == selected_name].iloc[0]
 
-    tabs = st.tabs(["Alerts", "Event", "Map", "Cyclones", "News", "History", "Management"])
+    tabs = st.tabs(["Alerts", "Recent", "Event", "Map", "Cyclones", "News", "Sources", "History", "Management"])
 
     with tabs[0]:
-        st.markdown("<div class='section-title'>Alert queue</div>", unsafe_allow_html=True)
-        for _, row in filt.head(20).iterrows():
-            render_event_card(row)
+        st.markdown("<div class='section-title'>Executive alert queue</div>", unsafe_allow_html=True)
+        st.markdown("<div class='info-box'><b>Purpose:</b> higher-priority events with stronger potential management / insurance relevance. Telegram remains even stricter and should not mirror every app event.</div>", unsafe_allow_html=True)
+        exec_df = filt[filt["Queue"] == "Executive Alerts"].copy()
+        if exec_df.empty:
+            st.info("No executive-priority events match the current filters.")
+        else:
+            for _, row in exec_df.head(20).iterrows():
+                render_event_card(row)
 
     with tabs[1]:
+        st.markdown("<div class='section-title'>Recent global events</div>", unsafe_allow_html=True)
+        st.markdown("<div class='info-box'><b>Purpose:</b> broader event awareness sorted by freshness and source context. This is where regional events like Japan/JMA earthquakes can appear even if they are not urgent Telegram alerts.</div>", unsafe_allow_html=True)
+        recent_df = filt.sort_values(["Start_Date_UTC", "Source_Priority_Score"], ascending=[False, False]).copy()
+        for _, row in recent_df.head(30).iterrows():
+            render_event_card(row)
+
+    with tabs[2]:
         st.markdown("<div class='section-title'>Event detail</div>", unsafe_allow_html=True)
         st.markdown(event_badges(event), unsafe_allow_html=True)
         st.markdown(f"### {event.get('Event_Name')}")
@@ -1591,6 +1938,9 @@ def main():
         d2.write(f"**Confidence:** {event.get('Confidence_Level')}")
         d2.write(f"**Next update:** {event.get('Next_Update')}")
         d2.write(f"**Source:** [{event.get('Source_Name')}]({event.get('Source_Link')})")
+        d2.write(f"**Market region:** {event.get('Market_Region')}")
+        d2.write(f"**Source priority:** {event.get('Source_Priority_Score')}/100")
+        d2.write(f"**Insurance relevance:** {event.get('Insurance_Relevance')} ({event.get('Insurance_Relevance_Score')}/100)")
 
         if event.get("Peril") == "Earthquake":
             shake = fetch_usgs_shakemap_status(event.get("Detail_Link", ""))
@@ -1605,7 +1955,7 @@ def main():
                 unsafe_allow_html=True,
             )
 
-    with tabs[2]:
+    with tabs[3]:
         st.markdown("<div class='section-title'>Map & footprint</div>", unsafe_allow_html=True)
         if event.get("Peril") == "Tropical Cyclone" or event.get("Source_Name") == "NOAA/NHC":
             st.markdown(
@@ -1620,7 +1970,7 @@ def main():
             )
             live_points_map(pd.DataFrame([event]))
 
-    with tabs[3]:
+    with tabs[4]:
         st.markdown("<div class='section-title'>Tropical cyclones</div>", unsafe_allow_html=True)
         nhc_events = df[df["Source_Name"] == "NOAA/NHC"].copy()
         gdacs_tc = df[df["Peril"] == "Tropical Cyclone"].copy()
@@ -1646,7 +1996,7 @@ def main():
             show = products[["Basin", "Product", "Storm_Name", "Published", "Title", "Link"]].copy()
             st.dataframe(show.head(30), use_container_width=True, hide_index=True)
 
-    with tabs[4]:
+    with tabs[5]:
         st.markdown("<div class='section-title'>Verified news</div>", unsafe_allow_html=True)
         st.markdown(
             "<div class='info-box'><b>Note:</b> This tab is for quick situational awareness. Use official sources and specialist vendor/industry sources for decision-making and loss reporting.</div>",
@@ -1659,7 +2009,10 @@ def main():
             for _, row in news.iterrows():
                 render_news_card(row)
 
-    with tabs[5]:
+    with tabs[6]:
+        render_source_engine_panel(event, df)
+
+    with tabs[7]:
         st.markdown("<div class='section-title'>Historical events</div>", unsafe_allow_html=True)
         hist = load_history()
         with st.expander("Historical filters", expanded=True):
@@ -1686,7 +2039,7 @@ def main():
         for _, row in h.sort_values("Year", ascending=False).head(50).iterrows():
             render_history_card(row)
 
-    with tabs[6]:
+    with tabs[8]:
         st.markdown("<div class='section-title'>Management overview</div>", unsafe_allow_html=True)
         mgmt = management_text(event)
         st.text_area("Management note draft", mgmt, height=430)
