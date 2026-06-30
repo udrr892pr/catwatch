@@ -91,7 +91,7 @@
     },
     "GDACS-earthquake-1548668": {
       "intensity": "On 6/26/2026 11:34:41 AM, an earthquake occurred in Philippines potentially affecting 30 thousand (in MMI>=VII). The earthquake had Magnitude 6.5M, Depth:42km.",
-      "last_seen": "2026-06-30 15:11 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-26 11:43 UTC",
       "name": "Orange earthquake (Magnitude 6.5M, Depth:42km) in Philippines 26/06/2026 11:34 UTC, 30 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -105,8 +105,8 @@
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-06-30 17:16 UTC",
-      "latest_update": "2026-06-30 15:36 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
+      "latest_update": "2026-06-30 18:47 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
       "region": "11 km N of Redwood Valley, CA",
@@ -119,8 +119,8 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 20.294 km",
-      "last_seen": "2026-06-30 17:16 UTC",
-      "latest_update": "2026-06-29 22:52 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
+      "latest_update": "2026-06-30 18:50 UTC",
       "name": "M7.2 earthquake \u2013 23 km SE of Yumare, Venezuela",
       "peril": "Earthquake",
       "region": "23 km SE of Yumare, Venezuela",
@@ -133,8 +133,8 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-06-30 17:16 UTC",
-      "latest_update": "2026-06-30 16:27 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
+      "latest_update": "2026-06-30 18:14 UTC",
       "name": "M7.5 earthquake \u2013 28 km SE of Yumare, Venezuela",
       "peril": "Earthquake",
       "region": "28 km SE of Yumare, Venezuela",
@@ -147,7 +147,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 50.923 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-26 17:59 UTC",
       "name": "M6.9 earthquake \u2013 30 km ENE of Kuji, Japan",
       "peril": "Earthquake",
@@ -161,7 +161,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-28 11:20 UTC",
       "name": "M6.5 earthquake \u2013 34 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -175,7 +175,7 @@
     },
     "USGS-us7000spqc": {
       "intensity": "Magnitude 6; depth 25 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-24 21:31 UTC",
       "name": "M6 earthquake \u2013 33 km NW of Valpara\u00edso, Chile",
       "peril": "Earthquake",
@@ -189,7 +189,7 @@
     },
     "USGS-us7000spxm": {
       "intensity": "Magnitude 6.2; depth 243 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-08 02:59 UTC",
       "name": "M6.2 earthquake \u2013 23 km WSW of San Lucido, Italy",
       "peril": "Earthquake",
@@ -203,7 +203,7 @@
     },
     "USGS-us7000srb1": {
       "intensity": "Magnitude 7.8; depth 57.226 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-28 12:00 UTC",
       "name": "M7.8 earthquake \u2013 24 km SW of Kablalan, Philippines",
       "peril": "Earthquake",
@@ -217,7 +217,7 @@
     },
     "USGS-us7000srcg": {
       "intensity": "Magnitude 6.5; depth 75.065 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-18 05:07 UTC",
       "name": "M6.5 earthquake \u2013 18 km SW of Balangonan, Philippines",
       "peril": "Earthquake",
@@ -231,8 +231,8 @@
     },
     "USGS-us7000srjx": {
       "intensity": "Magnitude 6.1; depth 26 km",
-      "last_seen": "2026-06-30 17:16 UTC",
-      "latest_update": "2026-06-29 02:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
+      "latest_update": "2026-06-30 18:10 UTC",
       "name": "M6.1 earthquake \u2013 106 km WNW of Mantua, Cuba",
       "peril": "Earthquake",
       "region": "106 km WNW of Mantua, Cuba",
@@ -245,7 +245,7 @@
     },
     "USGS-us7000st95": {
       "intensity": "Magnitude 6.7; depth 10 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-24 03:20 UTC",
       "name": "M6.7 earthquake \u2013 43 km ESE of Palu, Indonesia",
       "peril": "Earthquake",
@@ -259,7 +259,7 @@
     },
     "USGS-us7000stbz": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-17 09:36 UTC",
       "name": "M6.3 earthquake \u2013 260 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -273,7 +273,7 @@
     },
     "USGS-us7000stti": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-19 17:01 UTC",
       "name": "M6.6 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -287,7 +287,7 @@
     },
     "USGS-us7000sui3": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-06-30 17:16 UTC",
+      "last_seen": "2026-06-30 19:06 UTC",
       "latest_update": "2026-06-20 07:30 UTC",
       "name": "M6.6 earthquake \u2013 133 km ESE of Petropavlovsk-Kamchatsky, Russia",
       "peril": "Earthquake",
@@ -301,6 +301,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-06-30 17:16 UTC",
+  "last_run": "2026-06-30 19:06 UTC",
   "schema_version": 4
 }
