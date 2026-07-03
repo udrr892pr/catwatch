@@ -119,21 +119,21 @@
     },
     "GDACS-tropical-cyclone-1001279": {
       "intensity": "From 01/07/2026 to 03/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 278 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Northern Mariana Islands, Guam (vuln\u2026",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-01 01:51 UTC",
-      "name": "Red notification for tropical cyclone BAVI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 50257 .",
+      "name": "Red notification for tropical cyclone BAVI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 47696 .",
       "peril": "Tropical Cyclone",
-      "region": "Red notification for tropical cyclone BAVI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 50257 .",
+      "region": "Red notification for tropical cyclone BAVI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 47696 .",
       "severity": "Red",
       "severity_rank": 5,
       "source": "GDACS",
       "tier": "P1",
       "tier_rank": 4,
-      "update_key": "GDACS | Red notification for tropical cyclone BAVI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 50257 . | Tropical Cyclone | Red | P1 | From 01/07/2026 to 03/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 278 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Northern Mariana Islands, Guam (vuln\u2026"
+      "update_key": "GDACS | Red notification for tropical cyclone BAVI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 47696 . | Tropical Cyclone | Red | P1 | From 01/07/2026 to 03/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 278 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Northern Mariana Islands, Guam (vuln\u2026"
     },
     "GDACS-tropical-cyclone-1001281": {
       "intensity": "From 01/07/2026 to 03/07/2026, a Tropical Storm (maximum wind speed of 83 km/h) MAYSAK-26 was active in NWPacific. The cyclone affects these countries: Viet Nam, China, Laos (vulnerability High). Est\u2026",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-01 21:07 UTC",
       "name": "Orange notification for tropical cyclone MAYSAK-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (16.374 million in Tropical Storm).",
       "peril": "Tropical Cyclone",
@@ -189,7 +189,7 @@
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-03 15:20 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
@@ -203,7 +203,7 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 20.294 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-02 19:04 UTC",
       "name": "M7.2 earthquake \u2013 23 km SE of Yumare, Venezuela",
       "peril": "Earthquake",
@@ -217,7 +217,7 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-03 16:37 UTC",
       "name": "M7.5 earthquake \u2013 28 km SE of Yumare, Venezuela",
       "peril": "Earthquake",
@@ -231,7 +231,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 50.923 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-06-26 17:59 UTC",
       "name": "M6.9 earthquake \u2013 30 km ENE of Kuji, Japan",
       "peril": "Earthquake",
@@ -245,7 +245,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-02 17:48 UTC",
       "name": "M6.5 earthquake \u2013 34 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -287,7 +287,7 @@
     },
     "USGS-us7000srb1": {
       "intensity": "Magnitude 7.8; depth 56.991 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-03 12:50 UTC",
       "name": "M7.8 earthquake \u2013 25 km SW of Kablalan, Philippines",
       "peril": "Earthquake",
@@ -301,7 +301,7 @@
     },
     "USGS-us7000srcg": {
       "intensity": "Magnitude 6.5; depth 75.065 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-06-18 05:07 UTC",
       "name": "M6.5 earthquake \u2013 18 km SW of Balangonan, Philippines",
       "peril": "Earthquake",
@@ -315,7 +315,7 @@
     },
     "USGS-us7000srjx": {
       "intensity": "Magnitude 6.1; depth 26 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-03 18:10 UTC",
       "name": "M6.1 earthquake \u2013 104 km WNW of Mantua, Cuba",
       "peril": "Earthquake",
@@ -329,7 +329,7 @@
     },
     "USGS-us7000st1c": {
       "intensity": "Magnitude 6.2; depth 111.922 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-02 17:24 UTC",
       "name": "M6.2 earthquake \u2013 67 km ESE of Pondaguitan, Philippines",
       "peril": "Earthquake",
@@ -343,7 +343,7 @@
     },
     "USGS-us7000st95": {
       "intensity": "Magnitude 6.7; depth 10 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-06-24 03:20 UTC",
       "name": "M6.7 earthquake \u2013 43 km ESE of Palu, Indonesia",
       "peril": "Earthquake",
@@ -357,7 +357,7 @@
     },
     "USGS-us7000stbz": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-06-17 09:36 UTC",
       "name": "M6.3 earthquake \u2013 260 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -371,7 +371,7 @@
     },
     "USGS-us7000stti": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-07-03 17:38 UTC",
       "name": "M6.6 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -385,7 +385,7 @@
     },
     "USGS-us7000sui3": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-03 19:46 UTC",
+      "last_seen": "2026-07-03 20:53 UTC",
       "latest_update": "2026-06-20 07:30 UTC",
       "name": "M6.6 earthquake \u2013 133 km ESE of Petropavlovsk-Kamchatsky, Russia",
       "peril": "Earthquake",
@@ -399,6 +399,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-07-03 19:46 UTC",
+  "last_run": "2026-07-03 20:53 UTC",
   "schema_version": 4
 }
