@@ -175,7 +175,7 @@
     },
     "GDACS-wildfire-1029489": {
       "intensity": "On 12/07/2026, a forest fire started in France, until 14/07/2026.",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-14 03:00 UTC",
       "name": "Orange forest fire notification in France",
       "peril": "Wildfire",
@@ -231,7 +231,7 @@
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-13 15:20 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
@@ -245,7 +245,7 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 27.588 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-13 23:18 UTC",
       "name": "M7.2 earthquake \u2013 21 km ENE of San Felipe, Venezuela",
       "peril": "Earthquake",
@@ -259,7 +259,7 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-14 04:29 UTC",
       "name": "M7.5 earthquake \u2013 20 km ESE of Yumare, Venezuela",
       "peril": "Earthquake",
@@ -273,7 +273,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 34 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-06 00:08 UTC",
       "name": "M6.9 earthquake \u2013 33 km ENE of Noda, Japan",
       "peril": "Earthquake",
@@ -287,7 +287,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-13 12:04 UTC",
       "name": "M6.5 earthquake \u2013 34 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -371,7 +371,7 @@
     },
     "USGS-us7000st1c": {
       "intensity": "Magnitude 6.2; depth 84 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-12 15:56 UTC",
       "name": "M6.2 earthquake \u2013 68 km ESE of Pondaguitan, Philippines",
       "peril": "Earthquake",
@@ -385,7 +385,7 @@
     },
     "USGS-us7000st95": {
       "intensity": "Magnitude 6.7; depth 11 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-10 03:06 UTC",
       "name": "M6.7 earthquake \u2013 42 km SE of Palu, Indonesia",
       "peril": "Earthquake",
@@ -399,7 +399,7 @@
     },
     "USGS-us7000stbz": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-06 07:33 UTC",
       "name": "M6.3 earthquake \u2013 262 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -413,7 +413,7 @@
     },
     "USGS-us7000stti": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-03 17:38 UTC",
       "name": "M6.6 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -427,7 +427,7 @@
     },
     "USGS-us7000sui3": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-14 09:42 UTC",
       "name": "M6.6 earthquake \u2013 148 km ESE of Petropavlovsk-Kamchatsky, Russia",
       "peril": "Earthquake",
@@ -441,7 +441,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-12 10:36 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -455,7 +455,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -469,7 +469,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-14 10:29 UTC",
+      "last_seen": "2026-07-14 11:55 UTC",
       "latest_update": "2026-07-13 16:54 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -483,6 +483,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-07-14 10:29 UTC",
+  "last_run": "2026-07-14 11:55 UTC",
   "schema_version": 4
 }
