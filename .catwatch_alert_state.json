@@ -118,10 +118,10 @@
       "update_key": "GDACS | Orange earthquake (Magnitude 5.3M, Depth:10km) in China 30/06/2026 23:44 UTC, 20 thousand in 100km. | Earthquake | Orange | P2 | On 6/30/2026 11:44:55 PM, an earthquake occurred in China potentially affecting 20 thousand in 100km. The earthquake had Magnitude 5.3M, Depth:10km."
     },
     "GDACS-earthquake-1552420": {
-      "intensity": "On 7/17/2026 2:48:39 PM, an earthquake occurred in Mexico potentially affecting 350 thousand (in MMI>=VII). The earthquake had Magnitude 7.3M, Depth:15.178km.",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "intensity": "On 7/17/2026 2:48:39 PM, an earthquake occurred in Mexico potentially affecting 100 thousand (in MMI>=VII). The earthquake had Magnitude 7.3M, Depth:18.584km.",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-17 14:58 UTC",
-      "name": "Orange earthquake (Magnitude 7.3M, Depth:15.178km) in Mexico 17/07/2026 14:48 UTC, 350 thousand (in MMI>=VII).",
+      "name": "Orange earthquake (Magnitude 7.3M, Depth:18.584km) in Mexico 17/07/2026 14:48 UTC, 100 thousand (in MMI>=VII).",
       "peril": "Earthquake",
       "region": "Mexico",
       "severity": "Orange",
@@ -129,7 +129,7 @@
       "source": "GDACS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "GDACS | Orange earthquake (Magnitude 7.3M, Depth:15.178km) in Mexico 17/07/2026 14:48 UTC, 350 thousand (in MMI>=VII). | Earthquake | Orange | P2 | On 7/17/2026 2:48:39 PM, an earthquake occurred in Mexico potentially affecting 350 thousand (in MMI>=VII). The earthquake had Magnitude 7.3M, Depth:15.178km."
+      "update_key": "GDACS | Orange earthquake (Magnitude 7.3M, Depth:18.584km) in Mexico 17/07/2026 14:48 UTC, 100 thousand (in MMI>=VII). | Earthquake | Orange | P2 | On 7/17/2026 2:48:39 PM, an earthquake occurred in Mexico potentially affecting 100 thousand (in MMI>=VII). The earthquake had Magnitude 7.3M, Depth:18.584km."
     },
     "GDACS-tropical-cyclone-1001279": {
       "intensity": "From 01/07/2026 to 07/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Guam, Northern Mariana Islands, Japa\u2026",
@@ -203,7 +203,7 @@
     },
     "GDACS-wildfire-1029489": {
       "intensity": "On 12/07/2026, a forest fire started in France, until 14/07/2026.",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-14 03:00 UTC",
       "name": "Orange forest fire notification in France",
       "peril": "Wildfire",
@@ -273,7 +273,7 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Elida": {
       "intensity": "Tropical Storm; Wind 65 mph; Pressure 994 mb; Movement WNW at 10 mph",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-17 14:37 UTC",
       "name": "Tropical Storm Elida",
       "peril": "Tropical Cyclone",
@@ -287,7 +287,7 @@
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-16 15:20 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
@@ -301,7 +301,7 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 27.588 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-13 23:18 UTC",
       "name": "M7.2 earthquake \u2013 21 km ENE of San Felipe, Venezuela",
       "peril": "Earthquake",
@@ -315,8 +315,8 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-07-17 16:08 UTC",
-      "latest_update": "2026-07-17 15:59 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
+      "latest_update": "2026-07-17 16:24 UTC",
       "name": "M7.5 earthquake \u2013 20 km ESE of Yumare, Venezuela",
       "peril": "Earthquake",
       "region": "20 km ESE of Yumare, Venezuela",
@@ -329,7 +329,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 34 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-06 00:08 UTC",
       "name": "M6.9 earthquake \u2013 33 km ENE of Noda, Japan",
       "peril": "Earthquake",
@@ -343,7 +343,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-15 04:23 UTC",
       "name": "M6.5 earthquake \u2013 34 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -469,7 +469,7 @@
     },
     "USGS-us7000stti": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-03 17:38 UTC",
       "name": "M6.6 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -483,7 +483,7 @@
     },
     "USGS-us7000sui3": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-14 09:42 UTC",
       "name": "M6.6 earthquake \u2013 148 km ESE of Petropavlovsk-Kamchatsky, Russia",
       "peril": "Earthquake",
@@ -497,7 +497,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-12 10:36 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -511,7 +511,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -525,7 +525,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-14 14:57 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -539,7 +539,7 @@
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 46.427 km",
-      "last_seen": "2026-07-17 16:08 UTC",
+      "last_seen": "2026-07-17 17:22 UTC",
       "latest_update": "2026-07-16 18:27 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -552,21 +552,21 @@
       "update_key": "USGS | M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines | Earthquake | Amber | P2 | Magnitude 6.2; depth 46.427 km"
     },
     "USGS-us7000t1bu": {
-      "intensity": "Magnitude 7.3; depth 15.178 km",
-      "last_seen": "2026-07-17 16:08 UTC",
-      "latest_update": "2026-07-17 16:04 UTC",
-      "name": "M7.3 earthquake \u2013 48 km SW of Aquiles Serd\u00e1n, Mexico",
+      "intensity": "Magnitude 7.3; depth 18.584 km",
+      "last_seen": "2026-07-17 17:22 UTC",
+      "latest_update": "2026-07-17 17:18 UTC",
+      "name": "M7.3 earthquake \u2013 58 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
-      "region": "48 km SW of Aquiles Serd\u00e1n, Mexico",
+      "region": "58 km WSW of Puerto Madero, Mexico",
       "severity": "Red",
       "severity_rank": 5,
       "source": "USGS",
       "tier": "P1",
       "tier_rank": 4,
-      "update_key": "USGS | M7.3 earthquake \u2013 48 km SW of Aquiles Serd\u00e1n, Mexico | Earthquake | Red | P1 | Magnitude 7.3; depth 15.178 km"
+      "update_key": "USGS | M7.3 earthquake \u2013 58 km WSW of Puerto Madero, Mexico | Earthquake | Red | P1 | Magnitude 7.3; depth 18.584 km"
     }
   },
   "initialized": true,
-  "last_run": "2026-07-17 16:08 UTC",
+  "last_run": "2026-07-17 17:22 UTC",
   "schema_version": 4
 }
