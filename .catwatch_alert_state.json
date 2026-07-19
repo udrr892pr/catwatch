@@ -133,7 +133,7 @@
     },
     "GDACS-earthquake-1552752": {
       "intensity": "On 7/19/2026 2:24:36 AM, an earthquake occurred in Peru potentially affecting 30 thousand (in MMI>=VII). The earthquake had Magnitude 5.5M, Depth:10km.",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-19 02:42 UTC",
       "name": "Orange earthquake (Magnitude 5.5M, Depth:10km) in Peru 19/07/2026 02:24 UTC, 30 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -273,7 +273,7 @@
     },
     "NHC-Eastern Pacific-Tropical Depression Six-E": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement WNW at 14 mph",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-19 08:34 UTC",
       "name": "Tropical Depression Six-E",
       "peril": "Tropical Cyclone",
@@ -301,7 +301,7 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Elida": {
       "intensity": "Tropical Storm; Wind 60 mph; Pressure 996 mb; Movement NNW at 13 mph",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-19 08:31 UTC",
       "name": "Tropical Storm Elida",
       "peril": "Tropical Cyclone",
@@ -315,7 +315,7 @@
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-16 15:20 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
@@ -329,7 +329,7 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 27.588 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-13 23:18 UTC",
       "name": "M7.2 earthquake \u2013 21 km ENE of San Felipe, Venezuela",
       "peril": "Earthquake",
@@ -343,7 +343,7 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-18 03:17 UTC",
       "name": "M7.5 earthquake \u2013 20 km ESE of Yumare, Venezuela",
       "peril": "Earthquake",
@@ -357,7 +357,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 34 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-06 00:08 UTC",
       "name": "M6.9 earthquake \u2013 33 km ENE of Noda, Japan",
       "peril": "Earthquake",
@@ -371,7 +371,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-15 04:23 UTC",
       "name": "M6.5 earthquake \u2013 34 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -525,7 +525,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-12 10:36 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -539,7 +539,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -553,7 +553,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-14 14:57 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -567,7 +567,7 @@
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 46.427 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-16 18:27 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -581,7 +581,7 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 18.584 km",
-      "last_seen": "2026-07-19 10:13 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
       "latest_update": "2026-07-19 04:27 UTC",
       "name": "M7.3 earthquake \u2013 58 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -595,8 +595,8 @@
     },
     "USGS-us7000t1q7": {
       "intensity": "Magnitude 5.5; depth 10 km",
-      "last_seen": "2026-07-19 10:13 UTC",
-      "latest_update": "2026-07-19 04:32 UTC",
+      "last_seen": "2026-07-19 11:29 UTC",
+      "latest_update": "2026-07-19 10:35 UTC",
       "name": "M5.5 earthquake \u2013 2 km WSW of Sicaya, Peru",
       "peril": "Earthquake",
       "region": "2 km WSW of Sicaya, Peru",
@@ -609,6 +609,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-07-19 10:13 UTC",
+  "last_run": "2026-07-19 11:29 UTC",
   "schema_version": 4
 }
