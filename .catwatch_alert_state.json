@@ -131,6 +131,20 @@
       "tier_rank": 3,
       "update_key": "GDACS | Orange earthquake (Magnitude 7.3M, Depth:18.584km) in Mexico 17/07/2026 14:48 UTC, 100 thousand (in MMI>=VII). | Earthquake | Orange | P2 | On 7/17/2026 2:48:39 PM, an earthquake occurred in Mexico potentially affecting 100 thousand (in MMI>=VII). The earthquake had Magnitude 7.3M, Depth:18.584km."
     },
+    "GDACS-earthquake-1552752": {
+      "intensity": "On 7/19/2026 2:24:36 AM, an earthquake occurred in Peru potentially affecting 20 thousand (in MMI>=VII). The earthquake had Magnitude 5.5M, Depth:10km.",
+      "last_seen": "2026-07-19 03:49 UTC",
+      "latest_update": "2026-07-19 02:42 UTC",
+      "name": "Orange earthquake (Magnitude 5.5M, Depth:10km) in Peru 19/07/2026 02:24 UTC, 20 thousand (in MMI>=VII).",
+      "peril": "Earthquake",
+      "region": "Peru",
+      "severity": "Orange",
+      "severity_rank": 4,
+      "source": "GDACS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "GDACS | Orange earthquake (Magnitude 5.5M, Depth:10km) in Peru 19/07/2026 02:24 UTC, 20 thousand (in MMI>=VII). | Earthquake | Orange | P2 | On 7/19/2026 2:24:36 AM, an earthquake occurred in Peru potentially affecting 20 thousand (in MMI>=VII). The earthquake had Magnitude 5.5M, Depth:10km."
+    },
     "GDACS-tropical-cyclone-1001279": {
       "intensity": "From 01/07/2026 to 07/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Guam, Northern Mariana Islands, Japa\u2026",
       "last_seen": "2026-07-07 22:51 UTC",
@@ -257,6 +271,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Depression Four-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement N at 6 mph"
     },
+    "NHC-Eastern Pacific-Tropical Depression Six-E": {
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1008 mb; Movement WNW at 12 mph",
+      "last_seen": "2026-07-19 03:49 UTC",
+      "latest_update": "2026-07-19 02:33 UTC",
+      "name": "Tropical Depression Six-E",
+      "peril": "Tropical Cyclone",
+      "region": "Eastern Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Depression Six-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1008 mb; Movement WNW at 12 mph"
+    },
     "NHC-Eastern Pacific-Tropical Storm Douglas": {
       "intensity": "Tropical Storm; Wind 40 mph; Pressure 1003 mb; Movement NNW at 7 mph",
       "last_seen": "2026-07-03 08:26 UTC",
@@ -272,9 +300,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Douglas | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1003 mb; Movement NNW at 7 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Elida": {
-      "intensity": "Tropical Storm; Wind 70 mph; Pressure 990 mb; Movement NNW at 12 mph",
-      "last_seen": "2026-07-19 00:07 UTC",
-      "latest_update": "2026-07-18 20:34 UTC",
+      "intensity": "Tropical Storm; Wind 65 mph; Pressure 993 mb; Movement NNW at 13 mph",
+      "last_seen": "2026-07-19 03:49 UTC",
+      "latest_update": "2026-07-19 02:32 UTC",
       "name": "Tropical Storm Elida",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -283,11 +311,11 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Elida | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 70 mph; Pressure 990 mb; Movement NNW at 12 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Elida | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 65 mph; Pressure 993 mb; Movement NNW at 13 mph"
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-16 15:20 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
@@ -301,7 +329,7 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 27.588 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-13 23:18 UTC",
       "name": "M7.2 earthquake \u2013 21 km ENE of San Felipe, Venezuela",
       "peril": "Earthquake",
@@ -315,7 +343,7 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-18 03:17 UTC",
       "name": "M7.5 earthquake \u2013 20 km ESE of Yumare, Venezuela",
       "peril": "Earthquake",
@@ -329,7 +357,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 34 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-06 00:08 UTC",
       "name": "M6.9 earthquake \u2013 33 km ENE of Noda, Japan",
       "peril": "Earthquake",
@@ -343,7 +371,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-15 04:23 UTC",
       "name": "M6.5 earthquake \u2013 34 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -483,7 +511,7 @@
     },
     "USGS-us7000sui3": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-14 09:42 UTC",
       "name": "M6.6 earthquake \u2013 148 km ESE of Petropavlovsk-Kamchatsky, Russia",
       "peril": "Earthquake",
@@ -497,7 +525,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-12 10:36 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -511,7 +539,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -525,7 +553,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-14 14:57 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -539,7 +567,7 @@
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 46.427 km",
-      "last_seen": "2026-07-19 00:07 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
       "latest_update": "2026-07-16 18:27 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -553,8 +581,8 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 18.584 km",
-      "last_seen": "2026-07-19 00:07 UTC",
-      "latest_update": "2026-07-18 22:02 UTC",
+      "last_seen": "2026-07-19 03:49 UTC",
+      "latest_update": "2026-07-19 03:23 UTC",
       "name": "M7.3 earthquake \u2013 58 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
       "region": "58 km WSW of Puerto Madero, Mexico",
@@ -564,9 +592,23 @@
       "tier": "P1",
       "tier_rank": 4,
       "update_key": "USGS | M7.3 earthquake \u2013 58 km WSW of Puerto Madero, Mexico | Earthquake | Red | P1 | Magnitude 7.3; depth 18.584 km"
+    },
+    "USGS-us7000t1q7": {
+      "intensity": "Magnitude 5.5; depth 10 km",
+      "last_seen": "2026-07-19 03:49 UTC",
+      "latest_update": "2026-07-19 03:34 UTC",
+      "name": "M5.5 earthquake \u2013 2 km WSW of Sicaya, Peru",
+      "peril": "Earthquake",
+      "region": "2 km WSW of Sicaya, Peru",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "USGS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "USGS | M5.5 earthquake \u2013 2 km WSW of Sicaya, Peru | Earthquake | Amber | P2 | Magnitude 5.5; depth 10 km"
     }
   },
   "initialized": true,
-  "last_run": "2026-07-19 00:07 UTC",
+  "last_run": "2026-07-19 03:49 UTC",
   "schema_version": 4
 }
