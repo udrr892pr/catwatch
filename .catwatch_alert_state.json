@@ -133,7 +133,7 @@
     },
     "GDACS-earthquake-1552752": {
       "intensity": "On 7/19/2026 2:24:35 AM, an earthquake occurred in Peru potentially affecting 240 thousand (in MMI>=VII). The earthquake had Magnitude 5.5M, Depth:10km.",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-19 02:42 UTC",
       "name": "Orange earthquake (Magnitude 5.5M, Depth:10km) in Peru 19/07/2026 02:24 UTC, 240 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -175,17 +175,17 @@
     },
     "GDACS-tropical-cyclone-1001294": {
       "intensity": "From 23/07/2026 to 23/07/2026, a Tropical Depression (maximum wind speed of 139 km/h) ELEVEN-26 was active in NWPacific. The cyclone affects these countries: China (vulnerability Medium). Estimated p\u2026",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-23 08:39 UTC",
-      "name": "Orange notification for tropical cyclone ELEVEN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 17.242 million .",
+      "name": "Orange notification for tropical cyclone ELEVEN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 23.59 million .",
       "peril": "Tropical Cyclone",
-      "region": "Orange notification for tropical cyclone ELEVEN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 17.242 million .",
+      "region": "Orange notification for tropical cyclone ELEVEN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 23.59 million .",
       "severity": "Orange",
       "severity_rank": 4,
       "source": "GDACS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "GDACS | Orange notification for tropical cyclone ELEVEN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 17.242 million . | Tropical Cyclone | Orange | P2 | From 23/07/2026 to 23/07/2026, a Tropical Depression (maximum wind speed of 139 km/h) ELEVEN-26 was active in NWPacific. The cyclone affects these countries: China (vulnerability Medium). Estimated p\u2026"
+      "update_key": "GDACS | Orange notification for tropical cyclone ELEVEN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 23.59 million . | Tropical Cyclone | Orange | P2 | From 23/07/2026 to 23/07/2026, a Tropical Depression (maximum wind speed of 139 km/h) ELEVEN-26 was active in NWPacific. The cyclone affects these countries: China (vulnerability Medium). Estimated p\u2026"
     },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
@@ -258,9 +258,9 @@
       "update_key": "NOAA/NHC | Tropical Depression Two | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement NW at 3 mph"
     },
     "NHC-Atlantic-Tropical Storm Bertha": {
-      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement W at 13 mph",
-      "last_seen": "2026-07-23 13:11 UTC",
-      "latest_update": "2026-07-23 11:47 UTC",
+      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1004 mb; Movement W at 10 mph",
+      "last_seen": "2026-07-23 15:23 UTC",
+      "latest_update": "2026-07-23 14:37 UTC",
       "name": "Tropical Storm Bertha",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -269,12 +269,12 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Bertha | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement W at 13 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Bertha | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1004 mb; Movement W at 10 mph"
     },
     "NHC-Eastern Pacific-Hurricane Fausto": {
-      "intensity": "Hurricane; Wind 80 mph; Pressure 982 mb; Movement WNW at 12 mph",
-      "last_seen": "2026-07-23 13:11 UTC",
-      "latest_update": "2026-07-23 08:34 UTC",
+      "intensity": "Hurricane; Wind 80 mph; Pressure 982 mb; Movement W at 13 mph",
+      "last_seen": "2026-07-23 15:23 UTC",
+      "latest_update": "2026-07-23 14:43 UTC",
       "name": "Hurricane Fausto",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -283,7 +283,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Fausto | Tropical Cyclone | Orange | P2 | Hurricane; Wind 80 mph; Pressure 982 mb; Movement WNW at 12 mph"
+      "update_key": "NOAA/NHC | Hurricane Fausto | Tropical Cyclone | Orange | P2 | Hurricane; Wind 80 mph; Pressure 982 mb; Movement W at 13 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -399,7 +399,7 @@
     },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-22 15:20 UTC",
       "name": "M5.59 earthquake \u2013 11 km N of Redwood Valley, CA",
       "peril": "Earthquake",
@@ -413,7 +413,7 @@
     },
     "USGS-us6000t7zc": {
       "intensity": "Magnitude 7.2; depth 27.588 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-13 23:18 UTC",
       "name": "M7.2 earthquake \u2013 21 km ENE of San Felipe, Venezuela",
       "peril": "Earthquake",
@@ -427,7 +427,7 @@
     },
     "USGS-us6000t7zp": {
       "intensity": "Magnitude 7.5; depth 10 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-23 00:18 UTC",
       "name": "M7.5 earthquake \u2013 20 km ESE of Yumare, Venezuela",
       "peril": "Earthquake",
@@ -441,7 +441,7 @@
     },
     "USGS-us6000t7zq": {
       "intensity": "Magnitude 6.9; depth 34 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-06 00:08 UTC",
       "name": "M6.9 earthquake \u2013 33 km ENE of Noda, Japan",
       "peril": "Earthquake",
@@ -455,7 +455,7 @@
     },
     "USGS-us6000t8ec": {
       "intensity": "Magnitude 6.5; depth 42 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-21 12:39 UTC",
       "name": "M6.5 earthquake \u2013 44 km SW of Balangonan, Philippines",
       "peril": "Earthquake",
@@ -609,7 +609,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-12 10:36 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -623,7 +623,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -636,9 +636,9 @@
       "update_key": "USGS | M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea | Earthquake | Amber | P2 | Magnitude 6.4; depth 10 km"
     },
     "USGS-us7000t01n": {
-      "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-07-23 13:11 UTC",
-      "latest_update": "2026-07-14 14:57 UTC",
+      "intensity": "Magnitude 6.3; depth 16 km",
+      "last_seen": "2026-07-23 15:23 UTC",
+      "latest_update": "2026-07-23 15:21 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
       "region": "southeast of the Loyalty Islands",
@@ -647,11 +647,11 @@
       "source": "USGS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "USGS | M6.3 earthquake \u2013 southeast of the Loyalty Islands | Earthquake | Amber | P2 | Magnitude 6.3; depth 10 km"
+      "update_key": "USGS | M6.3 earthquake \u2013 southeast of the Loyalty Islands | Earthquake | Amber | P2 | Magnitude 6.3; depth 16 km"
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 46.427 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-23 12:26 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -665,7 +665,7 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 18.584 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-19 15:02 UTC",
       "name": "M7.3 earthquake \u2013 58 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -679,7 +679,7 @@
     },
     "USGS-us7000t1cc": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-20 14:14 UTC",
       "name": "M6.4 earthquake \u2013 86 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -693,7 +693,7 @@
     },
     "USGS-us7000t1q7": {
       "intensity": "Magnitude 5.5; depth 10 km",
-      "last_seen": "2026-07-23 13:11 UTC",
+      "last_seen": "2026-07-23 15:23 UTC",
       "latest_update": "2026-07-21 21:07 UTC",
       "name": "M5.5 earthquake \u2013 4 km SSW of Chupaca, Peru",
       "peril": "Earthquake",
@@ -707,6 +707,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-07-23 13:11 UTC",
+  "last_run": "2026-07-23 15:23 UTC",
   "schema_version": 4
 }
