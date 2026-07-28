@@ -147,7 +147,7 @@
     },
     "GDACS-earthquake-1554510": {
       "intensity": "On 7/28/2026 3:16:08 AM, an earthquake occurred in China potentially affecting 6 thousand (in MMI>=VII). The earthquake had Magnitude 5.7M, Depth:10km.",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-28 03:32 UTC",
       "name": "Orange earthquake (Magnitude 5.7M, Depth:10km) in China 28/07/2026 03:16 UTC, 6 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -161,7 +161,7 @@
     },
     "GDACS-earthquake-1554511": {
       "intensity": "On 7/28/2026 3:34:05 AM, an earthquake occurred in China potentially affecting 2 thousand (in MMI>=VII). The earthquake had Magnitude 5.8M, Depth:10km.",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-28 03:50 UTC",
       "name": "Orange earthquake (Magnitude 5.8M, Depth:10km) in China 28/07/2026 03:34 UTC, 2 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -203,7 +203,7 @@
     },
     "GDACS-tropical-cyclone-1001294": {
       "intensity": "From 23/07/2026 to 26/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 157 km/h) NOUL-26 was active in NWPacific. The cyclone affects these countries: China, Philippines (vulnerability Me\u2026",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-23 08:39 UTC",
       "name": "Orange notification for tropical cyclone NOUL-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 11.891 million .",
       "peril": "Tropical Cyclone",
@@ -273,7 +273,7 @@
     },
     "GDACS-wildfire-1029794": {
       "intensity": "On 25/07/2026, a forest fire started in Spain, until 27/07/2026.",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-26 07:00 UTC",
       "name": "Orange forest fire notification in Spain",
       "peril": "Wildfire",
@@ -357,7 +357,7 @@
     },
     "NHC-Central Pacific-Tropical Storm Fausto": {
       "intensity": "Tropical Storm; Wind 60 mph; Pressure 1004 mb; Movement W at 14 mph",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-28 14:34 UTC",
       "name": "Tropical Storm Fausto",
       "peril": "Tropical Cyclone",
@@ -385,7 +385,7 @@
     },
     "NHC-Eastern Pacific-Hurricane Genevieve": {
       "intensity": "Hurricane; Wind 125 mph; Pressure 950 mb; Movement WNW at 9 mph",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-28 14:35 UTC",
       "name": "Hurricane Genevieve",
       "peril": "Tropical Cyclone",
@@ -609,7 +609,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-28 05:24 UTC",
       "name": "M5.7 earthquake \u2013 192 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -623,7 +623,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-28 14:58 UTC",
       "name": "M5.8 earthquake \u2013 191 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -637,8 +637,8 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-07-28 15:52 UTC",
-      "latest_update": "2026-07-28 15:30 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
+      "latest_update": "2026-07-28 17:09 UTC",
       "name": "M6.8 earthquake \u2013 5 km E of Uto, Japan",
       "peril": "Earthquake",
       "region": "5 km E of Uto, Japan",
@@ -791,7 +791,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-25 11:14 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -805,7 +805,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -819,7 +819,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-23 15:31 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -833,7 +833,7 @@
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 46.427 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-24 03:53 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -847,7 +847,7 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 22 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-27 19:02 UTC",
       "name": "M7.3 earthquake \u2013 52 km W of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -861,7 +861,7 @@
     },
     "USGS-us7000t1cc": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-20 14:14 UTC",
       "name": "M6.4 earthquake \u2013 86 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -875,7 +875,7 @@
     },
     "USGS-us7000t1q7": {
       "intensity": "Magnitude 5.5; depth 10 km",
-      "last_seen": "2026-07-28 15:52 UTC",
+      "last_seen": "2026-07-28 17:18 UTC",
       "latest_update": "2026-07-21 21:07 UTC",
       "name": "M5.5 earthquake \u2013 4 km SSW of Chupaca, Peru",
       "peril": "Earthquake",
@@ -889,6 +889,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-07-28 15:52 UTC",
+  "last_run": "2026-07-28 17:18 UTC",
   "schema_version": 4
 }
