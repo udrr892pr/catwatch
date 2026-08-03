@@ -679,7 +679,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-29 03:24 UTC",
       "name": "M5.7 earthquake \u2013 192 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -693,7 +693,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-29 03:42 UTC",
       "name": "M5.8 earthquake \u2013 191 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -707,17 +707,17 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-03 16:02 UTC",
-      "latest_update": "2026-08-01 21:29 UTC",
-      "name": "M6.8 earthquake \u2013 2026 Uto, Japan Earthquake\u00a0",
+      "last_seen": "2026-08-03 18:02 UTC",
+      "latest_update": "2026-08-03 17:26 UTC",
+      "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
-      "region": "2026 Uto, Japan Earthquake\u00a0",
+      "region": "The 2026 Kumamoto Region, Japan Earthquake",
       "severity": "Red",
       "severity_rank": 5,
       "source": "USGS",
       "tier": "P1",
       "tier_rank": 4,
-      "update_key": "USGS | M6.8 earthquake \u2013 2026 Uto, Japan Earthquake\u00a0 | Earthquake | Red | P1 | Magnitude 6.8; depth 10 km"
+      "update_key": "USGS | M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake | Earthquake | Red | P1 | Magnitude 6.8; depth 10 km"
     },
     "USGS-us7000spqc": {
       "intensity": "Magnitude 6; depth 25 km",
@@ -861,7 +861,7 @@
     },
     "USGS-us7000szpb": {
       "intensity": "Magnitude 6.4; depth 26 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-25 11:14 UTC",
       "name": "M6.4 earthquake \u2013 South Sandwich Islands region",
       "peril": "Earthquake",
@@ -875,7 +875,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-14 10:00 UTC",
       "name": "M6.4 earthquake \u2013 191 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -889,7 +889,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-23 15:31 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -903,7 +903,7 @@
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 46.427 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-08-03 14:41 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -917,7 +917,7 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 22 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-27 19:02 UTC",
       "name": "M7.3 earthquake \u2013 52 km W of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -931,7 +931,7 @@
     },
     "USGS-us7000t1cc": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-31 19:19 UTC",
       "name": "M6.4 earthquake \u2013 101 km WSW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -945,7 +945,7 @@
     },
     "USGS-us7000t1q7": {
       "intensity": "Magnitude 5.5; depth 10 km",
-      "last_seen": "2026-08-03 16:02 UTC",
+      "last_seen": "2026-08-03 18:02 UTC",
       "latest_update": "2026-07-21 21:07 UTC",
       "name": "M5.5 earthquake \u2013 4 km SSW of Chupaca, Peru",
       "peril": "Earthquake",
@@ -959,6 +959,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-03 16:02 UTC",
+  "last_run": "2026-08-03 18:02 UTC",
   "schema_version": 4
 }
