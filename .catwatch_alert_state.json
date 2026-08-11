@@ -203,7 +203,7 @@
     },
     "GDACS-earthquake-1557236": {
       "intensity": "On 8/10/2026 12:34:28 PM, an earthquake occurred in Colombia potentially affecting 5.2 million (in MMI>=VII). The earthquake had Magnitude 7.4M, Depth:110.285km.",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-10 12:50 UTC",
       "name": "Red earthquake (Magnitude 7.4M, Depth:110.285km) in Colombia 10/08/2026 12:34 UTC, 5.2 million (in MMI>=VII).",
       "peril": "Earthquake",
@@ -679,7 +679,7 @@
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-11 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -763,7 +763,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-04 23:59 UTC",
       "name": "M5.7 earthquake \u2013 199 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -777,7 +777,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-04 05:28 UTC",
       "name": "M5.8 earthquake \u2013 194 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -791,7 +791,7 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-07 20:14 UTC",
       "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
@@ -805,7 +805,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-11 10:02 UTC",
       "name": "M6.3 earthquake \u2013 32 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -819,7 +819,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 226.084 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-06 07:51 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -833,8 +833,8 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-11 22:02 UTC",
-      "latest_update": "2026-08-11 21:30 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
+      "latest_update": "2026-08-11 22:57 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
       "region": "5 km S of San Jos\u00e9 del Palmar, Colombia",
@@ -1001,7 +1001,7 @@
     },
     "USGS-us7000szzy": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-04 12:20 UTC",
       "name": "M6.4 earthquake \u2013 196 km SE of Lorengau, Papua New Guinea",
       "peril": "Earthquake",
@@ -1015,7 +1015,7 @@
     },
     "USGS-us7000t01n": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-07-23 15:31 UTC",
       "name": "M6.3 earthquake \u2013 southeast of the Loyalty Islands",
       "peril": "Earthquake",
@@ -1029,7 +1029,7 @@
     },
     "USGS-us7000t0d0": {
       "intensity": "Magnitude 6.2; depth 47.171 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-07 16:41 UTC",
       "name": "M6.2 earthquake \u2013 32 km WSW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -1043,7 +1043,7 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 22 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-10 21:33 UTC",
       "name": "M7.3 earthquake \u2013 52 km W of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -1057,7 +1057,7 @@
     },
     "USGS-us7000t1cc": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-09 15:42 UTC",
       "name": "M6.4 earthquake \u2013 96 km SW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -1071,7 +1071,7 @@
     },
     "USGS-us7000t1q7": {
       "intensity": "Magnitude 5.5; depth 10 km",
-      "last_seen": "2026-08-11 22:02 UTC",
+      "last_seen": "2026-08-11 23:00 UTC",
       "latest_update": "2026-08-09 07:00 UTC",
       "name": "M5.5 earthquake \u2013 4 km SSW of Chupaca, Peru",
       "peril": "Earthquake",
@@ -1085,6 +1085,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-11 22:02 UTC",
+  "last_run": "2026-08-11 23:00 UTC",
   "schema_version": 4
 }
