@@ -217,7 +217,7 @@
     },
     "GDACS-earthquake-1558059": {
       "intensity": "On 8/14/2026 9:58:21 PM, an earthquake occurred in Indonesia potentially affecting 1.7 million (in MMI>=VII). The earthquake had Magnitude 7.7M, Depth:10km.",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-14 22:21 UTC",
       "name": "Red earthquake (Magnitude 7.7M, Depth:10km) in Indonesia 14/08/2026 21:58 UTC, 1.7 million (in MMI>=VII).",
       "peril": "Earthquake",
@@ -567,7 +567,7 @@
     },
     "NHC-Central Pacific-Tropical Storm Lala": {
       "intensity": "Tropical Storm; Wind 65 mph; Pressure 991 mb; Movement WNW at 13 mph",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-15 05:54 UTC",
       "name": "Tropical Storm Lala",
       "peril": "Tropical Cyclone",
@@ -693,7 +693,7 @@
     },
     "NHC-Eastern Pacific-Tropical Depression Hernan": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement W at 14 mph",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-15 02:33 UTC",
       "name": "Tropical Depression Hernan",
       "peril": "Tropical Cyclone",
@@ -805,7 +805,7 @@
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-15 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -889,7 +889,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-04 23:59 UTC",
       "name": "M5.7 earthquake \u2013 199 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -903,7 +903,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-04 05:28 UTC",
       "name": "M5.8 earthquake \u2013 194 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -917,7 +917,7 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-14 08:28 UTC",
       "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
@@ -931,7 +931,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-11 10:02 UTC",
       "name": "M6.3 earthquake \u2013 32 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -945,7 +945,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 226.084 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-06 07:51 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -959,7 +959,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-15 06:34 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -973,7 +973,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.7; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-15 07:03 UTC",
       "name": "M7.7 earthquake \u2013 68 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1183,7 +1183,7 @@
     },
     "USGS-us7000t1bu": {
       "intensity": "Magnitude 7.3; depth 22 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-12 05:33 UTC",
       "name": "M7.3 earthquake \u2013 52 km W of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -1197,7 +1197,7 @@
     },
     "USGS-us7000t1cc": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-09 15:42 UTC",
       "name": "M6.4 earthquake \u2013 96 km SW of Puerto Madero, Mexico",
       "peril": "Earthquake",
@@ -1211,7 +1211,7 @@
     },
     "USGS-us7000t1q7": {
       "intensity": "Magnitude 5.5; depth 10 km",
-      "last_seen": "2026-08-15 07:41 UTC",
+      "last_seen": "2026-08-15 07:58 UTC",
       "latest_update": "2026-08-11 23:49 UTC",
       "name": "M5.5 earthquake \u2013 5 km S of Chambara, Peru",
       "peril": "Earthquake",
@@ -1225,6 +1225,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-15 07:41 UTC",
+  "last_run": "2026-08-15 07:58 UTC",
   "schema_version": 4
 }
