@@ -217,7 +217,7 @@
     },
     "GDACS-earthquake-1558059": {
       "intensity": "On 8/14/2026 9:58:21 PM, an earthquake occurred in Indonesia potentially affecting 870 thousand (in MMI>=VII). The earthquake had Magnitude 7.7M, Depth:10km.",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-14 22:21 UTC",
       "name": "Red earthquake (Magnitude 7.7M, Depth:10km) in Indonesia 14/08/2026 21:58 UTC, 870 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -595,7 +595,7 @@
     },
     "NHC-Central Pacific-Tropical Storm Lala": {
       "intensity": "Tropical Storm; Wind 70 mph; Pressure 991 mb; Movement W at 12 mph",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-18 02:48 UTC",
       "name": "Tropical Storm Lala",
       "peril": "Tropical Cyclone",
@@ -847,8 +847,8 @@
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-18 04:31 UTC",
-      "latest_update": "2026-08-17 05:00 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
+      "latest_update": "2026-08-18 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
       "region": "57 km WNW of Skwentna, Alaska",
@@ -931,7 +931,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-04 23:59 UTC",
       "name": "M5.7 earthquake \u2013 199 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -945,7 +945,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-04 05:28 UTC",
       "name": "M5.8 earthquake \u2013 194 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -959,8 +959,8 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-18 04:31 UTC",
-      "latest_update": "2026-08-14 08:28 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
+      "latest_update": "2026-08-18 05:00 UTC",
       "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
       "region": "The 2026 Kumamoto Region, Japan Earthquake",
@@ -973,7 +973,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-11 10:02 UTC",
       "name": "M6.3 earthquake \u2013 32 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -987,7 +987,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 226.084 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-06 07:51 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -1001,7 +1001,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-17 23:33 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1015,7 +1015,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.7; depth 10 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-17 22:29 UTC",
       "name": "M7.7 earthquake \u2013 68 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1029,7 +1029,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 172.526 km",
-      "last_seen": "2026-08-18 04:31 UTC",
+      "last_seen": "2026-08-18 05:06 UTC",
       "latest_update": "2026-08-16 11:01 UTC",
       "name": "M6.9 earthquake \u2013 15 km NNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1281,6 +1281,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-18 04:31 UTC",
+  "last_run": "2026-08-18 05:06 UTC",
   "schema_version": 4
 }
