@@ -285,6 +285,20 @@
       "tier_rank": 3,
       "update_key": "GDACS | Orange notification for tropical cyclone NOUL-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 11.891 million . | Tropical Cyclone | Orange | P2 | From 23/07/2026 to 26/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 157 km/h) NOUL-26 was active in NWPacific. The cyclone affects these countries: China, Philippines (vulnerability Me\u2026"
     },
+    "GDACS-tropical-cyclone-1001305": {
+      "intensity": "From 18/08/2026 to 21/08/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 231 km/h) SAUDEL-26 was active in NWPacific. The cyclone affects these countries: Northern Mariana Islands, Japan (v\u2026",
+      "last_seen": "2026-08-21 15:00 UTC",
+      "latest_update": "2026-08-18 13:37 UTC",
+      "name": "Orange notification for tropical cyclone SAUDEL-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 1.315 million .",
+      "peril": "Tropical Cyclone",
+      "region": "Orange notification for tropical cyclone SAUDEL-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 1.315 million .",
+      "severity": "Orange",
+      "severity_rank": 4,
+      "source": "GDACS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "GDACS | Orange notification for tropical cyclone SAUDEL-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 1.315 million . | Tropical Cyclone | Orange | P2 | From 18/08/2026 to 21/08/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 231 km/h) SAUDEL-26 was active in NWPacific. The cyclone affects these countries: Northern Mariana Islands, Japan (v\u2026"
+    },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
       "last_seen": "2026-07-08 18:52 UTC",
@@ -525,7 +539,7 @@
     },
     "NHC-Central Pacific-Hurricane Lala": {
       "intensity": "Hurricane; Wind 100 mph; Pressure 970 mb; Movement NNE at 13 mph",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-21 14:13 UTC",
       "name": "Hurricane Lala",
       "peril": "Tropical Cyclone",
@@ -580,9 +594,9 @@
       "update_key": "NOAA/NHC | Tropical Depression Fausto | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1008 mb; Movement WNW at 12 mph"
     },
     "NHC-Central Pacific-Tropical Depression Two-C": {
-      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 10 mph",
-      "last_seen": "2026-08-21 14:17 UTC",
-      "latest_update": "2026-08-21 08:45 UTC",
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement WNW at 10 mph",
+      "last_seen": "2026-08-21 15:00 UTC",
+      "latest_update": "2026-08-21 14:58 UTC",
       "name": "Tropical Depression Two-C",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -591,7 +605,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Depression Two-C | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 10 mph"
+      "update_key": "NOAA/NHC | Tropical Depression Two-C | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement WNW at 10 mph"
     },
     "NHC-Central Pacific-Tropical Storm Fausto": {
       "intensity": "Tropical Storm; Wind 40 mph; Pressure 1006 mb; Movement WNW at 12 mph",
@@ -861,7 +875,7 @@
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-21 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -945,7 +959,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-04 23:59 UTC",
       "name": "M5.7 earthquake \u2013 199 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -959,7 +973,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-04 05:28 UTC",
       "name": "M5.8 earthquake \u2013 194 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -973,7 +987,7 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-18 05:09 UTC",
       "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
@@ -987,7 +1001,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-11 10:02 UTC",
       "name": "M6.3 earthquake \u2013 32 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -1001,7 +1015,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 226.084 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-06 07:51 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -1015,7 +1029,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-21 02:02 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1029,7 +1043,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.7; depth 10 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-21 03:19 UTC",
       "name": "M7.7 earthquake \u2013 68 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1043,7 +1057,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 172.526 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-18 06:44 UTC",
       "name": "M6.9 earthquake \u2013 15 km NNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1071,7 +1085,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-08-21 14:17 UTC",
+      "last_seen": "2026-08-21 15:00 UTC",
       "latest_update": "2026-08-21 12:45 UTC",
       "name": "M6.7 earthquake \u2013 31 km NW of Aniso, Peru",
       "peril": "Earthquake",
@@ -1323,6 +1337,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-21 14:17 UTC",
+  "last_run": "2026-08-21 15:00 UTC",
   "schema_version": 4
 }
