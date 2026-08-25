@@ -231,7 +231,7 @@
     },
     "GDACS-earthquake-1561626": {
       "intensity": "On 8/25/2026 1:18:46 AM, an earthquake occurred in Afghanistan potentially affecting 7.5 million in 100km. The earthquake had Magnitude 4.9M, Depth:10km.",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 01:33 UTC",
       "name": "Orange earthquake (Magnitude 4.9M, Depth:10km) in Afghanistan 25/08/2026 01:18 UTC, 7.5 million in 100km.",
       "peril": "Earthquake",
@@ -609,7 +609,7 @@
     },
     "NHC-Central Pacific-Tropical Depression Moke": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement W at 14 mph",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 02:40 UTC",
       "name": "Tropical Depression Moke",
       "peril": "Tropical Cyclone",
@@ -651,7 +651,7 @@
     },
     "NHC-Central Pacific-Tropical Storm Lala": {
       "intensity": "Tropical Storm; Wind 60 mph; Pressure 992 mb; Movement NW at 6 mph",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 02:37 UTC",
       "name": "Tropical Storm Lala",
       "peril": "Tropical Cyclone",
@@ -847,7 +847,7 @@
     },
     "NHC-Eastern Pacific-Tropical Depression Ten-E": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement NNE at 9 mph",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 02:30 UTC",
       "name": "Tropical Depression Ten-E",
       "peril": "Tropical Cyclone",
@@ -931,7 +931,7 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Iselle": {
       "intensity": "Tropical Storm; Wind 70 mph; Pressure 988 mb; Movement NW at 15 mph",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 02:36 UTC",
       "name": "Tropical Storm Iselle",
       "peril": "Tropical Cyclone",
@@ -945,7 +945,7 @@
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-24 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -1029,7 +1029,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-04 23:59 UTC",
       "name": "M5.7 earthquake \u2013 199 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -1043,7 +1043,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-04 05:28 UTC",
       "name": "M5.8 earthquake \u2013 194 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -1057,7 +1057,7 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-18 05:09 UTC",
       "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
@@ -1071,7 +1071,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-22 02:09 UTC",
       "name": "M6.3 earthquake \u2013 28 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -1085,7 +1085,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 226.084 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-06 07:51 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -1099,7 +1099,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 03:26 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1113,7 +1113,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.7; depth 10 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-24 17:46 UTC",
       "name": "M7.7 earthquake \u2013 68 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1127,7 +1127,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1155,7 +1155,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-21 18:10 UTC",
       "name": "M6.7 earthquake \u2013 31 km NW of Aniso, Peru",
       "peril": "Earthquake",
@@ -1169,7 +1169,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-08-25 05:16 UTC",
+      "last_seen": "2026-08-25 05:55 UTC",
       "latest_update": "2026-08-25 00:37 UTC",
       "name": "M5.8 earthquake \u2013 4 km N of Toride, Japan",
       "peril": "Earthquake",
@@ -1421,6 +1421,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-25 05:16 UTC",
+  "last_run": "2026-08-25 05:55 UTC",
   "schema_version": 4
 }
