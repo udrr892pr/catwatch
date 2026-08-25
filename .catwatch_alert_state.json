@@ -231,7 +231,7 @@
     },
     "GDACS-earthquake-1561626": {
       "intensity": "On 8/25/2026 1:18:46 AM, an earthquake occurred in Afghanistan potentially affecting 7.5 million in 100km. The earthquake had Magnitude 4.9M, Depth:10km.",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-25 01:33 UTC",
       "name": "Orange earthquake (Magnitude 4.9M, Depth:10km) in Afghanistan 25/08/2026 01:18 UTC, 7.5 million in 100km.",
       "peril": "Earthquake",
@@ -593,6 +593,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Potential Tropical Cyclone One-C | Tropical Cyclone | Amber | P2 | Potential Tropical Cyclone; Wind 40 mph; Pressure 1002 mb; Movement W at 10 mph"
     },
+    "NHC-Central Pacific-Remnants of Moke": {
+      "intensity": "Remnants of; Wind 35 mph; Pressure 1006 mb; Movement W at 14 mph",
+      "last_seen": "2026-08-25 08:57 UTC",
+      "latest_update": "2026-08-25 08:51 UTC",
+      "name": "Remnants of Moke",
+      "peril": "Tropical Cyclone",
+      "region": "Central Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Remnants of Moke | Tropical Cyclone | Amber | P2 | Remnants of; Wind 35 mph; Pressure 1006 mb; Movement W at 14 mph"
+    },
     "NHC-Central Pacific-Tropical Depression Fausto": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1008 mb; Movement WNW at 12 mph",
       "last_seen": "2026-07-29 12:17 UTC",
@@ -650,9 +664,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Fausto | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1006 mb; Movement WNW at 12 mph"
     },
     "NHC-Central Pacific-Tropical Storm Lala": {
-      "intensity": "Tropical Storm; Wind 60 mph; Pressure 992 mb; Movement NW at 6 mph",
-      "last_seen": "2026-08-25 08:05 UTC",
-      "latest_update": "2026-08-25 02:37 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 994 mb; Movement NW at 6 mph",
+      "last_seen": "2026-08-25 08:57 UTC",
+      "latest_update": "2026-08-25 08:48 UTC",
       "name": "Tropical Storm Lala",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -661,7 +675,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Lala | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 60 mph; Pressure 992 mb; Movement NW at 6 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Lala | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 994 mb; Movement NW at 6 mph"
     },
     "NHC-Central Pacific-Tropical Storm Moke": {
       "intensity": "Tropical Storm; Wind 40 mph; Pressure 1003 mb; Movement W at 15 mph",
@@ -931,8 +945,8 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Iselle": {
       "intensity": "Tropical Storm; Wind 70 mph; Pressure 988 mb; Movement NW at 15 mph",
-      "last_seen": "2026-08-25 08:05 UTC",
-      "latest_update": "2026-08-25 02:36 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
+      "latest_update": "2026-08-25 08:42 UTC",
       "name": "Tropical Storm Iselle",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -943,9 +957,23 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Storm Iselle | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 70 mph; Pressure 988 mb; Movement NW at 15 mph"
     },
+    "NHC-Eastern Pacific-Tropical Storm Julio": {
+      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement NNE at 13 mph",
+      "last_seen": "2026-08-25 08:57 UTC",
+      "latest_update": "2026-08-25 08:55 UTC",
+      "name": "Tropical Storm Julio",
+      "peril": "Tropical Cyclone",
+      "region": "Eastern Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Storm Julio | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement NNE at 13 mph"
+    },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-24 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -1029,7 +1057,7 @@
     },
     "USGS-us6000tga6": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-04 23:59 UTC",
       "name": "M5.7 earthquake \u2013 199 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -1043,7 +1071,7 @@
     },
     "USGS-us6000tga9": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-04 05:28 UTC",
       "name": "M5.8 earthquake \u2013 194 km NW of Oula Xiuma, China",
       "peril": "Earthquake",
@@ -1057,7 +1085,7 @@
     },
     "USGS-us6000tgb9": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-18 05:09 UTC",
       "name": "M6.8 earthquake \u2013 The 2026 Kumamoto Region, Japan Earthquake",
       "peril": "Earthquake",
@@ -1071,7 +1099,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-22 02:09 UTC",
       "name": "M6.3 earthquake \u2013 28 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -1085,7 +1113,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 226.084 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-06 07:51 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -1099,7 +1127,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-25 03:26 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1113,7 +1141,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.7; depth 10 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-24 17:46 UTC",
       "name": "M7.7 earthquake \u2013 68 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1127,7 +1155,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1155,7 +1183,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-08-25 08:05 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
       "latest_update": "2026-08-21 18:10 UTC",
       "name": "M6.7 earthquake \u2013 31 km NW of Aniso, Peru",
       "peril": "Earthquake",
@@ -1169,8 +1197,8 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-08-25 08:05 UTC",
-      "latest_update": "2026-08-25 07:51 UTC",
+      "last_seen": "2026-08-25 08:57 UTC",
+      "latest_update": "2026-08-25 08:13 UTC",
       "name": "M5.8 earthquake \u2013 4 km N of Toride, Japan",
       "peril": "Earthquake",
       "region": "4 km N of Toride, Japan",
@@ -1421,6 +1449,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-25 08:05 UTC",
+  "last_run": "2026-08-25 08:57 UTC",
   "schema_version": 4
 }
