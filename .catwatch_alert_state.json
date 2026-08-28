@@ -243,6 +243,20 @@
       "tier_rank": 3,
       "update_key": "GDACS | Orange earthquake (Magnitude 4.9M, Depth:10km) in Afghanistan 25/08/2026 01:18 UTC, 7.5 million in 100km. | Earthquake | Orange | P2 | On 8/25/2026 1:18:46 AM, an earthquake occurred in Afghanistan potentially affecting 7.5 million in 100km. The earthquake had Magnitude 4.9M, Depth:10km."
     },
+    "GDACS-earthquake-1562260": {
+      "intensity": "On 8/28/2026 5:13:35 AM, an earthquake occurred in China potentially affecting 15.8 million in 100km. The earthquake had Magnitude 5M, Depth:10km.",
+      "last_seen": "2026-08-28 17:25 UTC",
+      "latest_update": "2026-08-28 05:32 UTC",
+      "name": "Orange earthquake (Magnitude 5M, Depth:10km) in China 28/08/2026 05:13 UTC, 15.8 million in 100km.",
+      "peril": "Earthquake",
+      "region": "China",
+      "severity": "Orange",
+      "severity_rank": 4,
+      "source": "GDACS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "GDACS | Orange earthquake (Magnitude 5M, Depth:10km) in China 28/08/2026 05:13 UTC, 15.8 million in 100km. | Earthquake | Orange | P2 | On 8/28/2026 5:13:35 AM, an earthquake occurred in China potentially affecting 15.8 million in 100km. The earthquake had Magnitude 5M, Depth:10km."
+    },
     "GDACS-flood-1104051": {
       "intensity": "On 25/07/2026, a flood started in China, lasting until 28/07/2026 (last update). The flood caused 10 deaths and 801000 displaced .",
       "last_seen": "2026-07-31 10:13 UTC",
@@ -256,6 +270,20 @@
       "tier": "P1",
       "tier_rank": 4,
       "update_key": "GDACS | Red flood alert in China | Flood | Red | P1 | On 25/07/2026, a flood started in China, lasting until 28/07/2026 (last update). The flood caused 10 deaths and 801000 displaced ."
+    },
+    "GDACS-flood-1104124": {
+      "intensity": "On 26/08/2026, a flood started in Nepal, lasting until 28/08/2026 (last update). The flood caused 527 deaths and 0 displaced .",
+      "last_seen": "2026-08-28 17:25 UTC",
+      "latest_update": "2026-08-28 06:29 UTC",
+      "name": "Orange flood alert in Nepal",
+      "peril": "Flood",
+      "region": "Nepal",
+      "severity": "Orange",
+      "severity_rank": 4,
+      "source": "GDACS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "GDACS | Orange flood alert in Nepal | Flood | Orange | P2 | On 26/08/2026, a flood started in Nepal, lasting until 28/08/2026 (last update). The flood caused 527 deaths and 0 displaced ."
     },
     "GDACS-tropical-cyclone-1001279": {
       "intensity": "From 01/07/2026 to 07/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Guam, Northern Mariana Islands, Japa\u2026",
@@ -466,6 +494,20 @@
       "tier": "P2",
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Remnants of Bertha | Tropical Cyclone | Amber | P2 | Remnants of; Wind 35 mph; Pressure 1008 mb; Movement W at 14 mph"
+    },
+    "NHC-Atlantic-Remnants of Dolly": {
+      "intensity": "Remnants of; Wind 40 mph; Pressure 1008 mb; Movement W at 25 mph",
+      "last_seen": "2026-08-28 17:25 UTC",
+      "latest_update": "2026-08-28 14:46 UTC",
+      "name": "Remnants of Dolly",
+      "peril": "Tropical Cyclone",
+      "region": "Atlantic",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Remnants of Dolly | Tropical Cyclone | Amber | P2 | Remnants of; Wind 40 mph; Pressure 1008 mb; Movement W at 25 mph"
     },
     "NHC-Atlantic-Tropical Depression Bertha": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement W at 13 mph",
@@ -1000,9 +1042,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Julio | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1001 mb; Movement NNE at 22 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Karina": {
-      "intensity": "Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement NW at 13 mph",
-      "last_seen": "2026-08-28 05:01 UTC",
-      "latest_update": "2026-08-28 02:45 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 999 mb; Movement NW at 10 mph",
+      "last_seen": "2026-08-28 17:25 UTC",
+      "latest_update": "2026-08-28 14:44 UTC",
       "name": "Tropical Storm Karina",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1011,12 +1053,12 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Karina | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement NW at 13 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Karina | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 999 mb; Movement NW at 10 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Lowell": {
-      "intensity": "Tropical Storm; Wind 40 mph; Pressure 1004 mb; Movement ENE at 5 mph",
-      "last_seen": "2026-08-28 05:01 UTC",
-      "latest_update": "2026-08-28 02:47 UTC",
+      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement NNW at 5 mph",
+      "last_seen": "2026-08-28 17:25 UTC",
+      "latest_update": "2026-08-28 14:39 UTC",
       "name": "Tropical Storm Lowell",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1025,11 +1067,11 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Lowell | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1004 mb; Movement ENE at 5 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Lowell | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement NNW at 5 mph"
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-27 05:00 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -1155,7 +1197,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-22 02:09 UTC",
       "name": "M6.3 earthquake \u2013 28 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -1169,7 +1211,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 216.73 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-25 13:19 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -1183,7 +1225,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 110.285 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-27 19:40 UTC",
       "name": "M7.4 earthquake \u2013 5 km S of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1197,8 +1239,8 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.7; depth 10 km",
-      "last_seen": "2026-08-28 05:01 UTC",
-      "latest_update": "2026-08-27 18:59 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
+      "latest_update": "2026-08-28 17:14 UTC",
       "name": "M7.7 earthquake \u2013 68 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
       "region": "68 km NNW of Ende, Indonesia",
@@ -1211,7 +1253,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1225,7 +1267,7 @@
     },
     "USGS-us6000tlrj": {
       "intensity": "Magnitude 5.5; depth 6 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-26 23:01 UTC",
       "name": "M5.5 earthquake \u2013 269 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -1239,7 +1281,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-21 18:10 UTC",
       "name": "M6.7 earthquake \u2013 31 km NW of Aniso, Peru",
       "peril": "Earthquake",
@@ -1253,7 +1295,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-08-28 05:01 UTC",
+      "last_seen": "2026-08-28 17:25 UTC",
       "latest_update": "2026-08-25 22:42 UTC",
       "name": "M5.8 earthquake \u2013 4 km N of Toride, Japan",
       "peril": "Earthquake",
@@ -1505,6 +1547,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-08-28 05:01 UTC",
+  "last_run": "2026-08-28 17:25 UTC",
   "schema_version": 4
 }
