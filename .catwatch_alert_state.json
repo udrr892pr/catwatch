@@ -693,7 +693,7 @@
     },
     "NHC-Central Pacific-Hurricane Lowell": {
       "intensity": "Hurricane; Wind 140 mph; Pressure 945 mb; Movement W at 10 mph",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-09-03 14:49 UTC",
       "name": "Hurricane Lowell",
       "peril": "Tropical Cyclone",
@@ -875,7 +875,7 @@
     },
     "NHC-Eastern Pacific-Hurricane Karina": {
       "intensity": "Hurricane; Wind 115 mph; Pressure 961 mb; Movement W at 12 mph",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-09-03 14:36 UTC",
       "name": "Hurricane Karina",
       "peril": "Tropical Cyclone",
@@ -889,7 +889,7 @@
     },
     "NHC-Eastern Pacific-Hurricane Marie": {
       "intensity": "Hurricane; Wind 90 mph; Pressure 976 mb; Movement WNW at 10 mph",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-09-03 14:47 UTC",
       "name": "Hurricane Marie",
       "peril": "Tropical Cyclone",
@@ -1211,7 +1211,7 @@
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-09-02 23:05 UTC",
       "name": "M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska",
       "peril": "Earthquake",
@@ -1337,7 +1337,7 @@
     },
     "USGS-us6000ti6x": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-08-22 02:09 UTC",
       "name": "M6.3 earthquake \u2013 28 km SW of Sarangani, Philippines",
       "peril": "Earthquake",
@@ -1351,7 +1351,7 @@
     },
     "USGS-us6000ti8i": {
       "intensity": "Magnitude 6.3; depth 216.73 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-08-25 13:19 UTC",
       "name": "M6.3 earthquake \u2013 south of the Kermadec Islands",
       "peril": "Earthquake",
@@ -1365,7 +1365,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 108.174 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-09-02 22:27 UTC",
       "name": "M7.4 earthquake \u2013 2 km SE of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1379,8 +1379,8 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.8; depth 10 km",
-      "last_seen": "2026-09-03 17:23 UTC",
-      "latest_update": "2026-09-02 21:39 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
+      "latest_update": "2026-09-03 18:34 UTC",
       "name": "M7.8 earthquake \u2013 64 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
       "region": "64 km NNW of Ende, Indonesia",
@@ -1393,7 +1393,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1407,7 +1407,7 @@
     },
     "USGS-us6000tlrj": {
       "intensity": "Magnitude 5.5; depth 6 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-08-26 23:01 UTC",
       "name": "M5.5 earthquake \u2013 269 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -1421,7 +1421,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-09-02 14:20 UTC",
       "name": "M6.7 earthquake \u2013 37 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1435,7 +1435,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-03 17:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
       "latest_update": "2026-08-25 22:42 UTC",
       "name": "M5.8 earthquake \u2013 4 km N of Toride, Japan",
       "peril": "Earthquake",
@@ -1687,8 +1687,8 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-03 17:23 UTC",
-      "latest_update": "2026-09-03 16:23 UTC",
+      "last_seen": "2026-09-03 19:58 UTC",
+      "latest_update": "2026-09-03 17:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
       "region": "84 km SSW of Nikolski, Alaska",
@@ -1701,6 +1701,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-03 17:23 UTC",
+  "last_run": "2026-09-03 19:58 UTC",
   "schema_version": 4
 }
