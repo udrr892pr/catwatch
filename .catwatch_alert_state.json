@@ -706,9 +706,9 @@
       "update_key": "NOAA/NHC | Hurricane Lala | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 981 mb; Movement NW at 7 mph"
     },
     "NHC-Central Pacific-Hurricane Lowell": {
-      "intensity": "Hurricane; Wind 110 mph; Pressure 956 mb; Movement NNE at 18 mph",
-      "last_seen": "2026-09-08 04:55 UTC",
-      "latest_update": "2026-09-08 03:01 UTC",
+      "intensity": "Hurricane; Wind 110 mph; Pressure 963 mb; Movement NNE at 18 mph",
+      "last_seen": "2026-09-08 09:14 UTC",
+      "latest_update": "2026-09-08 08:52 UTC",
       "name": "Hurricane Lowell",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -717,7 +717,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Lowell | Tropical Cyclone | Orange | P2 | Hurricane; Wind 110 mph; Pressure 956 mb; Movement NNE at 18 mph"
+      "update_key": "NOAA/NHC | Hurricane Lowell | Tropical Cyclone | Orange | P2 | Hurricane; Wind 110 mph; Pressure 963 mb; Movement NNE at 18 mph"
     },
     "NHC-Central Pacific-Post-Tropical Cyclone Fausto": {
       "intensity": "Post-Tropical Cyclone; Wind 35 mph; Pressure 1008 mb; Movement WNW at 13 mph",
@@ -1238,9 +1238,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Lowell | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement W at 10 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Marie": {
-      "intensity": "Tropical Storm; Wind 50 mph; Pressure 994 mb; Movement WNW at 8 mph",
-      "last_seen": "2026-09-08 04:55 UTC",
-      "latest_update": "2026-09-08 02:33 UTC",
+      "intensity": "Tropical Storm; Wind 45 mph; Pressure 996 mb; Movement WNW at 8 mph",
+      "last_seen": "2026-09-08 09:14 UTC",
+      "latest_update": "2026-09-08 08:49 UTC",
       "name": "Tropical Storm Marie",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1249,7 +1249,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Marie | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 994 mb; Movement WNW at 8 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Marie | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 996 mb; Movement WNW at 8 mph"
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
@@ -1407,7 +1407,7 @@
     },
     "USGS-us6000tjl2": {
       "intensity": "Magnitude 7.4; depth 108.174 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-09-07 23:01 UTC",
       "name": "M7.4 earthquake \u2013 2 km SE of San Jos\u00e9 del Palmar, Colombia",
       "peril": "Earthquake",
@@ -1421,7 +1421,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.8; depth 10 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-09-07 19:11 UTC",
       "name": "M7.8 earthquake \u2013 64 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1435,7 +1435,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1449,7 +1449,7 @@
     },
     "USGS-us6000tlrj": {
       "intensity": "Magnitude 5.5; depth 6 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-08-26 23:01 UTC",
       "name": "M5.5 earthquake \u2013 269 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -1463,7 +1463,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-09-06 08:36 UTC",
       "name": "M6.7 earthquake \u2013 37 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1477,7 +1477,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-09-08 03:49 UTC",
       "name": "M5.8 earthquake \u2013 2 km NNW of Toride, Japan",
       "peril": "Earthquake",
@@ -1729,7 +1729,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-08 04:55 UTC",
+      "last_seen": "2026-09-08 09:14 UTC",
       "latest_update": "2026-09-07 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1743,6 +1743,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-08 04:55 UTC",
+  "last_run": "2026-09-08 09:14 UTC",
   "schema_version": 4
 }
