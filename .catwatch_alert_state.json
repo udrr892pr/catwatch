@@ -860,9 +860,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Lala | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1002 mb; Movement NNW at 5 mph"
     },
     "NHC-Central Pacific-Tropical Storm Lowell": {
-      "intensity": "Tropical Storm; Wind 60 mph; Pressure 985 mb; Movement NNW at 13 mph",
-      "last_seen": "2026-09-09 20:11 UTC",
-      "latest_update": "2026-09-09 14:39 UTC",
+      "intensity": "Tropical Storm; Wind 60 mph; Pressure 987 mb; Movement NW at 14 mph",
+      "last_seen": "2026-09-09 22:32 UTC",
+      "latest_update": "2026-09-09 20:33 UTC",
       "name": "Tropical Storm Lowell",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -871,7 +871,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Lowell | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 60 mph; Pressure 985 mb; Movement NNW at 13 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Lowell | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 60 mph; Pressure 987 mb; Movement NW at 14 mph"
     },
     "NHC-Central Pacific-Tropical Storm Moke": {
       "intensity": "Tropical Storm; Wind 40 mph; Pressure 1003 mb; Movement W at 15 mph",
@@ -1068,6 +1068,20 @@
       "tier": "P2",
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Depression Four-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement N at 6 mph"
+    },
+    "NHC-Eastern Pacific-Tropical Depression Fourteen-E": {
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 9 mph",
+      "last_seen": "2026-09-09 22:32 UTC",
+      "latest_update": "2026-09-09 20:38 UTC",
+      "name": "Tropical Depression Fourteen-E",
+      "peril": "Tropical Cyclone",
+      "region": "Eastern Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Depression Fourteen-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 9 mph"
     },
     "NHC-Eastern Pacific-Tropical Depression Hernan": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement W at 12 mph",
@@ -1435,8 +1449,8 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.8; depth 10 km",
-      "last_seen": "2026-09-09 20:11 UTC",
-      "latest_update": "2026-09-08 17:29 UTC",
+      "last_seen": "2026-09-09 22:32 UTC",
+      "latest_update": "2026-09-09 21:24 UTC",
       "name": "M7.8 earthquake \u2013 64 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
       "region": "64 km NNW of Ende, Indonesia",
@@ -1449,7 +1463,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-09-09 20:11 UTC",
+      "last_seen": "2026-09-09 22:32 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1463,7 +1477,7 @@
     },
     "USGS-us6000tlrj": {
       "intensity": "Magnitude 5.5; depth 6 km",
-      "last_seen": "2026-09-09 20:11 UTC",
+      "last_seen": "2026-09-09 22:32 UTC",
       "latest_update": "2026-08-26 23:01 UTC",
       "name": "M5.5 earthquake \u2013 269 km SSE of Dunhuang, China",
       "peril": "Earthquake",
@@ -1477,7 +1491,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-09 20:11 UTC",
+      "last_seen": "2026-09-09 22:32 UTC",
       "latest_update": "2026-09-06 08:36 UTC",
       "name": "M6.7 earthquake \u2013 37 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1491,7 +1505,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-09 20:11 UTC",
+      "last_seen": "2026-09-09 22:32 UTC",
       "latest_update": "2026-09-08 03:49 UTC",
       "name": "M5.8 earthquake \u2013 2 km NNW of Toride, Japan",
       "peril": "Earthquake",
@@ -1743,7 +1757,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-09 20:11 UTC",
+      "last_seen": "2026-09-09 22:32 UTC",
       "latest_update": "2026-09-09 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1757,6 +1771,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-09 20:11 UTC",
+  "last_run": "2026-09-09 22:32 UTC",
   "schema_version": 4
 }
