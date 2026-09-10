@@ -861,7 +861,7 @@
     },
     "NHC-Central Pacific-Tropical Storm Lowell": {
       "intensity": "Tropical Storm; Wind 60 mph; Pressure 987 mb; Movement NW at 14 mph",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-09-09 20:33 UTC",
       "name": "Tropical Storm Lowell",
       "peril": "Tropical Cyclone",
@@ -1071,7 +1071,7 @@
     },
     "NHC-Eastern Pacific-Tropical Depression Fourteen-E": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 9 mph",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-09-09 20:38 UTC",
       "name": "Tropical Depression Fourteen-E",
       "peril": "Tropical Cyclone",
@@ -1449,7 +1449,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.8; depth 10 km",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-09-09 21:24 UTC",
       "name": "M7.8 earthquake \u2013 64 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1463,7 +1463,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1491,7 +1491,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-09-06 08:36 UTC",
       "name": "M6.7 earthquake \u2013 37 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1505,7 +1505,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-09-08 03:49 UTC",
       "name": "M5.8 earthquake \u2013 2 km NNW of Toride, Japan",
       "peril": "Earthquake",
@@ -1757,7 +1757,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-09 22:32 UTC",
+      "last_seen": "2026-09-10 00:34 UTC",
       "latest_update": "2026-09-09 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1771,6 +1771,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-09 22:32 UTC",
+  "last_run": "2026-09-10 00:34 UTC",
   "schema_version": 4
 }
