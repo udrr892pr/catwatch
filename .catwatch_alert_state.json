@@ -747,6 +747,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Post-Tropical Cyclone Karina | Tropical Cyclone | Amber | P2 | Post-Tropical Cyclone; Wind 45 mph; Pressure 998 mb; Movement WNW at 6 mph"
     },
+    "NHC-Central Pacific-Post-Tropical Cyclone Lowell": {
+      "intensity": "Post-Tropical Cyclone; Wind 50 mph; Pressure 997 mb; Movement W at 10 mph",
+      "last_seen": "2026-09-11 04:33 UTC",
+      "latest_update": "2026-09-11 02:33 UTC",
+      "name": "Post-Tropical Cyclone Lowell",
+      "peril": "Tropical Cyclone",
+      "region": "Central Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Post-Tropical Cyclone Lowell | Tropical Cyclone | Amber | P2 | Post-Tropical Cyclone; Wind 50 mph; Pressure 997 mb; Movement W at 10 mph"
+    },
     "NHC-Central Pacific-Potential Tropical Cyclone One-C": {
       "intensity": "Potential Tropical Cyclone; Wind 40 mph; Pressure 1002 mb; Movement W at 10 mph",
       "last_seen": "2026-08-13 13:43 UTC",
@@ -1280,9 +1294,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Marie | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 996 mb; Movement WNW at 8 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Norbert": {
-      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1002 mb; Movement W at 14 mph",
-      "last_seen": "2026-09-11 00:07 UTC",
-      "latest_update": "2026-09-10 20:46 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement W at 14 mph",
+      "last_seen": "2026-09-11 04:33 UTC",
+      "latest_update": "2026-09-11 02:38 UTC",
       "name": "Tropical Storm Norbert",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1291,7 +1305,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Norbert | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1002 mb; Movement W at 14 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Norbert | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement W at 14 mph"
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
@@ -1463,7 +1477,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.8; depth 10 km",
-      "last_seen": "2026-09-11 00:07 UTC",
+      "last_seen": "2026-09-11 04:33 UTC",
       "latest_update": "2026-09-10 19:53 UTC",
       "name": "M7.8 earthquake \u2013 64 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1477,7 +1491,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-09-11 00:07 UTC",
+      "last_seen": "2026-09-11 04:33 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1505,7 +1519,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-11 00:07 UTC",
+      "last_seen": "2026-09-11 04:33 UTC",
       "latest_update": "2026-09-06 08:36 UTC",
       "name": "M6.7 earthquake \u2013 37 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1519,7 +1533,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-11 00:07 UTC",
+      "last_seen": "2026-09-11 04:33 UTC",
       "latest_update": "2026-09-08 03:49 UTC",
       "name": "M5.8 earthquake \u2013 2 km NNW of Toride, Japan",
       "peril": "Earthquake",
@@ -1771,7 +1785,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-11 00:07 UTC",
+      "last_seen": "2026-09-11 04:33 UTC",
       "latest_update": "2026-09-10 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1785,6 +1799,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-11 00:07 UTC",
+  "last_run": "2026-09-11 04:33 UTC",
   "schema_version": 4
 }
