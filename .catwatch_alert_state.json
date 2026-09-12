@@ -1294,9 +1294,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Marie | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 996 mb; Movement WNW at 8 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Norbert": {
-      "intensity": "Tropical Storm; Wind 65 mph; Pressure 996 mb; Movement W at 14 mph",
-      "last_seen": "2026-09-12 01:33 UTC",
-      "latest_update": "2026-09-11 20:32 UTC",
+      "intensity": "Tropical Storm; Wind 65 mph; Pressure 996 mb; Movement WNW at 12 mph",
+      "last_seen": "2026-09-12 06:29 UTC",
+      "latest_update": "2026-09-12 02:49 UTC",
       "name": "Tropical Storm Norbert",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1305,7 +1305,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Norbert | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 65 mph; Pressure 996 mb; Movement W at 14 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Norbert | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 65 mph; Pressure 996 mb; Movement WNW at 12 mph"
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
@@ -1477,7 +1477,7 @@
     },
     "USGS-us6000tkt2": {
       "intensity": "Magnitude 7.8; depth 10 km",
-      "last_seen": "2026-09-12 01:33 UTC",
+      "last_seen": "2026-09-12 06:29 UTC",
       "latest_update": "2026-09-11 20:10 UTC",
       "name": "M7.8 earthquake \u2013 64 km NNW of Ende, Indonesia",
       "peril": "Earthquake",
@@ -1491,7 +1491,7 @@
     },
     "USGS-us6000tkyk": {
       "intensity": "Magnitude 6.9; depth 175 km",
-      "last_seen": "2026-09-12 01:33 UTC",
+      "last_seen": "2026-09-12 06:29 UTC",
       "latest_update": "2026-08-22 12:01 UTC",
       "name": "M6.9 earthquake \u2013 9 km WNW of Pematangsiantar, Indonesia",
       "peril": "Earthquake",
@@ -1519,7 +1519,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-12 01:33 UTC",
+      "last_seen": "2026-09-12 06:29 UTC",
       "latest_update": "2026-09-06 08:36 UTC",
       "name": "M6.7 earthquake \u2013 37 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1533,7 +1533,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-12 01:33 UTC",
+      "last_seen": "2026-09-12 06:29 UTC",
       "latest_update": "2026-09-11 13:11 UTC",
       "name": "M5.8 earthquake \u2013 5 km E of Ushiku, Japan",
       "peril": "Earthquake",
@@ -1785,7 +1785,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-12 01:33 UTC",
+      "last_seen": "2026-09-12 06:29 UTC",
       "latest_update": "2026-09-11 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1799,8 +1799,8 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.6; depth 358.597 km",
-      "last_seen": "2026-09-12 01:33 UTC",
-      "latest_update": "2026-09-12 01:27 UTC",
+      "last_seen": "2026-09-12 06:29 UTC",
+      "latest_update": "2026-09-12 03:15 UTC",
       "name": "M6.6 earthquake \u2013 115 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
       "region": "115 km NNE of Teluknaga, Indonesia",
@@ -1813,6 +1813,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-12 01:33 UTC",
+  "last_run": "2026-09-12 06:29 UTC",
   "schema_version": 4
 }
