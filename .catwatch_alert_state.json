@@ -761,6 +761,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Post-Tropical Cyclone Lowell | Tropical Cyclone | Amber | P2 | Post-Tropical Cyclone; Wind 50 mph; Pressure 997 mb; Movement W at 10 mph"
     },
+    "NHC-Central Pacific-Post-Tropical Cyclone Norbert": {
+      "intensity": "Post-Tropical Cyclone; Wind 35 mph; Pressure 1007 mb; Movement W at 13 mph",
+      "last_seen": "2026-09-15 16:54 UTC",
+      "latest_update": "2026-09-15 14:32 UTC",
+      "name": "Post-Tropical Cyclone Norbert",
+      "peril": "Tropical Cyclone",
+      "region": "Central Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Post-Tropical Cyclone Norbert | Tropical Cyclone | Amber | P2 | Post-Tropical Cyclone; Wind 35 mph; Pressure 1007 mb; Movement W at 13 mph"
+    },
     "NHC-Central Pacific-Potential Tropical Cyclone One-C": {
       "intensity": "Potential Tropical Cyclone; Wind 40 mph; Pressure 1002 mb; Movement W at 10 mph",
       "last_seen": "2026-08-13 13:43 UTC",
@@ -1070,9 +1084,9 @@
       "update_key": "NOAA/NHC | Tropical Depression Eight-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 7 mph"
     },
     "NHC-Eastern Pacific-Tropical Depression Fifteen-E": {
-      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement W at 10 mph",
-      "last_seen": "2026-09-15 12:07 UTC",
-      "latest_update": "2026-09-15 08:38 UTC",
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement W at 12 mph",
+      "last_seen": "2026-09-15 16:54 UTC",
+      "latest_update": "2026-09-15 14:45 UTC",
       "name": "Tropical Depression Fifteen-E",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1081,7 +1095,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Depression Fifteen-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement W at 10 mph"
+      "update_key": "NOAA/NHC | Tropical Depression Fifteen-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement W at 12 mph"
     },
     "NHC-Eastern Pacific-Tropical Depression Five-E": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement W at 16 mph",
@@ -1561,7 +1575,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-15 12:07 UTC",
+      "last_seen": "2026-09-15 16:54 UTC",
       "latest_update": "2026-09-13 14:37 UTC",
       "name": "M6.7 earthquake \u2013 38 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1575,7 +1589,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-15 12:07 UTC",
+      "last_seen": "2026-09-15 16:54 UTC",
       "latest_update": "2026-09-11 13:11 UTC",
       "name": "M5.8 earthquake \u2013 5 km E of Ushiku, Japan",
       "peril": "Earthquake",
@@ -1827,7 +1841,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-15 12:07 UTC",
+      "last_seen": "2026-09-15 16:54 UTC",
       "latest_update": "2026-09-15 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1841,7 +1855,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-15 12:07 UTC",
+      "last_seen": "2026-09-15 16:54 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -1855,6 +1869,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-15 12:07 UTC",
+  "last_run": "2026-09-15 16:54 UTC",
   "schema_version": 4
 }
