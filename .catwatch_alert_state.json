@@ -593,6 +593,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Depression Five | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1011 mb; Movement WNW at 6 mph"
     },
+    "NHC-Atlantic-Tropical Depression Six": {
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1009 mb; Movement N at 2 mph",
+      "last_seen": "2026-09-19 16:37 UTC",
+      "latest_update": "2026-09-19 14:49 UTC",
+      "name": "Tropical Depression Six",
+      "peril": "Tropical Cyclone",
+      "region": "Atlantic",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Depression Six | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1009 mb; Movement N at 2 mph"
+    },
     "NHC-Atlantic-Tropical Depression Two": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement NW at 3 mph",
       "last_seen": "2026-07-20 23:37 UTC",
@@ -1589,7 +1603,7 @@
     },
     "USGS-us6000tm81": {
       "intensity": "Magnitude 6.7; depth 99 km",
-      "last_seen": "2026-09-19 13:16 UTC",
+      "last_seen": "2026-09-19 16:37 UTC",
       "latest_update": "2026-09-13 14:37 UTC",
       "name": "M6.7 earthquake \u2013 38 km NE of Tambo, Peru",
       "peril": "Earthquake",
@@ -1603,7 +1617,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-19 13:16 UTC",
+      "last_seen": "2026-09-19 16:37 UTC",
       "latest_update": "2026-09-19 07:35 UTC",
       "name": "M5.8 earthquake \u2013 5 km E of Ushiku, Japan",
       "peril": "Earthquake",
@@ -1855,7 +1869,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-19 13:16 UTC",
+      "last_seen": "2026-09-19 16:37 UTC",
       "latest_update": "2026-09-19 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1869,7 +1883,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-19 13:16 UTC",
+      "last_seen": "2026-09-19 16:37 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -1883,8 +1897,8 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-19 13:16 UTC",
-      "latest_update": "2026-09-18 14:29 UTC",
+      "last_seen": "2026-09-19 16:37 UTC",
+      "latest_update": "2026-09-19 14:29 UTC",
       "name": "M6.5 earthquake \u2013 169 km W of Nikolski, Alaska",
       "peril": "Earthquake",
       "region": "169 km W of Nikolski, Alaska",
@@ -1897,6 +1911,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-19 13:16 UTC",
+  "last_run": "2026-09-19 16:37 UTC",
   "schema_version": 4
 }
