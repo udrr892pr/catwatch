@@ -679,7 +679,7 @@
     },
     "NHC-Atlantic-Tropical Storm Fay": {
       "intensity": "Tropical Storm; Wind 60 mph; Pressure 1004 mb; Movement NE at 3 mph",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-20 14:55 UTC",
       "name": "Tropical Storm Fay",
       "peril": "Tropical Cyclone",
@@ -1407,7 +1407,7 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Odalys": {
       "intensity": "Tropical Storm; Wind 45 mph; Pressure 1003 mb; Movement WNW at 9 mph",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-20 14:55 UTC",
       "name": "Tropical Storm Odalys",
       "peril": "Tropical Cyclone",
@@ -1645,7 +1645,7 @@
     },
     "USGS-us6000tmta": {
       "intensity": "Magnitude 5.8; depth 61 km",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-19 07:35 UTC",
       "name": "M5.8 earthquake \u2013 5 km E of Ushiku, Japan",
       "peril": "Earthquake",
@@ -1897,7 +1897,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-19 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1911,7 +1911,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -1925,7 +1925,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-20 14:30 UTC",
       "name": "M6.5 earthquake \u2013 169 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1939,7 +1939,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-09-20 17:27 UTC",
+      "last_seen": "2026-09-20 19:37 UTC",
       "latest_update": "2026-09-20 14:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -1953,6 +1953,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-20 17:27 UTC",
+  "last_run": "2026-09-20 19:37 UTC",
   "schema_version": 4
 }
