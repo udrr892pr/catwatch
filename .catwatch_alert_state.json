@@ -481,6 +481,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Post-Tropical Cyclone Cristobal | Tropical Cyclone | Amber | P2 | Post-Tropical Cyclone; Wind 30 mph; Pressure 1018 mb; Movement NE at 16 mph"
     },
+    "NHC-Atlantic-Post-Tropical Cyclone Fay": {
+      "intensity": "Post-Tropical Cyclone; Wind 35 mph; Pressure 1011 mb; Movement WSW at 9 mph",
+      "last_seen": "2026-09-22 22:04 UTC",
+      "latest_update": "2026-09-22 20:36 UTC",
+      "name": "Post-Tropical Cyclone Fay",
+      "peril": "Tropical Cyclone",
+      "region": "Atlantic",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Post-Tropical Cyclone Fay | Tropical Cyclone | Amber | P2 | Post-Tropical Cyclone; Wind 35 mph; Pressure 1011 mb; Movement WSW at 9 mph"
+    },
     "NHC-Atlantic-Potential Tropical Cyclone Five": {
       "intensity": "Potential Tropical Cyclone; Wind 35 mph; Pressure 1013 mb; Movement WNW at 5 mph",
       "last_seen": "2026-08-31 15:25 UTC",
@@ -1029,8 +1043,8 @@
     },
     "NHC-Eastern Pacific-Hurricane Polo": {
       "intensity": "Hurricane; Wind 180 mph; Pressure 892 mb; Movement at  mph",
-      "last_seen": "2026-09-22 19:09 UTC",
-      "latest_update": "2026-09-22 18:58 UTC",
+      "last_seen": "2026-09-22 22:04 UTC",
+      "latest_update": "2026-09-22 20:42 UTC",
       "name": "Hurricane Polo",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1448,9 +1462,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Norbert | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1005 mb; Movement W at 15 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Odalys": {
-      "intensity": "Tropical Storm; Wind 65 mph; Pressure 998 mb; Movement N at 5 mph",
-      "last_seen": "2026-09-22 19:09 UTC",
-      "latest_update": "2026-09-22 14:44 UTC",
+      "intensity": "Tropical Storm; Wind 70 mph; Pressure 994 mb; Movement ENE at 3 mph",
+      "last_seen": "2026-09-22 22:04 UTC",
+      "latest_update": "2026-09-22 20:42 UTC",
       "name": "Tropical Storm Odalys",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1459,7 +1473,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Odalys | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 65 mph; Pressure 998 mb; Movement N at 5 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Odalys | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 70 mph; Pressure 994 mb; Movement ENE at 3 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Polo": {
       "intensity": "Tropical Storm; Wind 50 mph; Pressure 1001 mb; Movement NE at 5 mph",
@@ -1953,7 +1967,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-22 19:09 UTC",
+      "last_seen": "2026-09-22 22:04 UTC",
       "latest_update": "2026-09-22 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1967,7 +1981,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-22 19:09 UTC",
+      "last_seen": "2026-09-22 22:04 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -1981,7 +1995,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-22 19:09 UTC",
+      "last_seen": "2026-09-22 22:04 UTC",
       "latest_update": "2026-09-22 14:30 UTC",
       "name": "M6.5 earthquake \u2013 169 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1995,7 +2009,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-09-22 19:09 UTC",
+      "last_seen": "2026-09-22 22:04 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2009,6 +2023,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-22 19:09 UTC",
+  "last_run": "2026-09-22 22:04 UTC",
   "schema_version": 4
 }
