@@ -1042,9 +1042,9 @@
       "update_key": "NOAA/NHC | Hurricane Marie | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 980 mb; Movement NW at 7 mph"
     },
     "NHC-Eastern Pacific-Hurricane Polo": {
-      "intensity": "Hurricane; Wind 175 mph; Pressure 900 mb; Movement E at 1 mph",
-      "last_seen": "2026-09-23 00:28 UTC",
-      "latest_update": "2026-09-22 23:35 UTC",
+      "intensity": "Hurricane; Wind 165 mph; Pressure 905 mb; Movement NE at 1 mph",
+      "last_seen": "2026-09-23 04:59 UTC",
+      "latest_update": "2026-09-23 02:50 UTC",
       "name": "Hurricane Polo",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1053,7 +1053,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 175 mph; Pressure 900 mb; Movement E at 1 mph"
+      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 165 mph; Pressure 905 mb; Movement NE at 1 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -1462,9 +1462,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Norbert | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1005 mb; Movement W at 15 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Odalys": {
-      "intensity": "Tropical Storm; Wind 70 mph; Pressure 994 mb; Movement ENE at 3 mph",
-      "last_seen": "2026-09-23 00:28 UTC",
-      "latest_update": "2026-09-22 20:42 UTC",
+      "intensity": "Tropical Storm; Wind 70 mph; Pressure 994 mb; Movement ENE at 9 mph",
+      "last_seen": "2026-09-23 04:59 UTC",
+      "latest_update": "2026-09-23 02:40 UTC",
       "name": "Tropical Storm Odalys",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1473,7 +1473,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Odalys | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 70 mph; Pressure 994 mb; Movement ENE at 3 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Odalys | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 70 mph; Pressure 994 mb; Movement ENE at 9 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Polo": {
       "intensity": "Tropical Storm; Wind 50 mph; Pressure 1001 mb; Movement NE at 5 mph",
@@ -1967,7 +1967,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-23 00:28 UTC",
+      "last_seen": "2026-09-23 04:59 UTC",
       "latest_update": "2026-09-22 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -1981,7 +1981,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-23 00:28 UTC",
+      "last_seen": "2026-09-23 04:59 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -1995,7 +1995,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-23 00:28 UTC",
+      "last_seen": "2026-09-23 04:59 UTC",
       "latest_update": "2026-09-22 14:30 UTC",
       "name": "M6.5 earthquake \u2013 169 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2009,7 +2009,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-09-23 00:28 UTC",
+      "last_seen": "2026-09-23 04:59 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2023,6 +2023,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-23 00:28 UTC",
+  "last_run": "2026-09-23 04:59 UTC",
   "schema_version": 4
 }
