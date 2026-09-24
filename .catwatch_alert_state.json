@@ -343,21 +343,21 @@
     },
     "GDACS-tropical-cyclone-1001325": {
       "intensity": "From 21/09/2026 to 24/09/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) POLO-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability Medium). Est\u2026",
-      "last_seen": "2026-09-24 18:30 UTC",
+      "last_seen": "2026-09-24 21:47 UTC",
       "latest_update": "2026-09-21 06:39 UTC",
-      "name": "Orange notification for tropical cyclone POLO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 23941 .",
+      "name": "Orange notification for tropical cyclone POLO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.56 million .",
       "peril": "Tropical Cyclone",
-      "region": "Orange notification for tropical cyclone POLO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 23941 .",
+      "region": "Orange notification for tropical cyclone POLO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.56 million .",
       "severity": "Orange",
       "severity_rank": 4,
       "source": "GDACS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "GDACS | Orange notification for tropical cyclone POLO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 23941 . | Tropical Cyclone | Orange | P2 | From 21/09/2026 to 24/09/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) POLO-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability Medium). Est\u2026"
+      "update_key": "GDACS | Orange notification for tropical cyclone POLO-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.56 million . | Tropical Cyclone | Orange | P2 | From 21/09/2026 to 24/09/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) POLO-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability Medium). Est\u2026"
     },
     "GDACS-tropical-cyclone-1001326": {
       "intensity": "From 22/09/2026 to 24/09/2026, a Tropical Storm (maximum wind speed of 83 km/h) ONE-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated population\u2026",
-      "last_seen": "2026-09-24 18:30 UTC",
+      "last_seen": "2026-09-24 21:47 UTC",
       "latest_update": "2026-09-22 20:06 UTC",
       "name": "Orange notification for tropical cyclone ONE-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (10.248 million in Tropical Storm).",
       "peril": "Tropical Cyclone",
@@ -735,8 +735,8 @@
     },
     "NHC-Atlantic-Tropical Storm Fay": {
       "intensity": "Tropical Storm; Wind 50 mph; Pressure 1005 mb; Movement W at 6 mph",
-      "last_seen": "2026-09-24 18:30 UTC",
-      "latest_update": "2026-09-24 14:39 UTC",
+      "last_seen": "2026-09-24 21:47 UTC",
+      "latest_update": "2026-09-24 20:32 UTC",
       "name": "Tropical Storm Fay",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -1028,9 +1028,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Moke | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1003 mb; Movement W at 15 mph"
     },
     "NHC-Central Pacific-Tropical Storm Nolo": {
-      "intensity": "Tropical Storm; Wind 60 mph; Pressure 997 mb; Movement at  mph",
-      "last_seen": "2026-09-24 18:30 UTC",
-      "latest_update": "2026-09-24 14:49 UTC",
+      "intensity": "Tropical Storm; Wind 70 mph; Pressure 992 mb; Movement N at 2 mph",
+      "last_seen": "2026-09-24 21:47 UTC",
+      "latest_update": "2026-09-24 20:55 UTC",
       "name": "Tropical Storm Nolo",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -1039,7 +1039,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Nolo | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 60 mph; Pressure 997 mb; Movement at  mph"
+      "update_key": "NOAA/NHC | Tropical Storm Nolo | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 70 mph; Pressure 992 mb; Movement N at 2 mph"
     },
     "NHC-Eastern Pacific-Hurricane Fausto": {
       "intensity": "Hurricane; Wind 90 mph; Pressure 974 mb; Movement W at 13 mph",
@@ -1098,9 +1098,9 @@
       "update_key": "NOAA/NHC | Hurricane Marie | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 980 mb; Movement NW at 7 mph"
     },
     "NHC-Eastern Pacific-Hurricane Odalys": {
-      "intensity": "Hurricane; Wind 90 mph; Pressure 976 mb; Movement ENE at 7 mph",
-      "last_seen": "2026-09-24 18:30 UTC",
-      "latest_update": "2026-09-24 14:48 UTC",
+      "intensity": "Hurricane; Wind 90 mph; Pressure 976 mb; Movement ENE at 8 mph",
+      "last_seen": "2026-09-24 21:47 UTC",
+      "latest_update": "2026-09-24 20:33 UTC",
       "name": "Hurricane Odalys",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1109,12 +1109,12 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Odalys | Tropical Cyclone | Orange | P2 | Hurricane; Wind 90 mph; Pressure 976 mb; Movement ENE at 7 mph"
+      "update_key": "NOAA/NHC | Hurricane Odalys | Tropical Cyclone | Orange | P2 | Hurricane; Wind 90 mph; Pressure 976 mb; Movement ENE at 8 mph"
     },
     "NHC-Eastern Pacific-Hurricane Polo": {
-      "intensity": "Hurricane; Wind 155 mph; Pressure 928 mb; Movement WNW at 10 mph",
-      "last_seen": "2026-09-24 18:30 UTC",
-      "latest_update": "2026-09-24 14:49 UTC",
+      "intensity": "Hurricane; Wind 150 mph; Pressure 935 mb; Movement WNW at 10 mph",
+      "last_seen": "2026-09-24 21:47 UTC",
+      "latest_update": "2026-09-24 20:56 UTC",
       "name": "Hurricane Polo",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1123,7 +1123,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 155 mph; Pressure 928 mb; Movement WNW at 10 mph"
+      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 150 mph; Pressure 935 mb; Movement WNW at 10 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -2037,7 +2037,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-24 18:30 UTC",
+      "last_seen": "2026-09-24 21:47 UTC",
       "latest_update": "2026-09-22 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2051,7 +2051,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-24 18:30 UTC",
+      "last_seen": "2026-09-24 21:47 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2065,21 +2065,21 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-24 18:30 UTC",
-      "latest_update": "2026-09-24 14:30 UTC",
-      "name": "M6.5 earthquake \u2013 169 km W of Nikolski, Alaska",
+      "last_seen": "2026-09-24 21:47 UTC",
+      "latest_update": "2026-09-24 20:47 UTC",
+      "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
-      "region": "169 km W of Nikolski, Alaska",
+      "region": "177 km W of Nikolski, Alaska",
       "severity": "Red",
       "severity_rank": 5,
       "source": "USGS",
       "tier": "P1",
       "tier_rank": 4,
-      "update_key": "USGS | M6.5 earthquake \u2013 169 km W of Nikolski, Alaska | Earthquake | Red | P1 | Magnitude 6.5; depth 98 km"
+      "update_key": "USGS | M6.5 earthquake \u2013 177 km W of Nikolski, Alaska | Earthquake | Red | P1 | Magnitude 6.5; depth 98 km"
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-09-24 18:30 UTC",
+      "last_seen": "2026-09-24 21:47 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2093,6 +2093,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-24 18:30 UTC",
+  "last_run": "2026-09-24 21:47 UTC",
   "schema_version": 4
 }
