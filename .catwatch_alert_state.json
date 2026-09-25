@@ -357,7 +357,7 @@
     },
     "GDACS-tropical-cyclone-1001326": {
       "intensity": "From 22/09/2026 to 24/09/2026, a Tropical Storm (maximum wind speed of 83 km/h) ONE-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated population\u2026",
-      "last_seen": "2026-09-25 19:02 UTC",
+      "last_seen": "2026-09-25 22:16 UTC",
       "latest_update": "2026-09-22 20:06 UTC",
       "name": "Orange notification for tropical cyclone ONE-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (10.248 million in Tropical Storm).",
       "peril": "Tropical Cyclone",
@@ -734,9 +734,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Edouard | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1000 mb; Movement NW at 7 mph"
     },
     "NHC-Atlantic-Tropical Storm Fay": {
-      "intensity": "Tropical Storm; Wind 60 mph; Pressure 1002 mb; Movement W at 3 mph",
-      "last_seen": "2026-09-25 19:02 UTC",
-      "latest_update": "2026-09-25 14:45 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 1004 mb; Movement WSW at 5 mph",
+      "last_seen": "2026-09-25 22:16 UTC",
+      "latest_update": "2026-09-25 20:33 UTC",
       "name": "Tropical Storm Fay",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -745,12 +745,12 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Fay | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 60 mph; Pressure 1002 mb; Movement W at 3 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Fay | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1004 mb; Movement WSW at 5 mph"
     },
     "NHC-Atlantic-Tropical Storm Gonzalo": {
-      "intensity": "Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement N at 10 mph",
-      "last_seen": "2026-09-25 19:02 UTC",
-      "latest_update": "2026-09-25 17:48 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement N at 12 mph",
+      "last_seen": "2026-09-25 22:16 UTC",
+      "latest_update": "2026-09-25 20:37 UTC",
       "name": "Tropical Storm Gonzalo",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -759,7 +759,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Gonzalo | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement N at 10 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Gonzalo | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1000 mb; Movement N at 12 mph"
     },
     "NHC-Central Pacific-Hurricane Fausto": {
       "intensity": "Hurricane; Wind 75 mph; Pressure 994 mb; Movement WNW at 16 mph",
@@ -819,8 +819,8 @@
     },
     "NHC-Central Pacific-Hurricane Nolo": {
       "intensity": "Hurricane; Wind 105 mph; Pressure 978 mb; Movement NNE at 5 mph",
-      "last_seen": "2026-09-25 19:02 UTC",
-      "latest_update": "2026-09-25 18:39 UTC",
+      "last_seen": "2026-09-25 22:16 UTC",
+      "latest_update": "2026-09-25 20:55 UTC",
       "name": "Hurricane Nolo",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -1126,9 +1126,9 @@
       "update_key": "NOAA/NHC | Hurricane Marie | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 980 mb; Movement NW at 7 mph"
     },
     "NHC-Eastern Pacific-Hurricane Odalys": {
-      "intensity": "Hurricane; Wind 130 mph; Pressure 946 mb; Movement NNE at 6 mph",
-      "last_seen": "2026-09-25 19:02 UTC",
-      "latest_update": "2026-09-25 14:46 UTC",
+      "intensity": "Hurricane; Wind 125 mph; Pressure 951 mb; Movement NNE at 5 mph",
+      "last_seen": "2026-09-25 22:16 UTC",
+      "latest_update": "2026-09-25 20:35 UTC",
       "name": "Hurricane Odalys",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1137,12 +1137,12 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Odalys | Tropical Cyclone | Orange | P2 | Hurricane; Wind 130 mph; Pressure 946 mb; Movement NNE at 6 mph"
+      "update_key": "NOAA/NHC | Hurricane Odalys | Tropical Cyclone | Orange | P2 | Hurricane; Wind 125 mph; Pressure 951 mb; Movement NNE at 5 mph"
     },
     "NHC-Eastern Pacific-Hurricane Polo": {
-      "intensity": "Hurricane; Wind 180 mph; Pressure 900 mb; Movement W at 12 mph",
-      "last_seen": "2026-09-25 19:02 UTC",
-      "latest_update": "2026-09-25 17:59 UTC",
+      "intensity": "Hurricane; Wind 180 mph; Pressure 913 mb; Movement W at 10 mph",
+      "last_seen": "2026-09-25 22:16 UTC",
+      "latest_update": "2026-09-25 20:55 UTC",
       "name": "Hurricane Polo",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1151,7 +1151,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 180 mph; Pressure 900 mb; Movement W at 12 mph"
+      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 180 mph; Pressure 913 mb; Movement W at 10 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -1825,6 +1825,20 @@
       "tier_rank": 3,
       "update_key": "USGS | M5.8 earthquake \u2013 5 km E of Ushiku, Japan | Earthquake | Amber | P2 | Magnitude 5.8; depth 61 km"
     },
+    "USGS-us6000txpi": {
+      "intensity": "Magnitude 6.6; depth 10 km",
+      "last_seen": "2026-09-25 22:16 UTC",
+      "latest_update": "2026-09-25 22:11 UTC",
+      "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
+      "peril": "Earthquake",
+      "region": "80 km ENE of Tadine, New Caledonia",
+      "severity": "Red",
+      "severity_rank": 5,
+      "source": "USGS",
+      "tier": "P1",
+      "tier_rank": 4,
+      "update_key": "USGS | M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia | Earthquake | Red | P1 | Magnitude 6.6; depth 10 km"
+    },
     "USGS-us7000spqc": {
       "intensity": "Magnitude 6; depth 25 km",
       "last_seen": "2026-06-30 21:03 UTC",
@@ -2065,7 +2079,7 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 35 km",
-      "last_seen": "2026-09-25 19:02 UTC",
+      "last_seen": "2026-09-25 22:16 UTC",
       "latest_update": "2026-09-25 11:27 UTC",
       "name": "M6.3 earthquake \u2013 84 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2079,7 +2093,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-25 19:02 UTC",
+      "last_seen": "2026-09-25 22:16 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2093,7 +2107,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-25 19:02 UTC",
+      "last_seen": "2026-09-25 22:16 UTC",
       "latest_update": "2026-09-25 14:30 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2107,7 +2121,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-09-25 19:02 UTC",
+      "last_seen": "2026-09-25 22:16 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2121,6 +2135,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-25 19:02 UTC",
+  "last_run": "2026-09-25 22:16 UTC",
   "schema_version": 4
 }
