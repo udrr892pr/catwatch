@@ -636,9 +636,9 @@
       "update_key": "NOAA/NHC | Tropical Depression Edouard | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 25 mph; Pressure 1011 mb; Movement NW at 6 mph"
     },
     "NHC-Atlantic-Tropical Depression Fay": {
-      "intensity": "Tropical Depression; Wind 30 mph; Pressure 1012 mb; Movement S at 6 mph",
-      "last_seen": "2026-09-28 07:36 UTC",
-      "latest_update": "2026-09-28 02:34 UTC",
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1011 mb; Movement SSW at 9 mph",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 14:39 UTC",
       "name": "Tropical Depression Fay",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -647,7 +647,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Depression Fay | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 30 mph; Pressure 1012 mb; Movement S at 6 mph"
+      "update_key": "NOAA/NHC | Tropical Depression Fay | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1011 mb; Movement SSW at 9 mph"
     },
     "NHC-Atlantic-Tropical Depression Five": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1011 mb; Movement WNW at 6 mph",
@@ -775,6 +775,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Storm Gonzalo | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1005 mb; Movement NNW at 10 mph"
     },
+    "NHC-Atlantic-Tropical Storm Hanna": {
+      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1006 mb; Movement E at 17 mph",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 15:00 UTC",
+      "name": "Tropical Storm Hanna",
+      "peril": "Tropical Cyclone",
+      "region": "Atlantic",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Storm Hanna | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1006 mb; Movement E at 17 mph"
+    },
     "NHC-Central Pacific-Hurricane Fausto": {
       "intensity": "Hurricane; Wind 75 mph; Pressure 994 mb; Movement WNW at 16 mph",
       "last_seen": "2026-07-28 01:02 UTC",
@@ -832,9 +846,9 @@
       "update_key": "NOAA/NHC | Hurricane Lowell | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 979 mb; Movement N at 15 mph"
     },
     "NHC-Central Pacific-Hurricane Nolo": {
-      "intensity": "Hurricane; Wind 150 mph; Pressure 934 mb; Movement WNW at 12 mph",
-      "last_seen": "2026-09-28 07:36 UTC",
-      "latest_update": "2026-09-28 05:48 UTC",
+      "intensity": "Hurricane; Wind 155 mph; Pressure 929 mb; Movement WNW at 13 mph",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 14:52 UTC",
       "name": "Hurricane Nolo",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -843,7 +857,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Nolo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 150 mph; Pressure 934 mb; Movement WNW at 12 mph"
+      "update_key": "NOAA/NHC | Hurricane Nolo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 155 mph; Pressure 929 mb; Movement WNW at 13 mph"
     },
     "NHC-Central Pacific-Post-Tropical Cyclone Fausto": {
       "intensity": "Post-Tropical Cyclone; Wind 35 mph; Pressure 1008 mb; Movement WNW at 13 mph",
@@ -1154,9 +1168,9 @@
       "update_key": "NOAA/NHC | Hurricane Odalys | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 985 mb; Movement N at 8 mph"
     },
     "NHC-Eastern Pacific-Hurricane Polo": {
-      "intensity": "Hurricane; Wind 120 mph; Pressure 954 mb; Movement N at 10 mph",
-      "last_seen": "2026-09-28 07:36 UTC",
-      "latest_update": "2026-09-28 05:49 UTC",
+      "intensity": "Hurricane; Wind 115 mph; Pressure 958 mb; Movement NE at 10 mph",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 14:53 UTC",
       "name": "Hurricane Polo",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1165,7 +1179,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 120 mph; Pressure 954 mb; Movement N at 10 mph"
+      "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 115 mph; Pressure 958 mb; Movement NE at 10 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -1630,9 +1644,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Polo | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 1001 mb; Movement NE at 5 mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Rachel": {
-      "intensity": "Tropical Storm; Wind 45 mph; Pressure 1001 mb; Movement WNW at 7 mph",
-      "last_seen": "2026-09-28 07:36 UTC",
-      "latest_update": "2026-09-28 05:47 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 999 mb; Movement WNW at 8 mph",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 14:38 UTC",
       "name": "Tropical Storm Rachel",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1641,7 +1655,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Rachel | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 45 mph; Pressure 1001 mb; Movement WNW at 7 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Rachel | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 999 mb; Movement WNW at 8 mph"
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
@@ -1883,7 +1897,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-09-28 07:36 UTC",
+      "last_seen": "2026-09-28 15:56 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2135,8 +2149,8 @@
     },
     "USGS-us7000tdvt": {
       "intensity": "Magnitude 6.3; depth 21 km",
-      "last_seen": "2026-09-28 07:36 UTC",
-      "latest_update": "2026-09-28 06:25 UTC",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 11:27 UTC",
       "name": "M6.3 earthquake \u2013 89 km SSW of Nikolski, Alaska",
       "peril": "Earthquake",
       "region": "89 km SSW of Nikolski, Alaska",
@@ -2147,9 +2161,23 @@
       "tier_rank": 3,
       "update_key": "USGS | M6.3 earthquake \u2013 89 km SSW of Nikolski, Alaska | Earthquake | Amber | P2 | Magnitude 6.3; depth 21 km"
     },
+    "USGS-us7000tdw6": {
+      "intensity": "Magnitude 5.5; depth 10 km",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 10:22 UTC",
+      "name": "M5.5 earthquake \u2013 17 km WNW of Jiangyou, China",
+      "peril": "Earthquake",
+      "region": "17 km WNW of Jiangyou, China",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "USGS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "USGS | M5.5 earthquake \u2013 17 km WNW of Jiangyou, China | Earthquake | Amber | P2 | Magnitude 5.5; depth 10 km"
+    },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-09-28 07:36 UTC",
+      "last_seen": "2026-09-28 15:56 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2163,8 +2191,8 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-09-28 07:36 UTC",
-      "latest_update": "2026-09-27 14:29 UTC",
+      "last_seen": "2026-09-28 15:56 UTC",
+      "latest_update": "2026-09-28 14:30 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
       "region": "177 km W of Nikolski, Alaska",
@@ -2177,7 +2205,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-09-28 07:36 UTC",
+      "last_seen": "2026-09-28 15:56 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2191,6 +2219,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-09-28 07:36 UTC",
+  "last_run": "2026-09-28 15:56 UTC",
   "schema_version": 4
 }
