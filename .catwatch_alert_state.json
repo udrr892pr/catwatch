@@ -860,9 +860,9 @@
       "update_key": "NOAA/NHC | Hurricane Lowell | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 979 mb; Movement N at 15 mph"
     },
     "NHC-Central Pacific-Hurricane Nolo": {
-      "intensity": "Hurricane; Wind 115 mph; Pressure 959 mb; Movement W at 16 mph",
-      "last_seen": "2026-10-03 18:26 UTC",
-      "latest_update": "2026-10-03 17:44 UTC",
+      "intensity": "Hurricane; Wind 115 mph; Pressure 959 mb; Movement W at 17 mph",
+      "last_seen": "2026-10-03 21:36 UTC",
+      "latest_update": "2026-10-03 20:39 UTC",
       "name": "Hurricane Nolo",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -871,7 +871,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Nolo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 115 mph; Pressure 959 mb; Movement W at 16 mph"
+      "update_key": "NOAA/NHC | Hurricane Nolo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 115 mph; Pressure 959 mb; Movement W at 17 mph"
     },
     "NHC-Central Pacific-Post-Tropical Cyclone Fausto": {
       "intensity": "Post-Tropical Cyclone; Wind 35 mph; Pressure 1008 mb; Movement WNW at 13 mph",
@@ -1196,9 +1196,9 @@
       "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 984 mb; Movement NE at 17 mph"
     },
     "NHC-Eastern Pacific-Hurricane Rachel": {
-      "intensity": "Hurricane; Wind 85 mph; Pressure 973 mb; Movement WNW at 3 mph",
-      "last_seen": "2026-10-03 18:26 UTC",
-      "latest_update": "2026-10-03 14:36 UTC",
+      "intensity": "Hurricane; Wind 80 mph; Pressure 977 mb; Movement WNW at 5 mph",
+      "last_seen": "2026-10-03 21:36 UTC",
+      "latest_update": "2026-10-03 20:53 UTC",
       "name": "Hurricane Rachel",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1207,7 +1207,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Rachel | Tropical Cyclone | Orange | P2 | Hurricane; Wind 85 mph; Pressure 973 mb; Movement WNW at 3 mph"
+      "update_key": "NOAA/NHC | Hurricane Rachel | Tropical Cyclone | Orange | P2 | Hurricane; Wind 80 mph; Pressure 977 mb; Movement WNW at 5 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -1967,7 +1967,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-03 18:26 UTC",
+      "last_seen": "2026-10-03 21:36 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2247,7 +2247,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-10-03 18:26 UTC",
+      "last_seen": "2026-10-03 21:36 UTC",
       "latest_update": "2026-09-12 21:29 UTC",
       "name": "M6.5 earthquake \u2013 126 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2261,7 +2261,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-10-03 18:26 UTC",
+      "last_seen": "2026-10-03 21:36 UTC",
       "latest_update": "2026-10-03 14:29 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2275,7 +2275,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-10-03 18:26 UTC",
+      "last_seen": "2026-10-03 21:36 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2289,6 +2289,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-03 18:26 UTC",
+  "last_run": "2026-10-03 21:36 UTC",
   "schema_version": 4
 }
