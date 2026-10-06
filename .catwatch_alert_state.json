@@ -677,6 +677,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Depression Five | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1011 mb; Movement WNW at 6 mph"
     },
+    "NHC-Atlantic-Tropical Depression Nine": {
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement E at 5 mph",
+      "last_seen": "2026-10-06 20:39 UTC",
+      "latest_update": "2026-10-06 20:38 UTC",
+      "name": "Tropical Depression Nine",
+      "peril": "Tropical Cyclone",
+      "region": "Atlantic",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Depression Nine | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement E at 5 mph"
+    },
     "NHC-Atlantic-Tropical Depression Six": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement NNE at 5 mph",
       "last_seen": "2026-09-20 05:32 UTC",
@@ -1196,9 +1210,9 @@
       "update_key": "NOAA/NHC | Hurricane Polo | Tropical Cyclone | Orange | P2 | Hurricane; Wind 75 mph; Pressure 984 mb; Movement NE at 17 mph"
     },
     "NHC-Eastern Pacific-Hurricane Rachel": {
-      "intensity": "Hurricane; Wind 85 mph; Pressure 977 mb; Movement W at 8 mph",
-      "last_seen": "2026-10-06 15:54 UTC",
-      "latest_update": "2026-10-06 14:45 UTC",
+      "intensity": "Hurricane; Wind 80 mph; Pressure 979 mb; Movement W at 7 mph",
+      "last_seen": "2026-10-06 20:39 UTC",
+      "latest_update": "2026-10-06 20:30 UTC",
       "name": "Hurricane Rachel",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1207,7 +1221,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Rachel | Tropical Cyclone | Orange | P2 | Hurricane; Wind 85 mph; Pressure 977 mb; Movement W at 8 mph"
+      "update_key": "NOAA/NHC | Hurricane Rachel | Tropical Cyclone | Orange | P2 | Hurricane; Wind 80 mph; Pressure 979 mb; Movement W at 7 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -1741,6 +1755,20 @@
       "tier_rank": 3,
       "update_key": "USGS | M5.6 earthquake \u2013 57 km WNW of Skwentna, Alaska | Earthquake | Amber | P2 | Magnitude 5.6; depth 10 km"
     },
+    "USGS-aka2026tuxgky": {
+      "intensity": "Magnitude 5.5; depth 87.6 km",
+      "last_seen": "2026-10-06 20:39 UTC",
+      "latest_update": "2026-10-06 20:37 UTC",
+      "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
+      "peril": "Earthquake",
+      "region": "92 km NNW of Aleneva, Alaska",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "USGS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "USGS | M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska | Earthquake | Amber | P2 | Magnitude 5.5; depth 87.6 km"
+    },
     "USGS-nc75382936": {
       "intensity": "Magnitude 5.59; depth 8.85 km",
       "last_seen": "2026-07-24 14:45 UTC",
@@ -1967,7 +1995,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-06 15:54 UTC",
+      "last_seen": "2026-10-06 20:39 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2247,7 +2275,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-10-06 15:54 UTC",
+      "last_seen": "2026-10-06 20:39 UTC",
       "latest_update": "2026-10-04 21:37 UTC",
       "name": "M6.5 earthquake \u2013 121 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2261,7 +2289,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-10-06 15:54 UTC",
+      "last_seen": "2026-10-06 20:39 UTC",
       "latest_update": "2026-10-06 14:29 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2275,7 +2303,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-10-06 15:54 UTC",
+      "last_seen": "2026-10-06 20:39 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2289,6 +2317,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-06 15:54 UTC",
+  "last_run": "2026-10-06 20:39 UTC",
   "schema_version": 4
 }
