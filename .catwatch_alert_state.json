@@ -369,6 +369,20 @@
       "tier_rank": 3,
       "update_key": "GDACS | Orange notification for tropical cyclone ONE-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (10.248 million in Tropical Storm). | Tropical Cyclone | Orange | P2 | From 22/09/2026 to 24/09/2026, a Tropical Storm (maximum wind speed of 83 km/h) ONE-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated population\u2026"
     },
+    "GDACS-tropical-cyclone-1001335": {
+      "intensity": "From 07/10/2026 to 07/10/2026, a Tropical Depression (maximum wind speed of 176 km/h) TWENTY-E-26 was active in EastPacific. The cyclone affects these countries: [unknown] (vulnerability [unknown]).\u2026",
+      "last_seen": "2026-10-07 19:00 UTC",
+      "latest_update": "2026-10-07 15:33 UTC",
+      "name": "Orange notification for tropical cyclone TWENTY-E-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 56306 .",
+      "peril": "Tropical Cyclone",
+      "region": "Orange notification for tropical cyclone TWENTY-E-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 56306 .",
+      "severity": "Orange",
+      "severity_rank": 4,
+      "source": "GDACS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "GDACS | Orange notification for tropical cyclone TWENTY-E-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 56306 . | Tropical Cyclone | Orange | P2 | From 07/10/2026 to 07/10/2026, a Tropical Depression (maximum wind speed of 176 km/h) TWENTY-E-26 was active in EastPacific. The cyclone affects these countries: [unknown] (vulnerability [unknown]).\u2026"
+    },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
       "last_seen": "2026-07-08 18:52 UTC",
@@ -818,9 +832,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Hanna | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1006 mb; Movement ESE at 5 mph"
     },
     "NHC-Atlantic-Tropical Storm Isaias": {
-      "intensity": "Tropical Storm; Wind 40 mph; Pressure 1004 mb; Movement ENE at 8 mph",
-      "last_seen": "2026-10-07 12:18 UTC",
-      "latest_update": "2026-10-07 08:52 UTC",
+      "intensity": "Tropical Storm; Wind 50 mph; Pressure 997 mb; Movement ENE at 8 mph",
+      "last_seen": "2026-10-07 19:00 UTC",
+      "latest_update": "2026-10-07 17:53 UTC",
       "name": "Tropical Storm Isaias",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -829,7 +843,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Isaias | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1004 mb; Movement ENE at 8 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Isaias | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 50 mph; Pressure 997 mb; Movement ENE at 8 mph"
     },
     "NHC-Central Pacific-Hurricane Fausto": {
       "intensity": "Hurricane; Wind 75 mph; Pressure 994 mb; Movement WNW at 16 mph",
@@ -1225,8 +1239,8 @@
     },
     "NHC-Eastern Pacific-Hurricane Rachel": {
       "intensity": "Hurricane; Wind 80 mph; Pressure 979 mb; Movement WNW at 7 mph",
-      "last_seen": "2026-10-07 12:18 UTC",
-      "latest_update": "2026-10-07 08:59 UTC",
+      "last_seen": "2026-10-07 19:00 UTC",
+      "latest_update": "2026-10-07 14:52 UTC",
       "name": "Hurricane Rachel",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1559,6 +1573,20 @@
       "tier_rank": 3,
       "update_key": "NOAA/NHC | Tropical Depression Ten-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement NNE at 9 mph"
     },
+    "NHC-Eastern Pacific-Tropical Depression Twenty-E": {
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 8 mph",
+      "last_seen": "2026-10-07 19:00 UTC",
+      "latest_update": "2026-10-07 14:57 UTC",
+      "name": "Tropical Depression Twenty-E",
+      "peril": "Tropical Cyclone",
+      "region": "Eastern Pacific",
+      "severity": "Amber",
+      "severity_rank": 3,
+      "source": "NOAA/NHC",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "NOAA/NHC | Tropical Depression Twenty-E | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement WNW at 8 mph"
+    },
     "NHC-Eastern Pacific-Tropical Storm Douglas": {
       "intensity": "Tropical Storm; Wind 40 mph; Pressure 1003 mb; Movement NNW at 7 mph",
       "last_seen": "2026-07-03 08:26 UTC",
@@ -1771,8 +1799,8 @@
     },
     "USGS-aka2026tuxgky": {
       "intensity": "Magnitude 5.5; depth 87.6 km",
-      "last_seen": "2026-10-07 12:18 UTC",
-      "latest_update": "2026-10-07 11:40 UTC",
+      "last_seen": "2026-10-07 19:00 UTC",
+      "latest_update": "2026-10-07 18:44 UTC",
       "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
       "peril": "Earthquake",
       "region": "92 km NNW of Aleneva, Alaska",
@@ -2009,7 +2037,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-07 12:18 UTC",
+      "last_seen": "2026-10-07 19:00 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2289,7 +2317,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-10-07 12:18 UTC",
+      "last_seen": "2026-10-07 19:00 UTC",
       "latest_update": "2026-10-04 21:37 UTC",
       "name": "M6.5 earthquake \u2013 121 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2303,7 +2331,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-10-07 12:18 UTC",
+      "last_seen": "2026-10-07 19:00 UTC",
       "latest_update": "2026-10-06 14:29 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2317,7 +2345,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-10-07 12:18 UTC",
+      "last_seen": "2026-10-07 19:00 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2331,6 +2359,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-07 12:18 UTC",
+  "last_run": "2026-10-07 19:00 UTC",
   "schema_version": 4
 }
