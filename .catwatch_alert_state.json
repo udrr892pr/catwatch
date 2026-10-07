@@ -679,7 +679,7 @@
     },
     "NHC-Atlantic-Tropical Depression Nine": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement E at 5 mph",
-      "last_seen": "2026-10-06 20:39 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
       "latest_update": "2026-10-06 20:38 UTC",
       "name": "Tropical Depression Nine",
       "peril": "Tropical Cyclone",
@@ -1211,7 +1211,7 @@
     },
     "NHC-Eastern Pacific-Hurricane Rachel": {
       "intensity": "Hurricane; Wind 80 mph; Pressure 979 mb; Movement W at 7 mph",
-      "last_seen": "2026-10-06 20:39 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
       "latest_update": "2026-10-06 20:30 UTC",
       "name": "Hurricane Rachel",
       "peril": "Tropical Cyclone",
@@ -1757,8 +1757,8 @@
     },
     "USGS-aka2026tuxgky": {
       "intensity": "Magnitude 5.5; depth 87.6 km",
-      "last_seen": "2026-10-06 20:39 UTC",
-      "latest_update": "2026-10-06 20:37 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
+      "latest_update": "2026-10-06 22:44 UTC",
       "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
       "peril": "Earthquake",
       "region": "92 km NNW of Aleneva, Alaska",
@@ -1995,7 +1995,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-06 20:39 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2275,7 +2275,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-10-06 20:39 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
       "latest_update": "2026-10-04 21:37 UTC",
       "name": "M6.5 earthquake \u2013 121 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2289,7 +2289,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-10-06 20:39 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
       "latest_update": "2026-10-06 14:29 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2303,7 +2303,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-10-06 20:39 UTC",
+      "last_seen": "2026-10-07 00:07 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2317,6 +2317,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-06 20:39 UTC",
+  "last_run": "2026-10-07 00:07 UTC",
   "schema_version": 4
 }
