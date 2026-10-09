@@ -259,7 +259,7 @@
     },
     "GDACS-earthquake-1570077": {
       "intensity": "On 10/8/2026 9:00:07 AM, an earthquake occurred in Vanuatu potentially affecting 10 thousand (in MMI>=VII). The earthquake had Magnitude 6.3M, Depth:10km.",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-10-08 09:09 UTC",
       "name": "Orange earthquake (Magnitude 6.3M, Depth:10km) in Vanuatu 08/10/2026 09:00 UTC, 10 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -384,8 +384,8 @@
       "update_key": "GDACS | Orange notification for tropical cyclone ONE-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (10.248 million in Tropical Storm). | Tropical Cyclone | Orange | P2 | From 22/09/2026 to 24/09/2026, a Tropical Storm (maximum wind speed of 83 km/h) ONE-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated population\u2026"
     },
     "GDACS-tropical-cyclone-1001335": {
-      "intensity": "From 07/10/2026 to 08/10/2026, a Tropical Storm (maximum wind speed of 213 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability [unknown]). Estimated p\u2026",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "intensity": "From 07/10/2026 to 08/10/2026, a Tropical Storm (maximum wind speed of 213 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: [unknown] (vulnerability [unknown]). Estimate\u2026",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-10-07 15:33 UTC",
       "name": "Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 76436 .",
       "peril": "Tropical Cyclone",
@@ -395,7 +395,7 @@
       "source": "GDACS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "GDACS | Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 76436 . | Tropical Cyclone | Orange | P2 | From 07/10/2026 to 08/10/2026, a Tropical Storm (maximum wind speed of 213 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability [unknown]). Estimated p\u2026"
+      "update_key": "GDACS | Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 76436 . | Tropical Cyclone | Orange | P2 | From 07/10/2026 to 08/10/2026, a Tropical Storm (maximum wind speed of 213 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: [unknown] (vulnerability [unknown]). Estimate\u2026"
     },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
@@ -524,9 +524,9 @@
       "update_key": "GDACS | Orange forest fire notification in Belgium | Wildfire | Orange | P2 | On 14/08/2026, a forest fire started in Belgium, until 17/08/2026."
     },
     "NHC-Atlantic-Hurricane Isaias": {
-      "intensity": "Hurricane; Wind 100 mph; Pressure 975 mb; Movement NE at 12 mph",
-      "last_seen": "2026-10-08 21:46 UTC",
-      "latest_update": "2026-10-08 20:57 UTC",
+      "intensity": "Hurricane; Wind 100 mph; Pressure 974 mb; Movement NE at 13 mph",
+      "last_seen": "2026-10-09 01:33 UTC",
+      "latest_update": "2026-10-08 23:51 UTC",
       "name": "Hurricane Isaias",
       "peril": "Tropical Cyclone",
       "region": "Atlantic",
@@ -535,7 +535,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Isaias | Tropical Cyclone | Orange | P2 | Hurricane; Wind 100 mph; Pressure 975 mb; Movement NE at 12 mph"
+      "update_key": "NOAA/NHC | Hurricane Isaias | Tropical Cyclone | Orange | P2 | Hurricane; Wind 100 mph; Pressure 974 mb; Movement NE at 13 mph"
     },
     "NHC-Atlantic-Post-Tropical Cyclone Cristobal": {
       "intensity": "Post-Tropical Cyclone; Wind 30 mph; Pressure 1018 mb; Movement NE at 16 mph",
@@ -1799,7 +1799,7 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Rachel": {
       "intensity": "Tropical Storm; Wind 65 mph; Pressure 987 mb; Movement WNW at 3 mph",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-10-08 20:51 UTC",
       "name": "Tropical Storm Rachel",
       "peril": "Tropical Cyclone",
@@ -1813,8 +1813,8 @@
     },
     "NHC-Eastern Pacific-Tropical Storm Simon": {
       "intensity": "Tropical Storm; Wind 70 mph; Pressure 992 mb; Movement W at 6 mph",
-      "last_seen": "2026-10-08 21:46 UTC",
-      "latest_update": "2026-10-08 20:32 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
+      "latest_update": "2026-10-08 23:32 UTC",
       "name": "Tropical Storm Simon",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1841,7 +1841,7 @@
     },
     "USGS-aka2026tuxgky": {
       "intensity": "Magnitude 5.5; depth 87.6 km",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-10-08 18:44 UTC",
       "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
       "peril": "Earthquake",
@@ -2079,7 +2079,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2093,8 +2093,8 @@
     },
     "USGS-us6000u0xi": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-10-08 21:46 UTC",
-      "latest_update": "2026-10-08 15:12 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
+      "latest_update": "2026-10-09 01:11 UTC",
       "name": "M6.3 earthquake \u2013 102 km NE of Norsup, Vanuatu",
       "peril": "Earthquake",
       "region": "102 km NE of Norsup, Vanuatu",
@@ -2373,7 +2373,7 @@
     },
     "USGS-us7000tgrk": {
       "intensity": "Magnitude 6.5; depth 372 km",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-10-04 21:37 UTC",
       "name": "M6.5 earthquake \u2013 121 km NNE of Teluknaga, Indonesia",
       "peril": "Earthquake",
@@ -2387,7 +2387,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-10-06 14:29 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2401,7 +2401,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 104.329 km",
-      "last_seen": "2026-10-08 21:46 UTC",
+      "last_seen": "2026-10-09 01:33 UTC",
       "latest_update": "2026-09-21 09:25 UTC",
       "name": "M6.4 earthquake \u2013 49 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2415,6 +2415,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-08 21:46 UTC",
+  "last_run": "2026-10-09 01:33 UTC",
   "schema_version": 4
 }
