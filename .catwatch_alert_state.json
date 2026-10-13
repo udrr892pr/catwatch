@@ -273,7 +273,7 @@
     },
     "GDACS-earthquake-1570339": {
       "intensity": "On 10/9/2026 5:56:06 PM, an earthquake occurred in Panama potentially affecting 100 thousand (in MMI>=VII). The earthquake had Magnitude 7.7M, Depth:12.647km.",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-09 18:04 UTC",
       "name": "Orange earthquake (Magnitude 7.7M, Depth:12.647km) in Panama 09/10/2026 17:56 UTC, 100 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -412,18 +412,18 @@
       "update_key": "GDACS | Orange notification for tropical cyclone ISAIAS-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.567 million . | Tropical Cyclone | Orange | P2 | From 06/10/2026 to 11/10/2026, a Tropical Depression (maximum wind speed of 194 km/h) ISAIAS-26 was active in Atlantic. The cyclone affects these countries: United States (vulnerability Low). Estimat\u2026"
     },
     "GDACS-tropical-cyclone-1001335": {
-      "intensity": "From 07/10/2026 to 12/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 250 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability [unknown]).\u2026",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "intensity": "From 07/10/2026 to 13/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 250 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability Medium). Es\u2026",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-07 15:33 UTC",
-      "name": "Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 37569 .",
+      "name": "Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.574 million .",
       "peril": "Tropical Cyclone",
-      "region": "Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 37569 .",
+      "region": "Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.574 million .",
       "severity": "Orange",
       "severity_rank": 4,
       "source": "GDACS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "GDACS | Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 37569 . | Tropical Cyclone | Orange | P2 | From 07/10/2026 to 12/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 250 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability [unknown]).\u2026"
+      "update_key": "GDACS | Orange notification for tropical cyclone SIMON-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0.574 million . | Tropical Cyclone | Orange | P2 | From 07/10/2026 to 13/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 250 km/h) SIMON-26 was active in EastPacific. The cyclone affects these countries: Mexico (vulnerability Medium). Es\u2026"
     },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
@@ -1322,9 +1322,9 @@
       "update_key": "NOAA/NHC | Hurricane Rachel | Tropical Cyclone | Orange | P2 | Hurricane; Wind 80 mph; Pressure 979 mb; Movement WNW at 7 mph"
     },
     "NHC-Eastern Pacific-Hurricane Simon": {
-      "intensity": "Hurricane; Wind 100 mph; Pressure 969 mb; Movement WNW at 3 mph",
-      "last_seen": "2026-10-13 01:22 UTC",
-      "latest_update": "2026-10-12 23:33 UTC",
+      "intensity": "Hurricane; Wind 90 mph; Pressure 977 mb; Movement NW at 3 mph",
+      "last_seen": "2026-10-13 07:55 UTC",
+      "latest_update": "2026-10-13 05:38 UTC",
       "name": "Hurricane Simon",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -1333,7 +1333,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Hurricane Simon | Tropical Cyclone | Orange | P2 | Hurricane; Wind 100 mph; Pressure 969 mb; Movement WNW at 3 mph"
+      "update_key": "NOAA/NHC | Hurricane Simon | Tropical Cyclone | Orange | P2 | Hurricane; Wind 90 mph; Pressure 977 mb; Movement NW at 3 mph"
     },
     "NHC-Eastern Pacific-Post-Tropical Cyclone Douglas": {
       "intensity": "Post-Tropical Cyclone; Wind 40 mph; Pressure 1003 mb; Movement NNW at 8 mph",
@@ -1925,7 +1925,7 @@
     },
     "USGS-aka2026tuxgky": {
       "intensity": "Magnitude 5.5; depth 87.6 km",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-12 18:44 UTC",
       "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
       "peril": "Earthquake",
@@ -2163,7 +2163,7 @@
     },
     "USGS-us6000txpi": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-09-26 21:30 UTC",
       "name": "M6.6 earthquake \u2013 80 km ENE of Tadine, New Caledonia",
       "peril": "Earthquake",
@@ -2177,7 +2177,7 @@
     },
     "USGS-us6000u0xi": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-09 09:08 UTC",
       "name": "M6.3 earthquake \u2013 102 km NE of Norsup, Vanuatu",
       "peril": "Earthquake",
@@ -2191,8 +2191,8 @@
     },
     "USGS-us6000u18k": {
       "intensity": "Magnitude 7.7; depth 12.647 km",
-      "last_seen": "2026-10-13 01:22 UTC",
-      "latest_update": "2026-10-13 01:17 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
+      "latest_update": "2026-10-13 07:50 UTC",
       "name": "M7.7 earthquake \u2013 12 km WSW of Pitaloza Arriba, Panama",
       "peril": "Earthquake",
       "region": "12 km WSW of Pitaloza Arriba, Panama",
@@ -2205,8 +2205,8 @@
     },
     "USGS-us6000u18x": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-10-13 01:22 UTC",
-      "latest_update": "2026-10-10 18:43 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
+      "latest_update": "2026-10-13 02:34 UTC",
       "name": "M5.8 earthquake \u2013 1 km S of El Cacao, Panama",
       "peril": "Earthquake",
       "region": "1 km S of El Cacao, Panama",
@@ -2219,8 +2219,8 @@
     },
     "USGS-us6000u19w": {
       "intensity": "Magnitude 6.6; depth 10 km",
-      "last_seen": "2026-10-13 01:22 UTC",
-      "latest_update": "2026-10-10 21:09 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
+      "latest_update": "2026-10-13 02:38 UTC",
       "name": "M6.6 earthquake \u2013 14 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
       "region": "14 km W of R\u00edo Grande, Panama",
@@ -2233,7 +2233,7 @@
     },
     "USGS-us6000u1cf": {
       "intensity": "Magnitude 6; depth 10 km",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-11 23:12 UTC",
       "name": "M6 earthquake \u2013 7 km N of La Tronosa, Panama",
       "peril": "Earthquake",
@@ -2246,18 +2246,32 @@
       "update_key": "USGS | M6 earthquake \u2013 7 km N of La Tronosa, Panama | Earthquake | Amber | P2 | Magnitude 6; depth 10 km"
     },
     "USGS-us6000u1wn": {
-      "intensity": "Magnitude 6.1; depth 10 km",
-      "last_seen": "2026-10-13 01:22 UTC",
-      "latest_update": "2026-10-13 01:02 UTC",
-      "name": "M6.1 earthquake \u2013 18 km W of R\u00edo Grande, Panama",
+      "intensity": "Magnitude 6.1; depth 11 km",
+      "last_seen": "2026-10-13 07:55 UTC",
+      "latest_update": "2026-10-13 07:25 UTC",
+      "name": "M6.1 earthquake \u2013 17 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
-      "region": "18 km W of R\u00edo Grande, Panama",
+      "region": "17 km W of R\u00edo Grande, Panama",
       "severity": "Amber",
       "severity_rank": 3,
       "source": "USGS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "USGS | M6.1 earthquake \u2013 18 km W of R\u00edo Grande, Panama | Earthquake | Amber | P2 | Magnitude 6.1; depth 10 km"
+      "update_key": "USGS | M6.1 earthquake \u2013 17 km W of R\u00edo Grande, Panama | Earthquake | Amber | P2 | Magnitude 6.1; depth 11 km"
+    },
+    "USGS-us6000u1z5": {
+      "intensity": "Magnitude 6.7; depth 10 km",
+      "last_seen": "2026-10-13 07:55 UTC",
+      "latest_update": "2026-10-13 07:50 UTC",
+      "name": "M6.7 earthquake \u2013 central Mid-Atlantic Ridge",
+      "peril": "Earthquake",
+      "region": "central Mid-Atlantic Ridge",
+      "severity": "Red",
+      "severity_rank": 5,
+      "source": "USGS",
+      "tier": "P1",
+      "tier_rank": 4,
+      "update_key": "USGS | M6.7 earthquake \u2013 central Mid-Atlantic Ridge | Earthquake | Red | P1 | Magnitude 6.7; depth 10 km"
     },
     "USGS-us7000spqc": {
       "intensity": "Magnitude 6; depth 25 km",
@@ -2541,7 +2555,7 @@
     },
     "USGS-us7000ti1p": {
       "intensity": "Magnitude 6.5; depth 98 km",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-12 14:29 UTC",
       "name": "M6.5 earthquake \u2013 177 km W of Nikolski, Alaska",
       "peril": "Earthquake",
@@ -2555,7 +2569,7 @@
     },
     "USGS-us7000tiqc": {
       "intensity": "Magnitude 6.4; depth 113 km",
-      "last_seen": "2026-10-13 01:22 UTC",
+      "last_seen": "2026-10-13 07:55 UTC",
       "latest_update": "2026-10-12 16:49 UTC",
       "name": "M6.4 earthquake \u2013 50 km NNE of Kainantu, Papua New Guinea",
       "peril": "Earthquake",
@@ -2569,6 +2583,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-13 01:22 UTC",
+  "last_run": "2026-10-13 07:55 UTC",
   "schema_version": 4
 }
