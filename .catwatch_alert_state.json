@@ -287,7 +287,7 @@
     },
     "GDACS-earthquake-1573141": {
       "intensity": "On 10/22/2026 2:33:40 PM, an earthquake occurred in China potentially affecting 10 thousand (in MMI>=VII). The earthquake had Magnitude 7M, Depth:18km.",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-22 14:54 UTC",
       "name": "Red earthquake (Magnitude 7M, Depth:18km) in China 22/10/2026 14:33 UTC, 10 thousand (in MMI>=VII).",
       "peril": "Earthquake",
@@ -482,18 +482,18 @@
       "update_key": "GDACS | Orange notification for tropical cyclone WATI-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 4982 . | Tropical Cyclone | Orange | P2 | From 16/10/2026 to 17/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 130 km/h) WATI-26 was active in SEPacific. The cyclone affects these countries: Cook Islands (vulnerability Medium).\u2026"
     },
     "GDACS-tropical-cyclone-1001345": {
-      "intensity": "From 26/10/2026 to 26/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 194 km/h) ARNAB-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estim\u2026",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "intensity": "From 26/10/2026 to 26/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 185 km/h) ARNAB-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estim\u2026",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-26 01:51 UTC",
-      "name": "Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 3.146 million .",
+      "name": "Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 6.028 million .",
       "peril": "Tropical Cyclone",
-      "region": "Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 3.146 million .",
+      "region": "Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 6.028 million .",
       "severity": "Red",
       "severity_rank": 5,
       "source": "GDACS",
       "tier": "P1",
       "tier_rank": 4,
-      "update_key": "GDACS | Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 3.146 million . | Tropical Cyclone | Red | P1 | From 26/10/2026 to 26/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 194 km/h) ARNAB-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estim\u2026"
+      "update_key": "GDACS | Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 6.028 million . | Tropical Cyclone | Red | P1 | From 26/10/2026 to 26/10/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 185 km/h) ARNAB-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estim\u2026"
     },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
@@ -1224,9 +1224,9 @@
       "update_key": "NOAA/NHC | Tropical Depression Norbert | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement W at 14 mph"
     },
     "NHC-Central Pacific-Tropical Depression Olana": {
-      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement SE at 5 mph",
-      "last_seen": "2026-10-26 18:56 UTC",
-      "latest_update": "2026-10-26 14:34 UTC",
+      "intensity": "Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement SE at 3 mph",
+      "last_seen": "2026-10-26 22:58 UTC",
+      "latest_update": "2026-10-26 20:33 UTC",
       "name": "Tropical Depression Olana",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -1235,7 +1235,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Depression Olana | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1005 mb; Movement SE at 5 mph"
+      "update_key": "NOAA/NHC | Tropical Depression Olana | Tropical Cyclone | Amber | P2 | Tropical Depression; Wind 35 mph; Pressure 1007 mb; Movement SE at 3 mph"
     },
     "NHC-Central Pacific-Tropical Depression Three-C": {
       "intensity": "Tropical Depression; Wind 35 mph; Pressure 1006 mb; Movement ENE at 7 mph",
@@ -2148,9 +2148,9 @@
       "update_key": "NOAA/NHC | Tropical Storm Trudy | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 40 mph; Pressure 1004 mb; Movement at  mph"
     },
     "NHC-Eastern Pacific-Tropical Storm Vance": {
-      "intensity": "Tropical Storm; Wind 65 mph; Pressure 997 mb; Movement WNW at 7 mph",
-      "last_seen": "2026-10-26 18:56 UTC",
-      "latest_update": "2026-10-26 14:33 UTC",
+      "intensity": "Tropical Storm; Wind 65 mph; Pressure 997 mb; Movement W at 6 mph",
+      "last_seen": "2026-10-26 22:58 UTC",
+      "latest_update": "2026-10-26 20:34 UTC",
       "name": "Tropical Storm Vance",
       "peril": "Tropical Cyclone",
       "region": "Eastern Pacific",
@@ -2159,7 +2159,7 @@
       "source": "NOAA/NHC",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "NOAA/NHC | Tropical Storm Vance | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 65 mph; Pressure 997 mb; Movement WNW at 7 mph"
+      "update_key": "NOAA/NHC | Tropical Storm Vance | Tropical Cyclone | Amber | P2 | Tropical Storm; Wind 65 mph; Pressure 997 mb; Movement W at 6 mph"
     },
     "USGS-aka2026powmkf": {
       "intensity": "Magnitude 5.6; depth 10 km",
@@ -2177,7 +2177,7 @@
     },
     "USGS-aka2026tuxgky": {
       "intensity": "Magnitude 5.5; depth 87.6 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-25 18:44 UTC",
       "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
       "peril": "Earthquake",
@@ -2457,7 +2457,7 @@
     },
     "USGS-us6000u0xi": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-09 09:08 UTC",
       "name": "M6.3 earthquake \u2013 102 km NE of Norsup, Vanuatu",
       "peril": "Earthquake",
@@ -2471,7 +2471,7 @@
     },
     "USGS-us6000u18k": {
       "intensity": "Magnitude 7.7; depth 12.647 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-26 16:04 UTC",
       "name": "M7.7 earthquake \u2013 12 km WSW of Pitaloza Arriba, Panama",
       "peril": "Earthquake",
@@ -2485,7 +2485,7 @@
     },
     "USGS-us6000u18x": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-13 02:34 UTC",
       "name": "M5.8 earthquake \u2013 1 km S of El Cacao, Panama",
       "peril": "Earthquake",
@@ -2499,7 +2499,7 @@
     },
     "USGS-us6000u19w": {
       "intensity": "Magnitude 6.6; depth 24.044 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-14 17:48 UTC",
       "name": "M6.6 earthquake \u2013 12 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
@@ -2513,7 +2513,7 @@
     },
     "USGS-us6000u1cf": {
       "intensity": "Magnitude 6; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-11 23:12 UTC",
       "name": "M6 earthquake \u2013 7 km N of La Tronosa, Panama",
       "peril": "Earthquake",
@@ -2527,7 +2527,7 @@
     },
     "USGS-us6000u1wn": {
       "intensity": "Magnitude 6.1; depth 11 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-22 18:53 UTC",
       "name": "M6.1 earthquake \u2013 15 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
@@ -2541,7 +2541,7 @@
     },
     "USGS-us6000u1z5": {
       "intensity": "Magnitude 6.7; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-21 16:20 UTC",
       "name": "M6.7 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -2555,7 +2555,7 @@
     },
     "USGS-us6000u214": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-13 15:39 UTC",
       "name": "M6.8 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -2569,7 +2569,7 @@
     },
     "USGS-us6000u2mq": {
       "intensity": "Magnitude 6.9; depth 135 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-17 03:41 UTC",
       "name": "M6.9 earthquake \u2013 76 km NE of Ozernovskiy, Russia",
       "peril": "Earthquake",
@@ -2583,7 +2583,7 @@
     },
     "USGS-us6000u2y1": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-18 05:13 UTC",
       "name": "M5.7 earthquake \u2013 48 km WNW of Khuzdar, Pakistan",
       "peril": "Earthquake",
@@ -2597,7 +2597,7 @@
     },
     "USGS-us6000u3jl": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-20 06:28 UTC",
       "name": "M6.3 earthquake \u2013 197 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2611,7 +2611,7 @@
     },
     "USGS-us6000u43g": {
       "intensity": "Magnitude 7; depth 18 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-24 06:28 UTC",
       "name": "M7 earthquake \u2013 191 km ENE of Nagqu, China",
       "peril": "Earthquake",
@@ -2625,7 +2625,7 @@
     },
     "USGS-us6000u4j2": {
       "intensity": "Magnitude 6.9; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-25 02:37 UTC",
       "name": "M6.9 earthquake \u2013 197 km WNW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2639,7 +2639,7 @@
     },
     "USGS-us6000u4jb": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-25 02:41 UTC",
       "name": "M6.3 earthquake \u2013 170 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2653,7 +2653,7 @@
     },
     "USGS-us6000u4r9": {
       "intensity": "Magnitude 6.5; depth 492.376 km",
-      "last_seen": "2026-10-26 18:56 UTC",
+      "last_seen": "2026-10-26 22:58 UTC",
       "latest_update": "2026-10-26 02:15 UTC",
       "name": "M6.5 earthquake \u2013 Bonin Islands, Japan region",
       "peril": "Earthquake",
@@ -2989,6 +2989,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-26 18:56 UTC",
+  "last_run": "2026-10-26 22:58 UTC",
   "schema_version": 4
 }
