@@ -483,7 +483,7 @@
     },
     "GDACS-tropical-cyclone-1001345": {
       "intensity": "From 26/10/2026 to 28/10/2026, a Tropical Storm (maximum wind speed of 222 km/h) ARNAB-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated populat\u2026",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-26 01:51 UTC",
       "name": "Red notification for tropical cyclone ARNAB-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 4.008 million .",
       "peril": "Tropical Cyclone",
@@ -2219,7 +2219,7 @@
     },
     "USGS-aka2026tuxgky": {
       "intensity": "Magnitude 5.5; depth 87.6 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-28 18:44 UTC",
       "name": "M5.5 earthquake \u2013 92 km NNW of Aleneva, Alaska",
       "peril": "Earthquake",
@@ -2499,7 +2499,7 @@
     },
     "USGS-us6000u0xi": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-09 09:08 UTC",
       "name": "M6.3 earthquake \u2013 102 km NE of Norsup, Vanuatu",
       "peril": "Earthquake",
@@ -2513,7 +2513,7 @@
     },
     "USGS-us6000u18k": {
       "intensity": "Magnitude 7.7; depth 12.647 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-30 00:30 UTC",
       "name": "M7.7 earthquake \u2013 12 km WSW of Pitaloza Arriba, Panama",
       "peril": "Earthquake",
@@ -2527,7 +2527,7 @@
     },
     "USGS-us6000u18x": {
       "intensity": "Magnitude 5.8; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-13 02:34 UTC",
       "name": "M5.8 earthquake \u2013 1 km S of El Cacao, Panama",
       "peril": "Earthquake",
@@ -2541,7 +2541,7 @@
     },
     "USGS-us6000u19w": {
       "intensity": "Magnitude 6.6; depth 24.044 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-14 17:48 UTC",
       "name": "M6.6 earthquake \u2013 12 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
@@ -2555,7 +2555,7 @@
     },
     "USGS-us6000u1cf": {
       "intensity": "Magnitude 6; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-30 05:23 UTC",
       "name": "M6 earthquake \u2013 4 km NNE of La Tronosa, Panama",
       "peril": "Earthquake",
@@ -2569,7 +2569,7 @@
     },
     "USGS-us6000u1wn": {
       "intensity": "Magnitude 6.1; depth 11 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-22 18:53 UTC",
       "name": "M6.1 earthquake \u2013 15 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
@@ -2583,7 +2583,7 @@
     },
     "USGS-us6000u1z5": {
       "intensity": "Magnitude 6.7; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-21 16:20 UTC",
       "name": "M6.7 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -2597,7 +2597,7 @@
     },
     "USGS-us6000u214": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-13 15:39 UTC",
       "name": "M6.8 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -2611,7 +2611,7 @@
     },
     "USGS-us6000u2mq": {
       "intensity": "Magnitude 6.9; depth 135 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-17 03:41 UTC",
       "name": "M6.9 earthquake \u2013 76 km NE of Ozernovskiy, Russia",
       "peril": "Earthquake",
@@ -2625,7 +2625,7 @@
     },
     "USGS-us6000u2y1": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-18 05:13 UTC",
       "name": "M5.7 earthquake \u2013 48 km WNW of Khuzdar, Pakistan",
       "peril": "Earthquake",
@@ -2639,7 +2639,7 @@
     },
     "USGS-us6000u3jl": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-27 17:29 UTC",
       "name": "M6.3 earthquake \u2013 197 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2653,7 +2653,7 @@
     },
     "USGS-us6000u43g": {
       "intensity": "Magnitude 7; depth 18 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-24 06:28 UTC",
       "name": "M7 earthquake \u2013 191 km ENE of Nagqu, China",
       "peril": "Earthquake",
@@ -2667,7 +2667,7 @@
     },
     "USGS-us6000u4j2": {
       "intensity": "Magnitude 6.9; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-25 02:37 UTC",
       "name": "M6.9 earthquake \u2013 197 km WNW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2681,7 +2681,7 @@
     },
     "USGS-us6000u4jb": {
       "intensity": "Magnitude 6.3; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-25 02:41 UTC",
       "name": "M6.3 earthquake \u2013 170 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2695,7 +2695,7 @@
     },
     "USGS-us6000u4r9": {
       "intensity": "Magnitude 6.5; depth 492.376 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-29 02:12 UTC",
       "name": "M6.5 earthquake \u2013 Bonin Islands, Japan region",
       "peril": "Earthquake",
@@ -3031,7 +3031,7 @@
     },
     "USGS-us7000ttxz": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-10-30 13:32 UTC",
+      "last_seen": "2026-10-30 18:50 UTC",
       "latest_update": "2026-10-30 10:38 UTC",
       "name": "M6.4 earthquake \u2013 southeast of Easter Island",
       "peril": "Earthquake",
@@ -3045,6 +3045,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-10-30 13:32 UTC",
+  "last_run": "2026-10-30 18:50 UTC",
   "schema_version": 4
 }
