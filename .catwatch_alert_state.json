@@ -1393,8 +1393,8 @@
     },
     "NHC-Central Pacific-Tropical Storm Pena": {
       "intensity": "Tropical Storm; Wind 40 mph; Pressure 1004 mb; Movement W at 14 mph",
-      "last_seen": "2026-11-10 03:30 UTC",
-      "latest_update": "2026-11-10 02:31 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
+      "latest_update": "2026-11-10 08:33 UTC",
       "name": "Tropical Storm Pena",
       "peril": "Tropical Cyclone",
       "region": "Central Pacific",
@@ -2597,7 +2597,7 @@
     },
     "USGS-us6000u1wn": {
       "intensity": "Magnitude 6.1; depth 11 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-10-22 18:53 UTC",
       "name": "M6.1 earthquake \u2013 15 km W of R\u00edo Grande, Panama",
       "peril": "Earthquake",
@@ -2611,7 +2611,7 @@
     },
     "USGS-us6000u1z5": {
       "intensity": "Magnitude 6.7; depth 10 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-11-03 16:19 UTC",
       "name": "M6.7 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -2625,7 +2625,7 @@
     },
     "USGS-us6000u214": {
       "intensity": "Magnitude 6.8; depth 10 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-11-05 16:13 UTC",
       "name": "M6.8 earthquake \u2013 central Mid-Atlantic Ridge",
       "peril": "Earthquake",
@@ -2639,7 +2639,7 @@
     },
     "USGS-us6000u2mq": {
       "intensity": "Magnitude 6.9; depth 135 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-11-05 02:27 UTC",
       "name": "M6.9 earthquake \u2013 72 km NE of Ozernovskiy, Russia",
       "peril": "Earthquake",
@@ -2653,7 +2653,7 @@
     },
     "USGS-us6000u2y1": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-11-07 12:57 UTC",
       "name": "M5.7 earthquake \u2013 47 km WNW of Khuzdar, Pakistan",
       "peril": "Earthquake",
@@ -2667,22 +2667,22 @@
     },
     "USGS-us6000u3jl": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-11-10 03:30 UTC",
-      "latest_update": "2026-10-27 17:29 UTC",
-      "name": "M6.3 earthquake \u2013 197 km NW of Port-Olry, Vanuatu",
+      "last_seen": "2026-11-10 11:44 UTC",
+      "latest_update": "2026-11-10 06:14 UTC",
+      "name": "M6.3 earthquake \u2013 202 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
-      "region": "197 km NW of Port-Olry, Vanuatu",
+      "region": "202 km NW of Port-Olry, Vanuatu",
       "severity": "Amber",
       "severity_rank": 3,
       "source": "USGS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "USGS | M6.3 earthquake \u2013 197 km NW of Port-Olry, Vanuatu | Earthquake | Amber | P2 | Magnitude 6.3; depth 16 km"
+      "update_key": "USGS | M6.3 earthquake \u2013 202 km NW of Port-Olry, Vanuatu | Earthquake | Amber | P2 | Magnitude 6.3; depth 16 km"
     },
     "USGS-us6000u43g": {
       "intensity": "Magnitude 7; depth 18 km",
-      "last_seen": "2026-11-10 03:30 UTC",
-      "latest_update": "2026-11-03 22:14 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
+      "latest_update": "2026-11-10 08:27 UTC",
       "name": "M7 earthquake \u2013 189 km ENE of Nagqu, China",
       "peril": "Earthquake",
       "region": "189 km ENE of Nagqu, China",
@@ -2695,7 +2695,7 @@
     },
     "USGS-us6000u4j2": {
       "intensity": "Magnitude 6.8; depth 16 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-11-07 00:31 UTC",
       "name": "M6.8 earthquake \u2013 203 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2723,7 +2723,7 @@
     },
     "USGS-us6000u4r9": {
       "intensity": "Magnitude 6.5; depth 492.376 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-10-29 02:12 UTC",
       "name": "M6.5 earthquake \u2013 Bonin Islands, Japan region",
       "peril": "Earthquake",
@@ -3059,7 +3059,7 @@
     },
     "USGS-us7000ttxz": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-11-10 03:30 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
       "latest_update": "2026-10-30 10:38 UTC",
       "name": "M6.4 earthquake \u2013 southeast of Easter Island",
       "peril": "Earthquake",
@@ -3073,8 +3073,8 @@
     },
     "USGS-us7000tx16": {
       "intensity": "Magnitude 6.4; depth 17 km",
-      "last_seen": "2026-11-10 03:30 UTC",
-      "latest_update": "2026-11-09 19:21 UTC",
+      "last_seen": "2026-11-10 11:44 UTC",
+      "latest_update": "2026-11-10 03:42 UTC",
       "name": "M6.4 earthquake \u2013 30 km WSW of Lata, Solomon Islands",
       "peril": "Earthquake",
       "region": "30 km WSW of Lata, Solomon Islands",
@@ -3087,6 +3087,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-11-10 03:30 UTC",
+  "last_run": "2026-11-10 11:44 UTC",
   "schema_version": 4
 }
