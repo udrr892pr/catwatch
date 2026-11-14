@@ -2653,7 +2653,7 @@
     },
     "USGS-us6000u2mq": {
       "intensity": "Magnitude 6.9; depth 135 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-05 02:27 UTC",
       "name": "M6.9 earthquake \u2013 72 km NE of Ozernovskiy, Russia",
       "peril": "Earthquake",
@@ -2667,7 +2667,7 @@
     },
     "USGS-us6000u2y1": {
       "intensity": "Magnitude 5.7; depth 10 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-07 12:57 UTC",
       "name": "M5.7 earthquake \u2013 47 km WNW of Khuzdar, Pakistan",
       "peril": "Earthquake",
@@ -2681,7 +2681,7 @@
     },
     "USGS-us6000u3jl": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-10 06:14 UTC",
       "name": "M6.3 earthquake \u2013 202 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2695,7 +2695,7 @@
     },
     "USGS-us6000u43g": {
       "intensity": "Magnitude 7; depth 18 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-10 08:27 UTC",
       "name": "M7 earthquake \u2013 189 km ENE of Nagqu, China",
       "peril": "Earthquake",
@@ -2709,7 +2709,7 @@
     },
     "USGS-us6000u4j2": {
       "intensity": "Magnitude 6.8; depth 16 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-07 00:31 UTC",
       "name": "M6.8 earthquake \u2013 203 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2737,7 +2737,7 @@
     },
     "USGS-us6000u4r9": {
       "intensity": "Magnitude 6.5; depth 475 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-13 05:39 UTC",
       "name": "M6.5 earthquake \u2013 Bonin Islands, Japan region",
       "peril": "Earthquake",
@@ -3073,7 +3073,7 @@
     },
     "USGS-us7000ttxz": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-12 08:18 UTC",
       "name": "M6.4 earthquake \u2013 southeast of Easter Island",
       "peril": "Earthquake",
@@ -3087,7 +3087,7 @@
     },
     "USGS-us7000tx16": {
       "intensity": "Magnitude 6.4; depth 17 km",
-      "last_seen": "2026-11-14 03:09 UTC",
+      "last_seen": "2026-11-14 10:15 UTC",
       "latest_update": "2026-11-13 21:48 UTC",
       "name": "M6.4 earthquake \u2013 30 km WSW of Lata, Solomon Islands",
       "peril": "Earthquake",
@@ -3101,6 +3101,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-11-14 03:09 UTC",
+  "last_run": "2026-11-14 10:15 UTC",
   "schema_version": 4
 }
