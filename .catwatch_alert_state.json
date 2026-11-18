@@ -511,9 +511,9 @@
     },
     "GDACS-tropical-cyclone-1001351": {
       "intensity": "From 16/11/2026 to 18/11/2026, a Tropical Storm (maximum wind speed of 83 km/h) AKVAN-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated populati\u2026",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-16 20:06 UTC",
-      "name": "Orange notification for tropical cyclone AKVAN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (15.432 million in Tropical Storm).",
+      "name": "Orange notification for tropical cyclone AKVAN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (14.328 million in Tropical Storm).",
       "peril": "Tropical Cyclone",
       "region": "Tropical Storm).",
       "severity": "Orange",
@@ -521,7 +521,7 @@
       "source": "GDACS",
       "tier": "P2",
       "tier_rank": 3,
-      "update_key": "GDACS | Orange notification for tropical cyclone AKVAN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (15.432 million in Tropical Storm). | Tropical Cyclone | Orange | P2 | From 16/11/2026 to 18/11/2026, a Tropical Storm (maximum wind speed of 83 km/h) AKVAN-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated populati\u2026"
+      "update_key": "GDACS | Orange notification for tropical cyclone AKVAN-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (14.328 million in Tropical Storm). | Tropical Cyclone | Orange | P2 | From 16/11/2026 to 18/11/2026, a Tropical Storm (maximum wind speed of 83 km/h) AKVAN-26 was active in NorthIndian. The cyclone affects these countries: India (vulnerability High). Estimated populati\u2026"
     },
     "GDACS-wildfire-1029260": {
       "intensity": "On 02/07/2026, a forest fire started in Portugal, until 08/07/2026.",
@@ -2695,7 +2695,7 @@
     },
     "USGS-us6000u3jl": {
       "intensity": "Magnitude 6.3; depth 16 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-10 06:14 UTC",
       "name": "M6.3 earthquake \u2013 202 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2709,7 +2709,7 @@
     },
     "USGS-us6000u43g": {
       "intensity": "Magnitude 7; depth 18 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-10 08:27 UTC",
       "name": "M7 earthquake \u2013 189 km ENE of Nagqu, China",
       "peril": "Earthquake",
@@ -2723,7 +2723,7 @@
     },
     "USGS-us6000u4j2": {
       "intensity": "Magnitude 6.8; depth 16 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-07 00:31 UTC",
       "name": "M6.8 earthquake \u2013 203 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2751,7 +2751,7 @@
     },
     "USGS-us6000u4r9": {
       "intensity": "Magnitude 6.5; depth 475 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-13 05:39 UTC",
       "name": "M6.5 earthquake \u2013 Bonin Islands, Japan region",
       "peril": "Earthquake",
@@ -3087,7 +3087,7 @@
     },
     "USGS-us7000ttxz": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-12 08:18 UTC",
       "name": "M6.4 earthquake \u2013 southeast of Easter Island",
       "peril": "Earthquake",
@@ -3101,7 +3101,7 @@
     },
     "USGS-us7000tx16": {
       "intensity": "Magnitude 6.4; depth 17 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-13 21:48 UTC",
       "name": "M6.4 earthquake \u2013 30 km WSW of Lata, Solomon Islands",
       "peril": "Earthquake",
@@ -3115,7 +3115,7 @@
     },
     "USGS-us7000tymu": {
       "intensity": "Magnitude 6.6; depth 68 km",
-      "last_seen": "2026-11-18 02:39 UTC",
+      "last_seen": "2026-11-18 10:42 UTC",
       "latest_update": "2026-11-18 00:37 UTC",
       "name": "M6.6 earthquake \u2013 148 km WSW of Tual, Indonesia",
       "peril": "Earthquake",
@@ -3129,6 +3129,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-11-18 02:39 UTC",
+  "last_run": "2026-11-18 10:42 UTC",
   "schema_version": 4
 }
