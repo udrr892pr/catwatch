@@ -2709,7 +2709,7 @@
     },
     "USGS-us6000u43g": {
       "intensity": "Magnitude 7; depth 18 km",
-      "last_seen": "2026-11-20 04:54 UTC",
+      "last_seen": "2026-11-20 13:43 UTC",
       "latest_update": "2026-11-10 08:27 UTC",
       "name": "M7 earthquake \u2013 189 km ENE of Nagqu, China",
       "peril": "Earthquake",
@@ -2723,7 +2723,7 @@
     },
     "USGS-us6000u4j2": {
       "intensity": "Magnitude 6.8; depth 16 km",
-      "last_seen": "2026-11-20 04:54 UTC",
+      "last_seen": "2026-11-20 13:43 UTC",
       "latest_update": "2026-11-07 00:31 UTC",
       "name": "M6.8 earthquake \u2013 203 km NW of Port-Olry, Vanuatu",
       "peril": "Earthquake",
@@ -2751,7 +2751,7 @@
     },
     "USGS-us6000u4r9": {
       "intensity": "Magnitude 6.5; depth 475 km",
-      "last_seen": "2026-11-20 04:54 UTC",
+      "last_seen": "2026-11-20 13:43 UTC",
       "latest_update": "2026-11-19 01:44 UTC",
       "name": "M6.5 earthquake \u2013 Bonin Islands, Japan region",
       "peril": "Earthquake",
@@ -3087,7 +3087,7 @@
     },
     "USGS-us7000ttxz": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-11-20 04:54 UTC",
+      "last_seen": "2026-11-20 13:43 UTC",
       "latest_update": "2026-11-12 08:18 UTC",
       "name": "M6.4 earthquake \u2013 southeast of Easter Island",
       "peril": "Earthquake",
@@ -3101,7 +3101,7 @@
     },
     "USGS-us7000tx16": {
       "intensity": "Magnitude 6.4; depth 17 km",
-      "last_seen": "2026-11-20 04:54 UTC",
+      "last_seen": "2026-11-20 13:43 UTC",
       "latest_update": "2026-11-13 21:48 UTC",
       "name": "M6.4 earthquake \u2013 30 km WSW of Lata, Solomon Islands",
       "peril": "Earthquake",
@@ -3115,7 +3115,7 @@
     },
     "USGS-us7000tymu": {
       "intensity": "Magnitude 6.6; depth 68 km",
-      "last_seen": "2026-11-20 04:54 UTC",
+      "last_seen": "2026-11-20 13:43 UTC",
       "latest_update": "2026-11-20 00:45 UTC",
       "name": "M6.6 earthquake \u2013 149 km WSW of Tual, Indonesia",
       "peril": "Earthquake",
@@ -3129,6 +3129,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-11-20 04:54 UTC",
+  "last_run": "2026-11-20 13:43 UTC",
   "schema_version": 4
 }
