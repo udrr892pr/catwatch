@@ -327,6 +327,20 @@
       "tier_rank": 3,
       "update_key": "GDACS | Orange flood alert in Nepal | Flood | Orange | P2 | On 26/08/2026, a flood started in Nepal, lasting until 28/08/2026 (last update). The flood caused 527 deaths and 0 displaced ."
     },
+    "GDACS-flood-1104303": {
+      "intensity": "On 25/11/2026, a flood started in Bolivia, lasting until 27/11/2026 (last update). The flood caused 115 deaths and 12400 displaced .",
+      "last_seen": "2026-11-28 13:35 UTC",
+      "latest_update": "2026-11-27 08:17 UTC",
+      "name": "Orange flood alert in Bolivia",
+      "peril": "Flood",
+      "region": "Bolivia",
+      "severity": "Orange",
+      "severity_rank": 4,
+      "source": "GDACS",
+      "tier": "P2",
+      "tier_rank": 3,
+      "update_key": "GDACS | Orange flood alert in Bolivia | Flood | Orange | P2 | On 25/11/2026, a flood started in Bolivia, lasting until 27/11/2026 (last update). The flood caused 115 deaths and 12400 displaced ."
+    },
     "GDACS-tropical-cyclone-1001279": {
       "intensity": "From 01/07/2026 to 07/07/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 287 km/h) BAVI-26 was active in NWPacific. The cyclone affects these countries: Guam, Northern Mariana Islands, Japa\u2026",
       "last_seen": "2026-07-07 22:51 UTC",
@@ -2779,7 +2793,7 @@
     },
     "USGS-us6000ucfm": {
       "intensity": "Magnitude 6.7; depth 125 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-25 19:59 UTC",
       "name": "M6.7 earthquake \u2013 7 km ENE of Carhuamayo, Peru",
       "peril": "Earthquake",
@@ -2793,7 +2807,7 @@
     },
     "USGS-us6000ucij": {
       "intensity": "Magnitude 6.8; depth 132.055 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-22 10:46 UTC",
       "name": "M6.8 earthquake \u2013 105 km NE of Lospalos, Timor Leste",
       "peril": "Earthquake",
@@ -2807,7 +2821,7 @@
     },
     "USGS-us6000ucly": {
       "intensity": "Magnitude 5.9; depth 10 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-22 10:52 UTC",
       "name": "M5.9 earthquake \u2013 238 km SW of Yanglong, China",
       "peril": "Earthquake",
@@ -2821,7 +2835,7 @@
     },
     "USGS-us6000ucvm": {
       "intensity": "Magnitude 6.5; depth 598 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-24 02:50 UTC",
       "name": "M6.5 earthquake \u2013 Vanuatu region",
       "peril": "Earthquake",
@@ -2835,7 +2849,7 @@
     },
     "USGS-us6000ud6h": {
       "intensity": "Magnitude 6.4; depth 10 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-25 11:14 UTC",
       "name": "M6.4 earthquake \u2013 Mauritius - Reunion region",
       "peril": "Earthquake",
@@ -2846,6 +2860,20 @@
       "tier": "P2",
       "tier_rank": 3,
       "update_key": "USGS | M6.4 earthquake \u2013 Mauritius - Reunion region | Earthquake | Amber | P2 | Magnitude 6.4; depth 10 km"
+    },
+    "USGS-us6000ue3p": {
+      "intensity": "Magnitude 6.7; depth 188.422 km",
+      "last_seen": "2026-11-28 13:35 UTC",
+      "latest_update": "2026-11-28 13:34 UTC",
+      "name": "M6.7 earthquake \u2013 62 km NNW of Yelizovo, Russia",
+      "peril": "Earthquake",
+      "region": "62 km NNW of Yelizovo, Russia",
+      "severity": "Red",
+      "severity_rank": 5,
+      "source": "USGS",
+      "tier": "P1",
+      "tier_rank": 4,
+      "update_key": "USGS | M6.7 earthquake \u2013 62 km NNW of Yelizovo, Russia | Earthquake | Red | P1 | Magnitude 6.7; depth 188.422 km"
     },
     "USGS-us7000spqc": {
       "intensity": "Magnitude 6; depth 25 km",
@@ -3171,7 +3199,7 @@
     },
     "USGS-us7000tx16": {
       "intensity": "Magnitude 6.4; depth 17 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-13 21:48 UTC",
       "name": "M6.4 earthquake \u2013 30 km WSW of Lata, Solomon Islands",
       "peril": "Earthquake",
@@ -3185,7 +3213,7 @@
     },
     "USGS-us7000tymu": {
       "intensity": "Magnitude 6.6; depth 68 km",
-      "last_seen": "2026-11-28 04:30 UTC",
+      "last_seen": "2026-11-28 13:35 UTC",
       "latest_update": "2026-11-24 22:16 UTC",
       "name": "M6.6 earthquake \u2013 147 km WSW of Tual, Indonesia",
       "peril": "Earthquake",
@@ -3199,6 +3227,6 @@
     }
   },
   "initialized": true,
-  "last_run": "2026-11-28 04:30 UTC",
+  "last_run": "2026-11-28 13:35 UTC",
   "schema_version": 4
 }
